@@ -7,6 +7,7 @@ set listchars=tab:\ \ ,space:·
 set nolist
 set textwidth=80
 set laststatus=2
+set formatoptions-=cro
 "set statusline=%F
 
 " Mappings
