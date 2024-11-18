@@ -33,7 +33,7 @@ function! UpdateSession(session_name)
 endfunction
 
 " Restore viminfo after loading a session
-autocmd SessionLoadPost * call LoadSessionViminfo(fnamemodify(FindProjectRoot(), ':t')) | so ~/.vim/vimrc
+autocmd SessionLoadPost * call LoadSessionViminfo(FindProjectRoot()) | so ~/.vim/vimrc
 
 function! LoadSessionViminfo(session_name)
   let l:viminfo_file = expand('~/.vim/sessions/viminfo/') . a:session_name . '.viminfo'

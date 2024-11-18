@@ -112,7 +112,6 @@ set termguicolors
 " if strftime("%H") >= 7 && strftime("%H") <= 18
 "     colorscheme shine
 " else
-"     colorscheme desert
 " endif
 colorscheme shine
 
