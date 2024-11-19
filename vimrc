@@ -51,7 +51,7 @@ command! Args call Args()
 " linuxy style indent options:
 " -brf: braces on function definition line 
 " -npsl: dont break procedure type
-nnoremap <Leader>f :execute 'w <bar> !indent -kr -i8' . expand('%')<CR>L
+nnoremap <Leader>f :w<CR>:!indent -kr -i8 %<CR>
 "" Emacs bindings
 " start of line
 noremap! <C-A>		<Home>
