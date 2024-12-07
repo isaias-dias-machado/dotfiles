@@ -1,13 +1,14 @@
 set nocompatible
+set formatoptions-=ro
 set tabstop=8
 set shiftwidth=8
 set softtabstop=8
-set expandtab
+set noexpandtab
 set listchars=tab:\ \ ,space:·
 set nolist
 set textwidth=80
 set laststatus=2
-set formatoptions-=cro
+set noesckeys
 "set statusline=%F
 
 " Mappings
@@ -36,6 +37,7 @@ nnoremap <Leader>j :tjump /
 nnoremap <Leader>ps :!maim -s -q "$HOME/Dropbox/mywiki/images"<CR>
 nnoremap <Leader>so :so ~/.vim/sessions/
 nnoremap <Leader>sm :mksession! ~/.vim/sessions/
+nnoremap <Leader>l :so ~/.vim/vimrc<CR>
 "fly args
 nnoremap <Leader>a :Args<CR> 
 function! Args()
@@ -48,10 +50,22 @@ function! Args()
 endfunction
 command! Args call Args()
 
+nnoremap <Leader>k :Argsd<CR> 
+function! Argsd()
+    let prompt = 'Select an argument:'
+    let arg_list = map(argv(), 'v:key + 1 . ". " . v:val')
+    let chosen_arg = inputlist([prompt] + arg_list)
+    if chosen_arg
+        execute chosen_arg . 'argd'
+    endif
+endfunction
+command! Argsd call Argsd()
 " linuxy style indent options:
 " -brf: braces on function definition line 
 " -npsl: dont break procedure type
-nnoremap <Leader>f :w<CR>:!indent -kr -i8 %<CR>
+" -pal: pointer align left
+nnoremap <Leader>f :w<CR>:!indent -kr -i8 -ut -pal %<CR>
+
 "" Emacs bindings
 " start of line
 noremap! <C-A>		<Home>
@@ -147,10 +161,10 @@ set path=$VIMRUNTIME,$HOME,$HOME/.vim,$HOME/projects,$HOME/.config,$HOME/Dropbox
                 \ endif
 
 " backup
-set undodir=$HOME/.vim/undovim
 set noswapfile
 set nobackup
 set nowritebackup
+set undodir=$HOME/.vim/undovim
 set undolevels=1000         " How many undos
 set undoreload=10000 
 set undofile
