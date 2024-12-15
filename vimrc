@@ -22,13 +22,14 @@ vnoremap <Leader>p "_dP
 noremap <Leader>zi <c-w>_ \| <c-w>\|
 noremap <Leader>zo <c-w>=
 
+nnoremap <Leader>w :e ~/mywiki/wiki.md<CR>
 nnoremap <Leader>b :ls<CR>:b
 nnoremap <Leader>m :AsyncRun -cwd=<root> make<CR>:cope 9<CR>
 nnoremap <Leader>sf :find ./**/*
 nnoremap <Leader>ss :sfind ./**/*
 nnoremap <Leader>sg :vimgrep //j ./**/* <bar> :copen 20<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 nnoremap <Leader>swg :exe 'vimgrep /' . expand('<cword>') . '/j ./**/* <bar> :copen 20'<CR>
-vnoremap <Leader>svg y:vimgrep "<c-r>"" ./**/*<CR> 
+vnoremap <Leader>svg y:vimgrep "<c-r>"" ./**/* <bar> :cope 20 <CR> 
 nnoremap <Leader>d :term gdb -q 
 nnoremap <Leader>t :term bash<CR>
 nnoremap <Leader>h :term man 
