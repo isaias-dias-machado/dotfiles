@@ -24,7 +24,7 @@ noremap <Leader>zo <c-w>=
 
 nnoremap <Leader>w :e ~/mywiki/wiki.md<CR>
 nnoremap <Leader>b :ls<CR>:b
-nnoremap <Leader>m :AsyncRun -cwd=<root> make<CR>:cope 9<CR>
+nnoremap <Leader>m :AsyncRun -cwd=<root> make<CR>:find makefile<CR>:cope 9<CR>
 nnoremap <Leader>sf :find ./**/*
 nnoremap <Leader>ss :sfind ./**/*
 nnoremap <Leader>sg :vimgrep //j ./**/* <bar> :copen 20<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
@@ -154,12 +154,7 @@ set ignorecase
 set smartcase
 
 " Finding files
-set path=$VIMRUNTIME,$HOME,$HOME/.vim,$HOME/projects,$HOME/.config,$HOME/Dropbox/,$HOME/Dropbox/MyVaultDrive,$HOME/Dropbox/MyVaultDrive/6*,$VIMRUNTIME/colors,$HOME/Dropbox/mywiki,$HOME/lib,$HOME/bin,
-
-    " Add the current directory and all its subdirectories to the path on startup
-    autocmd VimEnter * if index(split(&path, ','), expand('%:p:h') . '/**') == -1 |
-                \ let &path = FindProjectRoot() . '/**,' . &path |
-                \ endif
+set path=./**,$VIMRUNTIME,$HOME,$HOME/.vim,$HOME/projects,$HOME/.config,$HOME/Dropbox/,$HOME/Dropbox/MyVaultDrive,$HOME/Dropbox/MyVaultDrive/6*,$VIMRUNTIME/colors,$HOME/Dropbox/mywiki,$HOME/lib,$HOME/bin,
 
 " backup
 set noswapfile
