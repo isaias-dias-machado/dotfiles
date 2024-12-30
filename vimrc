@@ -1,4 +1,9 @@
-set nocompatible
+syntax enable
+filetype plugin indent on
+set t_Co=256
+set termguicolors
+set number
+set relativenumber
 set formatoptions-=ro
 set tabstop=8
 set shiftwidth=8
@@ -10,6 +15,22 @@ set textwidth=80
 set laststatus=2
 set noesckeys
 "set statusline=%F
+set wildmenu
+set wildmode=list:longest,full
+set wildignore=*.o,*.d
+
+" backup
+set noswapfile
+set nobackup
+set nowritebackup
+set undodir=$HOME/.vim/undovim
+set undolevels=1000         " How many undos
+set undoreload=10000 
+set undofile
+
+
+set ignorecase
+set smartcase
 
 " Mappings
 let mapleader=" "
@@ -24,16 +45,15 @@ noremap <Leader>zo <c-w>=
 
 nnoremap <Leader>w :e ~/mywiki/wiki.md<CR>
 nnoremap <Leader>b :ls<CR>:b
-nnoremap <Leader>m :AsyncRun -cwd=<root> make<CR>:find makefile<CR>:cope 9<CR>
-nnoremap <Leader>sf :find ./**/*
-nnoremap <Leader>ss :sfind ./**/*
+nnoremap <Leader>m :AsyncRun make<CR>:cope 11<CR>
+nnoremap <Leader>r :AsyncRun make run<CR> :cope<CR>
+nnoremap <Leader>st :term tree --gitignore
+nnoremap <Leader>sf :find 
+nnoremap <Leader>ss :sfind 
 nnoremap <Leader>sg :vimgrep //j ./**/* <bar> :copen 20<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
 nnoremap <Leader>swg :exe 'vimgrep /' . expand('<cword>') . '/j ./**/* <bar> :copen 20'<CR>
 vnoremap <Leader>svg y:vimgrep "<c-r>"" ./**/* <bar> :cope 20 <CR> 
-nnoremap <Leader>d :term gdb -q 
-nnoremap <Leader>t :term bash<CR>
 nnoremap <Leader>h :term man 
-nnoremap <Leader>st :term tree --gitignore
 nnoremap <Leader>j :tjump /
 nnoremap <Leader>ps :!maim -s -q "$HOME/Dropbox/mywiki/images"<CR>
 nnoremap <Leader>so :so ~/.vim/sessions/
@@ -110,19 +130,15 @@ Plug 'mbbill/undotree'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'lervag/wiki.vim'
 Plug 'preservim/vim-markdown'
+"Plug 'prabirshrestha/vim-lsp'
 
 call plug#end()
 
 "My plugins
 set viminfo+=!
-source ~/.vim/plugins/find_project_root.vim
 source ~/.vim/plugins/session_manager.vim
 
 " Basic config
-syntax enable
-filetype plugin indent on
-set t_Co=256
-set termguicolors
 
 " if strftime("%H") >= 7 && strftime("%H") <= 18
 "     colorscheme shine
@@ -137,45 +153,13 @@ set grepprg="rg"
 set tags=/home/isaias/.vim/system.ctags/tags,tags;/home/isaias
 "set completeopt-=preview
 
-let g:netrw_keepdir=0
-let g:netrw_localrmdir='rm -rf '
-let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_liststyle = 0
-let g:netrw_browsex_viewer="xdg-open"
-
-set wildmenu
-set wildmode=list:longest,full
-set wildignore=*.o,*.d
-
-set number
-set relativenumber
-
-set ignorecase
-set smartcase
 
 " Finding files
 set path=./**,$VIMRUNTIME,$HOME,$HOME/.vim,$HOME/projects,$HOME/.config,$HOME/Dropbox/,$HOME/Dropbox/MyVaultDrive,$HOME/Dropbox/MyVaultDrive/6*,$VIMRUNTIME/colors,$HOME/Dropbox/mywiki,$HOME/lib,$HOME/bin,
 
-" backup
-set noswapfile
-set nobackup
-set nowritebackup
-set undodir=$HOME/.vim/undovim
-set undolevels=1000         " How many undos
-set undoreload=10000 
-set undofile
-
 set hidden!
 set nohlsearch
 set incsearch
-
-"""""""""""""" ALE """"""""""""""""
-let g:ale_lint_on_save=1
-let g:ale_set_balloons=1
-let g:ale_enabled=0
-
-set omnifunc=ale#completion#OmniFunc
-
 " Quick fix opts
 autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
 
@@ -193,3 +177,33 @@ let g:vim_markdown_folding_disabled = 0
 let g:vim_markdown_folding_level = 1
 let g:vim_markdown_override_foldtext = 1
 set conceallevel=2
+
+"lsp
+" if executable('clangd')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'clangd',
+"         \ 'cmd': {server_info->['clangd']},
+"         \ 'allowlist': ['c', 'cpp'],
+"         \ })
+" endif
+
+" function! s:on_lsp_buffer_enabled() abort
+"     setlocal omnifunc=lsp#complete
+"     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+"     nmap <buffer> gd <plug>(lsp-definition)
+"     nmap <buffer> gr <plug>(lsp-references)
+"     nmap <buffer> gi <plug>(lsp-implementation)
+"     nmap <buffer> <leader>rn <plug>(lsp-rename)
+"     nmap <buffer> K <plug>(lsp-hover)
+
+"     let g:lsp_format_sync_timeout = 1000
+"     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    
+"     " refer to doc to add more commands
+" endfunction
+
+" augroup lsp_install
+"     au!
+"     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+"     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+" augroup END
