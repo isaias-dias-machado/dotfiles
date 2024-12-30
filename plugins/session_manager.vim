@@ -8,7 +8,7 @@ set sessionoptions+=globals " Saves global variables
 set sessionoptions+=winpos,resize " Include tabs and window layout
 
 source ~/.vim/plugins/find_project_root.vim
-autocmd BufWinLeave,QuitPre * call UpdateSession(fnamemodify(FindProjectRoot(), ':t'))
+autocmd BufWinLeave,QuitPre * call UpdateSession(fnamemodify(getcwd(), ':t'))
 
 function! UpdateSession(session_name)
   let l:session_file = expand('~/.vim/sessions/') . a:session_name
@@ -33,7 +33,7 @@ function! UpdateSession(session_name)
 endfunction
 
 " Restore viminfo after loading a session
-autocmd SessionLoadPost * call LoadSessionViminfo(FindProjectRoot()) | so ~/.vim/vimrc
+autocmd SessionLoadPost * call LoadSessionViminfo(getcwd()) | so ~/.vim/vimrc
 
 function! LoadSessionViminfo(session_name)
   let l:viminfo_file = expand('~/.vim/sessions/viminfo/') . a:session_name . '.viminfo'
