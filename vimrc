@@ -17,7 +17,7 @@ set noesckeys
 "set statusline=%F
 set wildmenu
 set wildmode=list:longest,full
-set wildignore=*.o,*.d
+set pumheight=4
 
 " backup
 set noswapfile
@@ -45,8 +45,8 @@ noremap <Leader>zo <c-w>=
 
 nnoremap <Leader>w :e ~/mywiki/wiki.md<CR>
 nnoremap <Leader>b :ls<CR>:b
-nnoremap <Leader>m :AsyncRun make<CR>:cope 11<CR>
-nnoremap <Leader>r :AsyncRun make run<CR> :cope<CR>
+nnoremap <Leader>m :make<CR>:cope 11<CR>
+nnoremap <Leader>r :make run<CR> :cope<CR>
 nnoremap <Leader>st :term tree --gitignore
 nnoremap <Leader>sf :find 
 nnoremap <Leader>ss :sfind 
@@ -117,20 +117,23 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 call plug#begin()
 
 " List your plugins here
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-line'
-Plug 'mbbill/undotree'
-Plug 'skywind3000/asyncrun.vim'
+ Plug 'tpope/vim-repeat'
+ Plug 'tpope/vim-surround'
+ Plug 'tpope/vim-commentary'
+ Plug 'tpope/vim-unimpaired'
+ Plug 'tpope/vim-vinegar'
+ Plug 'kana/vim-textobj-user'
+ Plug 'kana/vim-textobj-entire'
+ Plug 'kana/vim-textobj-indent'
+ Plug 'kana/vim-textobj-line'
+ Plug 'mbbill/undotree'
+"Plug 'skywind3000/asyncrun.vim'
 Plug 'lervag/wiki.vim'
 Plug 'preservim/vim-markdown'
-"Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/vim-lsp-settings'
 
 call plug#end()
 
@@ -145,6 +148,7 @@ source ~/.vim/plugins/session_manager.vim
 " else
 " endif
 colorscheme shine
+colorscheme desert
 
 set grepprg="rg"
 
@@ -155,7 +159,7 @@ set tags=/home/isaias/.vim/system.ctags/tags,tags;/home/isaias
 
 
 " Finding files
-set path=./**,$VIMRUNTIME,$HOME,$HOME/.vim,$HOME/projects,$HOME/.config,$HOME/Dropbox/,$HOME/Dropbox/MyVaultDrive,$HOME/Dropbox/MyVaultDrive/6*,$VIMRUNTIME/colors,$HOME/Dropbox/mywiki,$HOME/lib,$HOME/bin,
+set path=$VIMRUNTIME,$HOME,$HOME/.vim,$HOME/projects,$HOME/.config,$HOME/Dropbox/,$HOME/Dropbox/MyVaultDrive,$HOME/Dropbox/MyVaultDrive/6*,$VIMRUNTIME/colors,$HOME/Dropbox/mywiki,$HOME/lib,$HOME/bin,./**,
 
 set hidden!
 set nohlsearch
@@ -178,32 +182,36 @@ let g:vim_markdown_folding_level = 1
 let g:vim_markdown_override_foldtext = 1
 set conceallevel=2
 
-"lsp
-" if executable('clangd')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'clangd',
-"         \ 'cmd': {server_info->['clangd']},
-"         \ 'allowlist': ['c', 'cpp'],
-"         \ })
-" endif
 
-" function! s:on_lsp_buffer_enabled() abort
-"     setlocal omnifunc=lsp#complete
-"     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-"     nmap <buffer> gd <plug>(lsp-definition)
-"     nmap <buffer> gr <plug>(lsp-references)
-"     nmap <buffer> gi <plug>(lsp-implementation)
-"     nmap <buffer> <leader>rn <plug>(lsp-rename)
-"     nmap <buffer> K <plug>(lsp-hover)
+"==============================lsp=====================================
+let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
+let g:lsp_document_code_action_signs_enabled = 0
+inoremap <expr> <CR> pumvisible() ? "\<C-e>\<CR>" : "\<CR>"
 
-"     let g:lsp_format_sync_timeout = 1000
-"     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+" allow folding
+" set foldnestmax=0
+" set foldmethod=expr
+"     \ foldexpr=lsp#ui#vim#folding#foldexpr()
+"     \ foldtext=lsp#ui#vim#folding#foldtext()
+
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> K <plug>(lsp-hover)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
     
-"     " refer to doc to add more commands
-" endfunction
+    " refer to doc to add more commands
+endfunction
 
-" augroup lsp_install
-"     au!
-"     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-"     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-" augroup END
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
