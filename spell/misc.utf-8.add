@@ -97,3 +97,6 @@ ENV
 shellcheck
 unicode
 api
+filesystem
+tmp
+backedup

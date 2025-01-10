@@ -11,19 +11,37 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/makepr
+~MSle0~/mkprj
 
 # Last Substitute Search Pattern:
-~MSle0&$2
+~MSle0&mkprj
 
 # Last Substitute String:
 $
 
 # Command Line History (newest to oldest):
+:w
+|2,0,1736423146,,"w"
+:q
+|2,0,1736422177,,"q"
+:!make clean
+|2,0,1736419707,,"!make clean"
+:'<,'>s,mkprj,makeproj,g
+|2,0,1736419701,,"'<,'>s,mkprj,makeproj,g"
+:%s,makeproj,mkprj,g
+|2,0,1736419550,,"%s,makeproj,mkprj,g"
+:d
+|2,0,1736417109,,"d"
+:'<,'>s,DEPDIR,DEP_DIR
+|2,0,1736415453,,"'<,'>s,DEPDIR,DEP_DIR"
+:'<,'>s,BUILDDIR,BUILD_DIR,g
+|2,0,1736414555,,"'<,'>s,BUILDDIR,BUILD_DIR,g"
+:wj
+|2,0,1736414094,,"wj"
+:cd /home/isaias/projects/makeproj
+|2,0,1736413567,,"cd /home/isaias/projects/makeproj"
 :wq
 |2,0,1736372461,,"wq"
-:w
-|2,0,1736372329,,"w"
 :14
 |2,0,1736372113,,"14"
 :!chmod u+x ./test_run_debug.sh
@@ -38,8 +56,6 @@ $
 |2,0,1736351918,,"cd ../.test/"
 :cd dirtest/
 |2,0,1736351891,,"cd dirtest/"
-:q
-|2,0,1736350571,,"q"
 :'<,'>s,$2,$var,g
 |2,0,1736350395,,"'<,'>s,$2,$var,g"
 :W
@@ -60,6 +76,12 @@ $
 |2,0,1736337711,,"24"
 :find gvimrc
 |2,0,1736336378,,"find gvimrc"
+:'<,'>s,\w*\s*\*
+|2,0,1736331618,,"'<,'>s,\\w*\\s*\\*"
+:arga ./src/data.c ./src/data.h
+|2,0,1736331377,,"arga ./src/data.c ./src/data.h"
+:ar
+|2,0,1736331373,,"ar"
 :wa
 |2,0,1736289956,,"wa"
 :pwd
@@ -98,30 +120,22 @@ $
 |2,0,1736274920,,"cope"
 :sp
 |2,0,1736271207,,"sp"
-:h ins-completion-menu
-|2,0,1736270234,,"h ins-completion-menu"
-:h asyncomplete
-|2,0,1736270124,,"h asyncomplete"
-:'<,'>s,DB_ENV,$T_DB_ENV,g
-|2,0,1736269811,,"'<,'>s,DB_ENV,$T_DB_ENV,g"
-:'<,'>s,\(.*T_.*\)\t\(.*\),\1=\2,g
-|2,0,1736269772,,"'<,'>s,\\(.*T_.*\\)\\t\\(.*\\),\\1=\\2,g"
-:'<,'>s,\(.*T_.*\)\t\(.*\):\1=\2
-|2,0,1736269763,,"'<,'>s,\\(.*T_.*\\)\\t\\(.*\\):\\1=\\2"
-:'<,'>s,#define,export,g
-|2,0,1736269687,,"'<,'>s,#define,export,g"
-:!cp /home/isaias/projects/t/test.c .test/
-|2,0,1736268648,,"!cp /home/isaias/projects/t/test.c .test/"
-:b1
-|2,0,1736266484,,"b1"
-: /home/isaias/projects/t/templatedir
-|2,0,1736265984,," /home/isaias/projects/t/templatedir"
-:!make clean
-|2,0,1736265067,,"!make clean"
-:!ma ./Makefile
-|2,0,1736265062,,"!ma ./Makefile"
 
 # Search String History (newest to oldest):
+? @$
+|2,1,1736423131,,"@$"
+? mkprj
+|2,1,1736419701,,"mkprj"
+? makeproj
+|2,1,1736419550,,"makeproj"
+? \<objs\>
+|2,1,1736417574,,"\\<objs\\>"
+? DEPDIR
+|2,1,1736415453,,"DEPDIR"
+? BUILDDIR
+|2,1,1736414555,,"BUILDDIR"
+??\a
+|2,1,1736413532,63,"\\a"
 ?/makepr
 |2,1,1736372317,47,"makepr"
 ?/make
@@ -130,8 +144,6 @@ $
 |2,1,1736370400,47,"set"
 ?/set -
 |2,1,1736370394,47,"set -"
-? @$
-|2,1,1736367887,,"@$"
 ?/index
 |2,1,1736367679,47,"index"
 ?/run
@@ -170,8 +182,6 @@ $
 |2,1,1736339892,,"\\<T_TESTS_FILE\\>"
 ? \<t_usage\>
 |2,1,1736337959,,"\\<t_usage\\>"
-??\a
-|2,1,1736335538,63,"\\a"
 ?/git
 |2,1,1736335456,47,"git"
 ?/.gitconf
@@ -210,30 +220,38 @@ $
 |2,1,1736281823,47,"free_t"
 ?/\.o
 |2,1,1736280711,47,"\\.o"
-?/o
-|2,1,1736280706,47,"o"
-?/*.d
-|2,1,1736280698,47,"*.d"
-?/ign
-|2,1,1736280688,47,"ign"
-?/color
-|2,1,1736274313,47,"color"
-?/path
-|2,1,1736273285,47,"path"
-?/lsp
-|2,1,1736270604,47,"lsp"
 
 # Expression History (newest to oldest):
 
 # Input Line History (newest to oldest):
+@[{y(es)},n(o),a(ll),q(uit)] a
+|2,3,1736423129,,"[{y(es)},n(o),a(ll),q(uit)] a"
+@test_C_option.sh
+|2,3,1736422877,,"test_C_option.sh"
+@test.sh
+|2,3,1736422115,,"test.sh"
+@/home/isaias/projects/mkprj
+|2,3,1736419900,,"/home/isaias/projects/mkprj"
+@/home/isaias/projects/makeproj/mkprj.sh
+|2,3,1736419522,,"/home/isaias/projects/makeproj/mkprj.sh"
+@makefile
+|2,3,1736418366,,"makefile"
+@makeproj.sh
+|2,3,1736418357,,"makeproj.sh"
+@src
+|2,3,1736418339,,"src"
+@resources
+|2,3,1736413575,,"resources"
+@makeproj
+|2,3,1736413559,,"makeproj"
 @test_run_debug.sh
 |2,3,1736356098,,"test_run_debug.sh"
-@[{y(es)},n(o),a(ll),q(uit)] a
-|2,3,1736346002,,"[{y(es)},n(o),a(ll),q(uit)] a"
 @/home/isaias/projects/t/.test/t.c
 |2,3,1736345081,,"/home/isaias/projects/t/.test/t.c"
 @/home/isaias/projects/t/.test/Makefile
 |2,3,1736341338,,"/home/isaias/projects/t/.test/Makefile"
+@test.c
+|2,3,1736331513,,"test.c"
 @/home/isaias/projects/wikify/oldmakefile
 |2,3,1736281548,,"/home/isaias/projects/wikify/oldmakefile"
 @/home/isaias/projects/wikify/wit.sh
@@ -258,8 +276,6 @@ $
 |2,3,1736260858,,"dependencies.mk"
 @deps
 |2,3,1736260819,,"deps"
-@test.c
-|2,3,1736260698,,"test.c"
 @templatedir
 |2,3,1736260572,,"templatedir"
 @README.md
@@ -274,16 +290,12 @@ $
 |2,3,1736171616,,"mails.py"
 @complist
 |2,3,1736090161,,"complist"
-@makefile
-|2,3,1736026713,,"makefile"
 @gvimrc
 |2,3,1735950798,,"gvimrc"
 @/home/isaias/projects/apply
 |2,3,1735912570,,"/home/isaias/projects/apply"
 @cover-letter
 |2,3,1735912190,,"cover-letter"
-@resources
-|2,3,1735912148,,"resources"
 @main.py
 |2,3,1735837659,,"main.py"
 @4.MedianOfTwoSortedArrays
@@ -312,238 +324,429 @@ $
 |2,3,1735225721,,"random_f.h"
 @template.c
 |2,3,1735225619,,"template.c"
-@README_TESTS.md
-|2,3,1735218449,,"README_TESTS.md"
-@[{y(es)},n(o),a(ll),q(uit)] 
-|2,3,1735090664,,"[{y(es)},n(o),a(ll),q(uit)] "
-@wit.c
-|2,3,1734974561,,"wit.c"
-@wit.h
-|2,3,1734966341,,"wit.h"
-@/home/isaias/projects/wit/README.md
-|2,3,1734962650,,"/home/isaias/projects/wit/README.md"
-@test
-|2,3,1734879553,,"test"
-@install.awk
-|2,3,1734878910,,"install.awk"
 
 # Debug Line History (newest to oldest):
 
 # Registers:
-""0	LINE	0
-		t_make
-|3,1,0,1,1,0,1736372331,"	t_make"
+"0	LINE	0
+	t -C dirtest init dirtest
+|3,0,0,1,1,0,1736423133,"t -C dirtest init dirtest"
 "1	LINE	0
-		t_make
-|3,0,1,1,1,0,1736372328,"	t_make"
+	../
+|3,0,1,1,1,0,1736423131,"../"
 "2	LINE	0
-		"$makeprg"
-|3,0,2,1,1,0,1736372326,"	\"$makeprg\""
+	./
+|3,0,2,1,1,0,1736423131,"./"
 "3	LINE	0
-		"$makeprg"
-|3,0,3,1,1,0,1736372322,"	\"$makeprg\""
+	
+|3,0,3,1,1,0,1736423131,""
 "4	LINE	0
-		"$makeprg"
-|3,0,4,1,1,0,1736372319,"	\"$makeprg\""
+	../
+|3,0,4,1,1,0,1736423129,"../"
 "5	LINE	0
-		
-|3,0,5,1,1,0,1736372305,"	"
+	./
+|3,0,5,1,1,0,1736423129,"./"
 "6	LINE	0
-	makeprg='make -C $T_PATH -s || exit 1'
-|3,0,6,1,1,0,1736372297,"makeprg='make -C $T_PATH -s || exit 1'"
+	
+|3,0,6,1,1,0,1736423129,""
 "7	LINE	0
-		shift 1
-|3,0,7,1,1,0,1736371607,"	shift 1"
+	../
+|3,0,7,1,1,0,1736423127,"../"
 "8	LINE	0
-		for file in $@
-		do
-			stem=${file##*/}
-			stem=${stem%.*}
-			gawk -i inplace -v var="objs+=$stem.o #$test_name" \
-				'{ print }
-				/objs=/ { print var }' $T_DEPS
-		done
-|3,0,8,1,8,0,1736371574,"	for file in $@","	do","		stem=${file##*/}","		stem=${stem%.*}","		gawk -i inplace -v var=\"objs+=$stem.o #$test_name\" \\","			'{ print }","			/objs=/ { print var }' $T_DEPS","	done"
+	./
+|3,0,8,1,1,0,1736423127,"./"
 "9	LINE	0
-		fi
-|3,0,9,1,1,0,1736371525,"	fi"
+	
+|3,0,9,1,1,0,1736423127,""
 "h	CHAR	0
 	hhhhhllllliL€kbNL:w.
 |3,0,17,0,1,0,1734869346,"hhhhhllllliL€kbNL:w."
 "j@	CHAR	0
 	i"e€kbeea"
 |3,2,19,0,1,0,1736349190,"i\"e€kbeea\""
-"-	CHAR	0
-	'
-|3,0,36,0,1,0,1736372302,"'"
+""-	CHAR	0
+	PWD
+|3,1,36,0,1,0,1736423145,"PWD"
 
 # global variables:
 
 # File marks:
-'0  6  33  ~/projects/t/.git/COMMIT_EDITMSG
-|4,48,6,33,1736372461,"~/projects/t/.git/COMMIT_EDITMSG"
-'1  126  0  ~/projects/t/t.sh
-|4,49,126,0,1736372393,"~/projects/t/t.sh"
-'2  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,50,1,0,1736372341,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
-'3  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,51,1,0,1736372203,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
-'4  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,52,1,0,1736371672,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
-'5  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,53,1,0,1736371672,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
-'6  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,54,1,0,1736371220,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
-'7  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,55,1,0,1736371220,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
-'8  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,56,1,0,1736371220,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
-'9  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,57,1,0,1736371220,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
+'0  21  12  ~/projects/t/t.sh
+|4,48,21,12,1736423814,"~/projects/t/t.sh"
+'1  7  0  ~/projects/t
+|4,49,7,0,1736423133,"~/projects/t"
+'2  2  0  ~/projects/t/makefile
+|4,50,2,0,1736423131,"~/projects/t/makefile"
+'3  15  0  ~/projects/t
+|4,51,15,0,1736423130,"~/projects/t"
+'4  1  24  ~/projects/t/test_C_option.sh
+|4,52,1,24,1736423127,"~/projects/t/test_C_option.sh"
+'5  25  0  ~/projects/t
+|4,53,25,0,1736422877,"~/projects/t"
+'6  19  0  ~/projects/t/t.sh
+|4,54,19,0,1736422838,"~/projects/t/t.sh"
+'7  1  0  ~/projects/mkprj/test.sh
+|4,55,1,0,1736422177,"~/projects/mkprj/test.sh"
+'8  11  0  ~/projects/mkprj
+|4,56,11,0,1736419906,"~/projects/mkprj"
+'9  2  0  ~/projects/mkprj
+|4,57,2,0,1736419906,"~/projects/mkprj"
 
 # Jumplist (newest first):
--'  6  33  ~/projects/t/.git/COMMIT_EDITMSG
-|4,39,6,33,1736372461,"~/projects/t/.git/COMMIT_EDITMSG"
--'  1  0  ~/projects/t/.git/COMMIT_EDITMSG
-|4,39,1,0,1736372414,"~/projects/t/.git/COMMIT_EDITMSG"
--'  126  0  ~/projects/t/t.sh
-|4,39,126,0,1736372393,"~/projects/t/t.sh"
--'  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,1,0,1736372341,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  117  6  ~/projects/t/t.sh
-|4,39,117,6,1736372325,"~/projects/t/t.sh"
--'  95  6  ~/projects/t/t.sh
-|4,39,95,6,1736372322,"~/projects/t/t.sh"
--'  23  8  ~/projects/t/t.sh
-|4,39,23,8,1736372317,"~/projects/t/t.sh"
--'  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,1,0,1736372203,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  43  15  ~/projects/t/t.sh
-|4,39,43,15,1736372192,"~/projects/t/t.sh"
--'  14  37  ~/projects/t/t.sh
-|4,39,14,37,1736372130,"~/projects/t/t.sh"
--'  124  3  ~/projects/t/t.sh
-|4,39,124,3,1736372085,"~/projects/t/t.sh"
--'  123  3  ~/projects/t/t.sh
-|4,39,123,3,1736372082,"~/projects/t/t.sh"
--'  69  4  ~/projects/t/t.sh
-|4,39,69,4,1736372073,"~/projects/t/t.sh"
--'  57  37  ~/projects/t/t.sh
-|4,39,57,37,1736372056,"~/projects/t/t.sh"
--'  56  13  ~/projects/t/t.sh
-|4,39,56,13,1736372054,"~/projects/t/t.sh"
--'  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,1,0,1736371672,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  92  7  ~/projects/t/t.sh
-|4,39,92,7,1736371644,"~/projects/t/t.sh"
--'  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,1,0,1736371220,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  1  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,1,0,1736371145,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  71  24  ~/projects/t/t.sh
-|4,39,71,24,1736371141,"~/projects/t/t.sh"
--'  141  17  ~/projects/t/t.sh
-|4,39,141,17,1736371016,"~/projects/t/t.sh"
--'  109  3  ~/projects/t/t.sh
-|4,39,109,3,1736371001,"~/projects/t/t.sh"
--'  6  13  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,6,13,1736370902,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  6  13  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,6,13,1736370902,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  6  13  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,6,13,1736370902,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  6  13  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,6,13,1736370902,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  6  13  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,6,13,1736370902,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  6  13  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,6,13,1736370902,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  5  29  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,5,29,1736370873,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  5  29  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,5,29,1736370873,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  5  29  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,5,29,1736370873,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  5  29  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,5,29,1736370873,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  5  29  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,5,29,1736370873,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  5  29  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,5,29,1736370873,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  4  17  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,4,17,1736370858,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  4  17  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,4,17,1736370858,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  4  17  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,4,17,1736370858,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  4  17  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,4,17,1736370858,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  4  17  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,4,17,1736370858,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  4  17  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,4,17,1736370858,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  2  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,2,0,1736370800,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  2  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,2,0,1736370800,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  2  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,2,0,1736370800,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  2  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,2,0,1736370800,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  2  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,2,0,1736370800,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  2  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,2,0,1736370800,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  108  18  ~/projects/t/t.sh
-|4,39,108,18,1736370760,"~/projects/t/t.sh"
--'  1  9  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,1,9,1736370742,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  110  14  ~/projects/t/t.sh
-|4,39,110,14,1736370734,"~/projects/t/t.sh"
--'  59  21  ~/projects/t/t.sh
-|4,39,59,21,1736370665,"~/projects/t/t.sh"
--'  3  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,3,0,1736370504,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  3  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,3,0,1736370504,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  3  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,3,0,1736370504,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  3  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,3,0,1736370504,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  3  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,3,0,1736370504,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  3  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,3,0,1736370504,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  2  0  ~/projects/wikify/.test/implementations/parse_menu.imp.c
-|4,39,2,0,1736370504,"~/projects/wikify/.test/implementations/parse_menu.imp.c"
--'  35  61  ~/projects/t/t.sh
-|4,39,35,61,1736370404,"~/projects/t/t.sh"
--'  100  49  ~/projects/t/t.sh
-|4,39,100,49,1736370403,"~/projects/t/t.sh"
--'  61  0  ~/projects/t/t.sh
-|4,39,61,0,1736370400,"~/projects/t/t.sh"
--'  114  1  ~/projects/t/t.sh
-|4,39,114,1,1736370394,"~/projects/t/t.sh"
+-'  21  12  ~/projects/t/t.sh
+|4,39,21,12,1736423814,"~/projects/t/t.sh"
 -'  7  0  ~/projects/t
-|4,39,7,0,1736367888,"~/projects/t"
--'  3  0  ~/projects/t/.test
-|4,39,3,0,1736367887,"~/projects/t/.test"
--'  38  1  ~/projects/t/.test/t.c
-|4,39,38,1,1736367886,"~/projects/t/.test/t.c"
--'  10  0  ~/projects/t/.git/COMMIT_EDITMSG
-|4,39,10,0,1736367877,"~/projects/t/.git/COMMIT_EDITMSG"
+|4,39,7,0,1736423133,"~/projects/t"
+-'  2  0  ~/projects/t/makefile
+|4,39,2,0,1736423131,"~/projects/t/makefile"
+-'  15  0  ~/projects/t
+|4,39,15,0,1736423130,"~/projects/t"
+-'  1  0  ~/projects/t
+|4,39,1,0,1736423129,"~/projects/t"
+-'  1  24  ~/projects/t/test_C_option.sh
+|4,39,1,24,1736423127,"~/projects/t/test_C_option.sh"
+-'  25  0  ~/projects/t
+|4,39,25,0,1736422877,"~/projects/t"
+-'  19  0  ~/projects/t/t.sh
+|4,39,19,0,1736422838,"~/projects/t/t.sh"
+-'  1  0  ~/projects/mkprj/test.sh
+|4,39,1,0,1736422177,"~/projects/mkprj/test.sh"
+-'  4  13  ~/projects/mkprj/test.sh
+|4,39,4,13,1736422167,"~/projects/mkprj/test.sh"
+-'  6  0  ~/projects/mkprj
+|4,39,6,0,1736422115,"~/projects/mkprj"
+-'  7  1  ~/projects/mkprj/mkprj.sh
+|4,39,7,1,1736422104,"~/projects/mkprj/mkprj.sh"
+-'  4  39  ~/projects/mkprj/makefile
+|4,39,4,39,1736422034,"~/projects/mkprj/makefile"
+-'  3  15  ~/projects/mkprj/makefile
+|4,39,3,15,1736420039,"~/projects/mkprj/makefile"
+-'  1  0  ~/projects/mkprj/make: *** [makefile
+|4,39,1,0,1736420012,"~/projects/mkprj/make: *** [makefile"
+-'  1  0  ~/projects/mkprj/makefile
+|4,39,1,0,1736419949,"~/projects/mkprj/makefile"
+-'  11  0  ~/projects/mkprj
+|4,39,11,0,1736419906,"~/projects/mkprj"
+-'  2  0  ~/projects/mkprj
+|4,39,2,0,1736419906,"~/projects/mkprj"
+-'  13  0  ~/projects
+|4,39,13,0,1736419901,"~/projects"
+-'  1  0  ~/projects/misc
+|4,39,1,0,1736419901,"~/projects/misc"
+-'  13  0  ~/projects
+|4,39,13,0,1736419901,"~/projects"
+-'  1  0  ~/projects/misc
+|4,39,1,0,1736419901,"~/projects/misc"
+-'  38  0  ~/projects
+|4,39,38,0,1736419900,"~/projects"
+-'  1  0  ~/projects
+|4,39,1,0,1736419900,"~/projects"
+-'  38  0  ~/projects
+|4,39,38,0,1736419900,"~/projects"
+-'  1  0  ~/projects
+|4,39,1,0,1736419900,"~/projects"
+-'  1  0  ~/projects/makeproj
+|4,39,1,0,1736419894,"~/projects/makeproj"
+-'  1  0  ~/projects/makeproj
+|4,39,1,0,1736419894,"~/projects/makeproj"
+-'  3  0  ~/projects/makeproj
+|4,39,3,0,1736419886,"~/projects/makeproj"
+-'  3  0  ~/projects/makeproj
+|4,39,3,0,1736419886,"~/projects/makeproj"
+-'  3  0  ~/projects/makeproj
+|4,39,3,0,1736419886,"~/projects/makeproj"
+-'  3  0  ~/projects/makeproj
+|4,39,3,0,1736419886,"~/projects/makeproj"
+-'  2  0  ~/projects/makeproj/mkprj.sh
+|4,39,2,0,1736419883,"~/projects/makeproj/mkprj.sh"
+-'  2  0  ~/projects/makeproj/mkprj.sh
+|4,39,2,0,1736419883,"~/projects/makeproj/mkprj.sh"
+-'  2  0  ~/projects/makeproj/mkprj.sh
+|4,39,2,0,1736419883,"~/projects/makeproj/mkprj.sh"
+-'  2  0  ~/projects/makeproj/mkprj.sh
+|4,39,2,0,1736419883,"~/projects/makeproj/mkprj.sh"
+-'  3  1  ~/projects/makeproj/makefile
+|4,39,3,1,1736419838,"~/projects/makeproj/makefile"
+-'  3  1  ~/projects/makeproj/makefile
+|4,39,3,1,1736419838,"~/projects/makeproj/makefile"
+-'  3  1  ~/projects/makeproj/makefile
+|4,39,3,1,1736419838,"~/projects/makeproj/makefile"
+-'  3  1  ~/projects/makeproj/makefile
+|4,39,3,1,1736419838,"~/projects/makeproj/makefile"
+-'  1  0  ~/projects/makeproj/mkprj.sh
+|4,39,1,0,1736419835,"~/projects/makeproj/mkprj.sh"
+-'  1  0  ~/projects/makeproj/mkprj.sh
+|4,39,1,0,1736419835,"~/projects/makeproj/mkprj.sh"
+-'  1  0  ~/projects/makeproj/mkprj.sh
+|4,39,1,0,1736419835,"~/projects/makeproj/mkprj.sh"
+-'  1  0  ~/projects/makeproj/mkprj.sh
+|4,39,1,0,1736419835,"~/projects/makeproj/mkprj.sh"
+-'  1  0  ~/projects/makeproj/resources/src
+|4,39,1,0,1736419765,"~/projects/makeproj/resources/src"
+-'  1  0  ~/projects/makeproj/resources/src
+|4,39,1,0,1736419765,"~/projects/makeproj/resources/src"
+-'  1  0  ~/projects/makeproj/resources/src
+|4,39,1,0,1736419765,"~/projects/makeproj/resources/src"
+-'  1  0  ~/projects/makeproj/resources/src
+|4,39,1,0,1736419765,"~/projects/makeproj/resources/src"
+-'  1  0  ~/projects/makeproj
+|4,39,1,0,1736419762,"~/projects/makeproj"
+-'  1  0  ~/projects/makeproj
+|4,39,1,0,1736419762,"~/projects/makeproj"
+-'  2  1  ~/projects/makeproj/makefile
+|4,39,2,1,1736419727,"~/projects/makeproj/makefile"
+-'  2  1  ~/projects/makeproj/makefile
+|4,39,2,1,1736419727,"~/projects/makeproj/makefile"
+-'  2  1  ~/projects/makeproj/makefile
+|4,39,2,1,1736419727,"~/projects/makeproj/makefile"
+-'  2  1  ~/projects/makeproj/makefile
+|4,39,2,1,1736419727,"~/projects/makeproj/makefile"
+-'  8  1  ~/projects/makeproj/makefile
+|4,39,8,1,1736419712,"~/projects/makeproj/makefile"
+-'  8  1  ~/projects/makeproj/makefile
+|4,39,8,1,1736419712,"~/projects/makeproj/makefile"
+-'  8  1  ~/projects/makeproj/makefile
+|4,39,8,1,1736419712,"~/projects/makeproj/makefile"
+-'  8  1  ~/projects/makeproj/makefile
+|4,39,8,1,1736419712,"~/projects/makeproj/makefile"
+-'  7  0  ~/projects/makeproj/makefile
+|4,39,7,0,1736419701,"~/projects/makeproj/makefile"
+-'  7  0  ~/projects/makeproj/makefile
+|4,39,7,0,1736419701,"~/projects/makeproj/makefile"
+-'  7  0  ~/projects/makeproj/makefile
+|4,39,7,0,1736419701,"~/projects/makeproj/makefile"
+-'  7  0  ~/projects/makeproj/makefile
+|4,39,7,0,1736419701,"~/projects/makeproj/makefile"
+-'  4  1  ~/projects/makeproj/makefile
+|4,39,4,1,1736419619,"~/projects/makeproj/makefile"
+-'  4  1  ~/projects/makeproj/makefile
+|4,39,4,1,1736419619,"~/projects/makeproj/makefile"
+-'  4  1  ~/projects/makeproj/makefile
+|4,39,4,1,1736419619,"~/projects/makeproj/makefile"
+-'  4  1  ~/projects/makeproj/makefile
+|4,39,4,1,1736419619,"~/projects/makeproj/makefile"
+-'  1  0  ~/projects/makeproj/makefile
+|4,39,1,0,1736419550,"~/projects/makeproj/makefile"
+-'  1  0  ~/projects/makeproj/makefile
+|4,39,1,0,1736419550,"~/projects/makeproj/makefile"
+-'  1  0  ~/projects/makeproj/makefile
+|4,39,1,0,1736419550,"~/projects/makeproj/makefile"
+-'  1  0  ~/projects/makeproj/makefile
+|4,39,1,0,1736419550,"~/projects/makeproj/makefile"
+-'  1  0  ~/projects/makeproj/makeproj.sh
+|4,39,1,0,1736419414,"~/projects/makeproj/makeproj.sh"
+-'  1  0  ~/projects/makeproj/makeproj.sh
+|4,39,1,0,1736419414,"~/projects/makeproj/makeproj.sh"
+-'  1  0  ~/projects/makeproj/makeproj.sh
+|4,39,1,0,1736419414,"~/projects/makeproj/makeproj.sh"
+-'  1  0  ~/projects/makeproj/makeproj.sh
+|4,39,1,0,1736419414,"~/projects/makeproj/makeproj.sh"
+-'  17  6  ~/projects/makeproj/makeproj.sh
+|4,39,17,6,1736419134,"~/projects/makeproj/makeproj.sh"
+-'  17  6  ~/projects/makeproj/makeproj.sh
+|4,39,17,6,1736419134,"~/projects/makeproj/makeproj.sh"
+-'  17  6  ~/projects/makeproj/makeproj.sh
+|4,39,17,6,1736419134,"~/projects/makeproj/makeproj.sh"
+-'  17  6  ~/projects/makeproj/makeproj.sh
+|4,39,17,6,1736419134,"~/projects/makeproj/makeproj.sh"
+-'  16  15  ~/projects/makeproj/makeproj.sh
+|4,39,16,15,1736419071,"~/projects/makeproj/makeproj.sh"
+-'  16  15  ~/projects/makeproj/makeproj.sh
+|4,39,16,15,1736419071,"~/projects/makeproj/makeproj.sh"
+-'  16  15  ~/projects/makeproj/makeproj.sh
+|4,39,16,15,1736419071,"~/projects/makeproj/makeproj.sh"
+-'  16  15  ~/projects/makeproj/makeproj.sh
+|4,39,16,15,1736419071,"~/projects/makeproj/makeproj.sh"
+-'  41  0  ~/projects/makeproj
+|4,39,41,0,1736418366,"~/projects/makeproj"
+-'  41  0  ~/projects/makeproj
+|4,39,41,0,1736418366,"~/projects/makeproj"
+-'  41  0  ~/projects/makeproj
+|4,39,41,0,1736418366,"~/projects/makeproj"
+-'  41  0  ~/projects/makeproj
+|4,39,41,0,1736418366,"~/projects/makeproj"
+-'  1  0  ~/projects/makeproj/resources/include
+|4,39,1,0,1736418326,"~/projects/makeproj/resources/include"
+-'  1  0  ~/projects/makeproj/resources/include
+|4,39,1,0,1736418326,"~/projects/makeproj/resources/include"
+-'  1  0  ~/projects/makeproj/resources/include
+|4,39,1,0,1736418326,"~/projects/makeproj/resources/include"
+-'  1  0  ~/projects/makeproj/resources/include
+|4,39,1,0,1736418326,"~/projects/makeproj/resources/include"
+-'  1  0  ~/projects/makeproj/resources/lib
+|4,39,1,0,1736418325,"~/projects/makeproj/resources/lib"
+-'  1  0  ~/projects/makeproj/resources/lib
+|4,39,1,0,1736418325,"~/projects/makeproj/resources/lib"
+-'  1  0  ~/projects/makeproj/resources/lib
+|4,39,1,0,1736418325,"~/projects/makeproj/resources/lib"
+-'  1  0  ~/projects/makeproj/resources/lib
+|4,39,1,0,1736418325,"~/projects/makeproj/resources/lib"
+-'  1  10  ~/projects/makeproj/resources/Makefile
+|4,39,1,10,1736418323,"~/projects/makeproj/resources/Makefile"
+-'  1  10  ~/projects/makeproj/resources/Makefile
+|4,39,1,10,1736418323,"~/projects/makeproj/resources/Makefile"
+-'  1  10  ~/projects/makeproj/resources/Makefile
+|4,39,1,10,1736418323,"~/projects/makeproj/resources/Makefile"
+-'  1  10  ~/projects/makeproj/resources/Makefile
+|4,39,1,10,1736418323,"~/projects/makeproj/resources/Makefile"
+-'  6  0  ~/lib/tlpi
+|4,39,6,0,1736417932,"~/lib/tlpi"
 
 # History of marks within files (newest to oldest):
 
-> ~/projects/t/.git/COMMIT_EDITMSG
-	*	1736372458	0
-	"	6	33
-	^	6	34
-	.	6	33
-	+	15	41
-	+	13	41
-	+	1	15
-	+	11	12
-	+	8	5
-	+	9	39
-	+	6	33
+> ~/projects/t/t.sh
+	*	1736423150	0
+	"	21	12
+	^	21	13
+	.	21	12
+	+	109	0
+	+	109	12
+	+	109	33
+	+	109	0
+	+	65	0
+	+	74	21
+	+	63	6
+	+	79	6
+	+	67	21
+	+	70	25
+	+	63	16
+	+	66	18
+	+	109	12
+	+	109	32
+	+	109	0
+	+	109	16
+	+	109	37
+	+	144	5
+	+	144	27
+	+	142	6
+	+	144	7
+	+	143	0
+	+	143	19
+	+	144	7
+	+	144	0
+	+	143	0
+	+	142	0
+	+	144	0
+	+	143	1
+	+	144	0
+	+	142	19
+	+	135	18
+	+	113	0
+	+	63	0
+	+	79	0
+	+	77	21
+	+	126	0
+	+	127	0
+	+	126	18
+	+	128	14
+	+	126	18
+	+	113	28
+	+	32	8
+	+	32	37
+	+	113	8
+	+	135	8
+	+	142	8
+	+	86	18
+	+	88	63
+	+	32	28
+	+	97	0
+	+	96	0
+	+	97	0
+	+	98	0
+	+	108	7
+	+	109	0
+	+	99	0
+	+	105	4
+	+	106	2
+	+	109	0
+	+	107	8
+	+	32	26
+	+	113	10
+	+	135	1
+	+	142	1
+	+	32	37
+	+	61	15
+	+	42	0
+	+	42	1
+	+	32	0
+	+	41	0
+	+	42	0
+	+	113	6
+	+	135	6
+	+	142	6
+	+	3	0
+	+	21	0
+	+	20	0
+	+	13	3
+	+	7	5
+	+	4	8
+	+	7	11
+	+	14	19
+	+	9	4
+	+	4	17
+	+	7	28
+	+	8	4
+	+	11	4
+	+	12	7
+	+	7	9
+	+	9	2
+	+	12	4
+	+	4	0
+	+	12	5
+	+	12	9
+	+	12	0
+	+	18	9
+	+	19	2
+	+	21	12
+	j	160	1
+
+> ~/projects/t/VS.Vim.Buffer: 1: VS.Vim.Buffer.Default
+	"	1	0
+
+> ~/projects/t/test_C_option.sh
+	*	1736422943	0
+	"	1	24
+	^	1	25
+	.	1	24
+	+	1	24
+
+> ~/projects/t/makefile
+	*	1736423131	0
+	"	2	0
+	.	16	0
+	+	37	0
+	+	37	32
+	+	37	0
+	+	28	4
+	+	28	3
+	+	28	4
+	+	28	6
+	+	4	0
+	+	25	0
+	+	26	0
+	+	28	0
+	+	24	0
+	+	25	0
+	+	14	0
+	+	14	24
+	+	24	0
+	+	8	24
+	+	19	29
+	+	19	20
+	+	19	29
+	+	19	42
+	+	20	27
+	+	24	0
+	+	22	0
+	+	37	0
+	+	36	0
+	+	19	32
+	+	19	22
+	+	19	31
+	+	19	30
+	+	19	36
+	+	19	32
+	+	19	30
+	+	19	31
+	+	19	0
+	+	16	0
