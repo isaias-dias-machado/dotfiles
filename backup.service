@@ -1,0 +1,15 @@
+[Unit]
+Description=Homelab Backup Service
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/local/bin/backup.sh
+StandardOutput=journal
+# Add these to bypass security modules (if safe for your use case):
+#SELinuxContext=system_u:system_r:unconfined_t:s0
+#AppArmorProfile=unconfined
+
+[Install]
+WantedBy=multi-user.target
