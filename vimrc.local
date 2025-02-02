@@ -1,1 +1,133 @@
-/etc/vim/vimrc.local
+syntax enable
+filetype plugin indent on
+" set number
+" set relativenumber
+
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set autowrite		" Automatically save before commands like :next and :make
+
+set tabstop=8
+set shiftwidth=8
+set softtabstop=8
+set noexpandtab
+
+set listchars=tab:\ \ ,space:·
+set nolist
+
+set textwidth=80
+
+set laststatus=2
+set noesckeys
+set wildmenu
+set wildmode=list:longest,full
+set pumheight=4
+
+set nohlsearch
+set incsearch
+set nowrapscan
+
+" backup
+set noswapfile
+set nobackup
+set nowritebackup
+set undofile
+set undodir=/usr/share/vim/vim90/undodir
+set undolevels=1000         " How many undos
+set undoreload=10000 
+
+if !isdirectory(&undodir)
+    call mkdir(&undodir, "p", 0700)
+endif
+
+set ignorecase
+set smartcase
+
+" Mappings
+let mapleader=" "
+" nnoremap <C-d> <C-d>zz
+" nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+vnoremap <Leader>p "_dP
+noremap <Leader>zi <c-w>_ \| <c-w>\|
+noremap <Leader>zo <c-w>=
+
+nnoremap <Leader>w :e ~/mywiki/wiki.md<CR>
+nnoremap <Leader>b :ls<CR>:b
+nnoremap <Leader>m :make<CR>:cope 11<CR>
+nnoremap <Leader>r :make run<CR> :cope<CR>
+nnoremap <Leader>st :term tree --gitignore
+nnoremap <Leader>sf :find 
+nnoremap <Leader>ss :sfind 
+nnoremap <Leader>sg :vimgrep //j ./**/* <bar> :copen 20<left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left><left>
+nnoremap <Leader>swg :exe 'vimgrep /' . expand('<cword>') . '/j ./**/* <bar> :copen 20'<CR>
+vnoremap <Leader>svg y:vimgrep "<c-r>"" ./**/* <bar> :cope 20 <CR> 
+nnoremap <Leader>j :tjump /
+nnoremap <Leader>l :so ~/.vim/vimrc<CR>
+
+"fly args
+nnoremap <Leader>a :Args<CR> 
+function! Args()
+    let prompt = 'Select an argument:'
+    let arg_list = map(argv(), 'v:key + 1 . ". " . v:val')
+    let chosen_arg = inputlist([prompt] + arg_list)
+    if chosen_arg
+	execute 'argument ' . chosen_arg
+    endif
+endfunction
+command! Args call Args()
+
+nnoremap <Leader>k :Argsd<CR> 
+function! Argsd()
+    let prompt = 'Select an argument:'
+    let arg_list = map(argv(), 'v:key + 1 . ". " . v:val')
+    let chosen_arg = inputlist([prompt] + arg_list)
+    if chosen_arg
+	execute chosen_arg . 'argd'
+    endif
+endfunction
+
+command! Argsd call Argsd()
+" linuxy style indent options:
+" -brf: braces on function definition line 
+" -npsl: dont break procedure type
+" -pal: pointer align left
+nnoremap <Leader>f :w<CR>:!indent -kr -i8 -ut -pal %<CR>
+
+"" Emacs bindings
+" start of line
+noremap! <C-A>		<Home>
+" back one character
+noremap! <C-B>		<Left>
+" delete character under cursor
+noremap! <C-D>		<Del>
+" end of line
+noremap! <C-E>		<End>
+" forward one character
+noremap! <C-F>		<Right>
+" recall newer command-line
+noremap! <C-N>		<Down>
+" recall previous (older) command-line
+noremap! <C-P>		<Up>
+" go back a word
+inoremap <M-B> <C-o>B
+" go forward a word
+inoremap <M-F> <C-o>W
+
+" Finding files
+set path=/etc/vim,$VIMRUNTIME,$HOME,$HOME/projects,$HOME/.config,$HOME/Dropbox/,$HOME/Dropbox/MyVaultDrive,$HOME/Dropbox/MyVaultDrive/6*,$VIMRUNTIME/colors,$HOME/Dropbox/mywiki,$HOME/lib,$HOME/bin,./**,
+
+" Spell checking
+set encoding=utf-8
+" set spellfile=~/.vim/spell/misc.utf-8.add
+set spell spelllang=pt,en
+set nospell
+
+" Quick fix opts
+" autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
+autocmd FileType qf nnoremap <buffer> <C-CR> <CR>:cclose<CR>
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
