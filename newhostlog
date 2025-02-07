@@ -13,9 +13,13 @@
 	powertop
 	htop
 	strace
+	ltrace
+	tcpdump
+	wireshark
 	universal-ctags
 	cscope
 	gdb
+	gcc
 	manpages-dev
 	openvpn
 	rsync
@@ -24,10 +28,16 @@
 	docker-compose
 	qemu-system-x86
 	net-tools
+	golang-go
+	binwalk
+	ghex
+	xxd
+	binutils
+	python3-pip
+	xclip
 	
-7. Programs and Projects
-
-* PHP + Apache:
-	apache2
-	php
-	libapache2-mod-php
+	
+9. Non-packaged tools:
+	docker
+	kubernetes
+	nvidia-cuda-tookit
