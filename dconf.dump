@@ -9,8 +9,8 @@ height=476
 width=600
 
 [ca/desrt/dconf-editor]
-saved-pathbar-path='/org/gnome/terminal/legacy/theme-variant'
-saved-view='/org/gnome/terminal/legacy/'
+saved-pathbar-path='/org/gnome/terminal/legacy/keybindings/'
+saved-view='/org/gnome/terminal/legacy/keybindings/'
 show-warning=false
 window-height=500
 window-is-maximized=true
@@ -24,8 +24,12 @@ version='1.5.27'
 active-plugins=['movie-properties', 'save-file', 'open-directory', 'recent', 'skipto', 'autoload-subtitles', 'rotation', 'mpris', 'apple-trailers', 'variable-rate', 'screenshot', 'screensaver', 'vimeo']
 subtitle-encoding='UTF-8'
 
+[org/gnome/baobab/ui]
+is-maximized=false
+window-size=(960, 600)
+
 [org/gnome/control-center]
-last-panel='power'
+last-panel='keyboard'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
@@ -57,13 +61,17 @@ gtk-key-theme='Emacs'
 gtk-theme='gnome-professional-solid-40.1-dark'
 icon-theme='Adwaita'
 monospace-font-name='DejaVu Sans Mono 13'
+show-battery-percentage=false
 text-scaling-factor=1.0
 
 [org/gnome/desktop/notifications]
-application-children=['libreoffice-writer', 'gnome-power-panel', 'org-gnome-evolution', 'firefox-esr', 'org-gnome-software', 'org-gnome-terminal', 'org-gnome-terminal-preferences', 'org-gnome-settings', 'org-gnome-characters', 'org-gnome-nautilus', 'org-gnome-baobab']
+application-children=['libreoffice-writer', 'gnome-power-panel', 'org-gnome-evolution', 'firefox-esr', 'org-gnome-software', 'org-gnome-terminal', 'org-gnome-terminal-preferences', 'org-gnome-settings', 'org-gnome-characters', 'org-gnome-nautilus', 'org-gnome-baobab', 'gnome-network-panel', 'zoom']
 
 [org/gnome/desktop/notifications/application/firefox-esr]
 application-id='firefox-esr.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
 
 [org/gnome/desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
@@ -95,6 +103,9 @@ application-id='org.gnome.Terminal.Preferences.desktop'
 [org/gnome/desktop/notifications/application/org-gnome-terminal]
 application-id='org.gnome.Terminal.desktop'
 
+[org/gnome/desktop/notifications/application/zoom]
+application-id='Zoom.desktop'
+
 [org/gnome/desktop/peripherals/keyboard]
 delay=uint32 196
 repeat-interval=uint32 21
@@ -103,6 +114,7 @@ repeat-interval=uint32 21
 accel-profile='flat'
 
 [org/gnome/desktop/peripherals/touchpad]
+send-events='enabled'
 speed=0.63207547169811318
 two-finger-scrolling-enabled=true
 
@@ -120,6 +132,7 @@ theme-name='__custom'
 [org/gnome/desktop/wm/keybindings]
 begin-move=['<Shift><Alt>l']
 begin-resize=['<Shift><Alt>semicolon']
+close=['<Shift><Alt>q']
 lower=['<Shift><Alt>j']
 minimize=['<Shift><Alt>h']
 move-to-center=['<Shift><Alt>m']
@@ -135,6 +148,9 @@ switch-windows-backward=['<Shift><Alt>grave']
 theme='Adwaita'
 titlebar-font='Cantarell Bold 8'
 titlebar-uses-system-font=false
+
+[org/gnome/evince/default]
+window-ratio=(1.0067114093959733, 0.71258907363420432)
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -180,10 +196,10 @@ trash-empty-on-exit-days=0
 [org/gnome/evolution/mail/composer-window]
 height=500
 maximized=false
-width=644
+width=664
 
 [org/gnome/evolution/shell]
-default-component-id='calendar'
+default-component-id='mail'
 folder-bar-width=315
 
 [org/gnome/evolution/shell/window]
@@ -193,6 +209,9 @@ width=640
 x=0
 y=32
 
+[org/gnome/nautilus/icon-view]
+default-zoom-level='small'
+
 [org/gnome/nautilus/list-view]
 default-zoom-level='small'
 
@@ -200,11 +219,12 @@ default-zoom-level='small'
 default-folder-viewer='list-view'
 migrated-gtk-settings=true
 search-filter-time-type='last_modified'
-search-view='list-view'
+search-view='icon-view'
 show-image-thumbnails='never'
 
 [org/gnome/nautilus/window-state]
-initial-size=(890, 550)
+initial-size=(984, 633)
+maximized=false
 
 [org/gnome/settings-daemon/plugins/media-keys]
 custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
@@ -228,10 +248,10 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1737802854
+check-timestamp=int64 1738927855
 first-run=false
-install-timestamp=int64 1737214095
-update-notification-timestamp=int64 1737214194
+install-timestamp=int64 1738714851
+update-notification-timestamp=int64 1738714921
 
 [org/gnome/system/location]
 enabled=false
@@ -247,7 +267,7 @@ preferences='<Alt>p'
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 background-color='rgb(0,43,54)'
 cursor-blink-mode='on'
-default-size-rows=34
+default-size-rows=36
 font='DejaVu Sans Mono 16'
 foreground-color='rgb(213,205,205)'
 login-shell=true
@@ -258,7 +278,7 @@ use-theme-colors=false
 
 [org/gtk/gtk4/settings/file-chooser]
 date-format='regular'
-location-mode='filename-entry'
+location-mode='path-bar'
 show-hidden=true
 show-size-column=true
 show-type-column=true
@@ -271,7 +291,7 @@ window-size=(983, 319)
 
 [org/gtk/settings/color-chooser]
 custom-colors=[(0.83333333333333337, 0.80277777777777781, 0.80277777777777781, 1.0), (0.51372549019607838, 0.58039215686274515, 0.58823529411764708, 1.0), (0.20333333333333334, 0.16657066666666664, 0.050155555555555564, 1.0), (0.85000000000000009, 0.75616000000000005, 0.45900000000000007, 1.0), (0.93333333333333335, 0.90980392156862744, 0.83529411764705885, 1.0), (0.67000000000000004, 0.52689487179487182, 0.13846666666666668, 1.0), (0.99215686274509807, 0.96470588235294119, 0.8901960784313725, 1.0), (0.77350000000000008, 0.89634999999999987, 0.91000000000000003, 1.0)]
-selected-color=(true, 0.83333333333333337, 0.80277777777777781, 0.80277777777777781, 1.0)
+selected-color=(true, 0.0, 0.0, 0.0, 1.0)
 
 [org/gtk/settings/file-chooser]
 date-format='regular'
@@ -284,7 +304,7 @@ sort-column='name'
 sort-directories-first=false
 sort-order='ascending'
 type-format='category'
-window-position=(0, 32)
+window-position=(0, 37)
 window-size=(1366, 691)
 
 [system/proxy]
