@@ -32,7 +32,7 @@ set noswapfile
 set nobackup
 set nowritebackup
 set undofile
-set undodir=/usr/share/vim/vim90/undodir
+set undodir=/usr/share/vim/vim91/undodir
 set undolevels=1000         " How many undos
 set undoreload=10000 
 
@@ -52,7 +52,7 @@ nnoremap N Nzzzv
 vnoremap <Leader>p "_dP
 noremap <Leader>zi <c-w>_ \| <c-w>\|
 noremap <Leader>zo <c-w>=
-
+nnoremap <leader>z :%s:\r$::g<CR>
 nnoremap <Leader>w :e ~/mywiki/wiki.md<CR>
 nnoremap <Leader>b :ls<CR>:b
 nnoremap <Leader>m :make<CR>:cope 11<CR>
@@ -127,6 +127,16 @@ set nospell
 " Quick fix opts
 " autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
 autocmd FileType qf nnoremap <buffer> <C-CR> <CR>:cclose<CR>
+
+" Vimdiff colours
+" Solarized-friendly diff colors
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=#719e07 guibg=#073642
+highlight DiffDelete cterm=bold ctermfg=9  ctermbg=17 gui=none guifg=#dc322f guibg=#073642
+highlight DiffChange cterm=bold ctermfg=12 ctermbg=17 gui=none guifg=#268bd2 guibg=#073642
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=#719e07 guibg=#839496
+
+" Optional: make the current diff line more visible
+highlight CursorLine cterm=none ctermbg=24 gui=none guibg=#073642
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
