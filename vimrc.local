@@ -7,10 +7,10 @@ set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set autowrite		" Automatically save before commands like :next and :make
 
-set tabstop=8
-set shiftwidth=8
-set softtabstop=8
-set noexpandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
 
 set listchars=tab:\ \ ,space:·
 set nolist
@@ -64,7 +64,7 @@ nnoremap <Leader>sg :vimgrep //j ./**/* <bar> :copen 20<left><left><left><left><
 nnoremap <Leader>swg :exe 'vimgrep /' . expand('<cword>') . '/j ./**/* <bar> :copen 20'<CR>
 vnoremap <Leader>svg y:vimgrep "<c-r>"" ./**/* <bar> :cope 20 <CR> 
 nnoremap <Leader>j :tjump /
-nnoremap <Leader>l :so ~/.vim/vimrc<CR>
+nnoremap <Leader>l :so ~/.vimrc<CR>
 
 "fly args
 nnoremap <Leader>a :Args<CR> 
@@ -95,25 +95,7 @@ command! Argsd call Argsd()
 " -pal: pointer align left
 nnoremap <Leader>f :w<CR>:!indent -kr -i8 -ut -pal %<CR>
 
-"" Emacs bindings
-" start of line
-noremap! <C-A>		<Home>
-" back one character
-noremap! <C-B>		<Left>
-" delete character under cursor
-noremap! <C-D>		<Del>
-" end of line
-noremap! <C-E>		<End>
-" forward one character
-noremap! <C-F>		<Right>
-" recall newer command-line
-noremap! <C-N>		<Down>
-" recall previous (older) command-line
-noremap! <C-P>		<Up>
-" go back a word
-inoremap <M-B> <C-o>B
-" go forward a word
-inoremap <M-F> <C-o>W
+nmap <del> <C-d>
 
 " Finding files
 set path=/etc/vim,$VIMRUNTIME,$HOME,$HOME/projects,$HOME/.config,$HOME/Dropbox/,$HOME/Dropbox/MyVaultDrive,$HOME/Dropbox/MyVaultDrive/6*,$VIMRUNTIME/colors,$HOME/Dropbox/mywiki,$HOME/lib,$HOME/bin,./**,
@@ -134,6 +116,15 @@ highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=#719e07 gui
 highlight DiffDelete cterm=bold ctermfg=9  ctermbg=17 gui=none guifg=#dc322f guibg=#073642
 highlight DiffChange cterm=bold ctermfg=12 ctermbg=17 gui=none guifg=#268bd2 guibg=#073642
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=#719e07 guibg=#839496
+
+" Check if we're running in WSL
+if system('uname -r') =~ "microsoft"
+    " Configure netrw to use wslview for opening URLs/files
+    let g:netrw_browsex_viewer = "wslview"
+else
+    " Use xdg-open for regular Linux systems
+    let g:netrw_browsex_viewer = "xdg-open"
+endif
 
 " Optional: make the current diff line more visible
 highlight CursorLine cterm=none ctermbg=24 gui=none guibg=#073642

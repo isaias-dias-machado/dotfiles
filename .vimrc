@@ -24,23 +24,36 @@ Plug 'kana/vim-textobj-line'
 Plug 'mbbill/undotree'
 Plug 'lervag/wiki.vim'
 Plug 'preservim/vim-markdown'
-"Plug 'prabirshrestha/asyncomplete.vim'
-"Plug 'prabirshrestha/vim-lsp'
-"Plug 'prabirshrestha/asyncomplete-lsp.vim'
-"Plug 'mattn/vim-lsp-settings'
+Plug 'lervag/vimtex'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/vim-lsp-settings'
+Plug 'jvirtanen/vim-hcl'
+Plug 'SirVer/ultisnips'
 
 call plug#end()
 
 
 " Wiki options
 set foldenable
-let g:wiki_root = '~/Dropbox/mywiki/'
+let g:wiki_root = '/mnt/c/Users/isepidm/Dropbox/mywiki/'
 let g:markdown_recommended_style = 0
 let g:vim_markdown_folding_disabled = 0
 let g:vim_markdown_folding_level = 1
 let g:vim_markdown_override_foldtext = 1
 set conceallevel=2
 
+"=============================UltiSnips===================================
+let g:UltiSnipsExpandTrigger = '\s'
+let g:UltiSnipsJumpForwardTrigger = '<C-n>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-p>'
+
+"=============================vimtex===================================
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:tex_conceal='abdmg'
+let g:vimtex_quickfix_enabled = 0
 
 "==============================lsp=====================================
 let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
