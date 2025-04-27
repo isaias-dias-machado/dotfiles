@@ -32,7 +32,7 @@ set noswapfile
 set nobackup
 set nowritebackup
 set undofile
-set undodir=/usr/share/vim/vim91/undodir
+set undodir=~/.vim/undodir
 set undolevels=1000         " How many undos
 set undoreload=10000 
 
