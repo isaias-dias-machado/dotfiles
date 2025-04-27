@@ -43,6 +43,10 @@ endif
 set ignorecase
 set smartcase
 
+" For misspelled words (default is red undercurl)
+highlight SpellBad ctermfg=red ctermbg=NONE cterm=underline guifg=#ff0000 guibg=NONE gui=undercurl guisp=#ff0000
+
+
 " Mappings
 let mapleader=" "
 " nnoremap <C-d> <C-d>zz
