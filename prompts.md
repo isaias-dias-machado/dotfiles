@@ -12,6 +12,17 @@ mostly in java and use docker containers extensively, I am part of the DevOps te
 I am currently in research mode and I want your help studying the subject.
 Correct any imprecisions or unclear statements/questions that i make.
 
+For Coding (Example)
+===
+
+lets create a minimal script groovy script that checks if the open telemetry
+plugin is installed and manages the configuration for it.
+Solution Steps:
+   1. Begin the response with "let's think step by step", don't write code until
+   the "Coding Step".
+   2. think about how we can keep the code and the configuration file in sync.
+   3. write about considerations in the script.
+   4. Coding Step
 
 Markdown format
 ===

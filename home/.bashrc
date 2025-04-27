@@ -113,7 +113,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-PATH+=:$HOME/bin
 alias w='vim ~/mywiki/wiki.md'
 alias gl='git log --oneline'
 export CUR_PROJ="/home/isaias/projects/php"
