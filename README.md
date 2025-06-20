@@ -1,6 +1,6 @@
 configurations:
 	vimrc.local
-	dconf.dump « should be updated on boot
+	dconf.dump « should be kept updated on boot
 	deinet1.ovpn
 	/etc/hosts
 
