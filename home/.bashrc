@@ -115,5 +115,5 @@ fi
 
 alias w='vim ~/mywiki/wiki.md'
 alias gl='git log --oneline'
-export CUR_PROJ="/home/isaias/projects/php"
-source /home/isaias/projects/chp/chp.sh
+export CUR_PROJ=""
+source /home/i2sidm/dotfiles/chp/chp.sh

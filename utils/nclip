@@ -1,0 +1,13 @@
+#!/usr/bin/python3
+
+from argparse import ArgumentParser
+
+parser = ArgumentParser(prog='nclip', description='Reruns the last N commands
+and pipes them to the clipboard')
+
+parser.add_argument('N')
+parser.add_argument('-c', '--clip-prog')
+
+args = parser.parse_args()
+
+
