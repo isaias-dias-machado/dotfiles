@@ -78,6 +78,7 @@ let g:tex_conceal='abdmg'
 let g:vimtex_quickfix_enabled = 0
 
 "==============================lsp=====================================
+let g:lsp_root_patterns = ['.git', 'pyproject.toml', 'package.json', 'go.mod', 'mix.exs']
 let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
 let g:lsp_document_code_action_signs_enabled = 0
 inoremap <expr> <CR> pumvisible() ? "\<C-e>\<CR>" : "\<CR>"

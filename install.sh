@@ -3,6 +3,22 @@ source /etc/os-release
 
 echo "Running on OS: $ID"
 
+# $1: program name $2: installation function
+check_installation() {
+	if command -v "$1" &> /dev/null
+	then
+		$2
+	else
+		return
+	fi
+}
+
+# Usage: link path/to/dotfile path/to/target
+mylink() {
+	rm $2/$1
+	ln -sr $1 $2
+}
+
 apt-get update
 
 install_docker() {
@@ -13,7 +29,7 @@ install_docker() {
 		echo \
 			"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/$ID \
 			$(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-		tee /etc/apt/sources.list.d/docker.list > /dev/null
+			tee /etc/apt/sources.list.d/docker.list > /dev/null
 		apt-get update
 	fi
 }
@@ -43,13 +59,21 @@ install_helm() {
 }
 
 install_argocd_cli() {
-	VERSION=$(curl -L -s https://raw.githubusercontent.com/argoproj/argo-cd/stable/VERSION)
+	local VERSION=$(curl -L -s https://raw.githubusercontent.com/argoproj/argo-cd/stable/VERSION)
 	curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/download/v$VERSION/argocd-linux-amd64
 	sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
 	rm argocd-linux-amd64
 }
 
+install_asdf() {
+	local VERSION=$(curl -s "https://api.github.com/repos/asdf-vm/asdf/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
+	curl -sSL -o asdf https://github.com/asdf-vm/asdf/releases/download/v0.18.0/asdf-v0.18.0-linux-amd64.tar.gz
+	sudo install -m 555 asdf /usr/local/bin/asdf
+	rm asdf
+}
+
 packages="
+ripgrep
 tree
 make
 curl
@@ -75,12 +99,13 @@ ri
 "
 
 if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
-	apt install $packages
-#	install_docker
-#	install_minikube
-#	install_kubernetes
-#	install_helm
-#	install_argocd_cli
+	apt-get install $packages -y
+	check_installation "docker" install_docker
+	check_installation "minikube" install_minikube
+	check_installation "kubectl" install_kubernetes
+	check_installation "helm" install_helm
+	check_installation "argocd" install_argocd_cli
+	check_installation "asdf" install_asdf
 elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
 	dnf install $packages
 fi
@@ -89,12 +114,6 @@ if [ -z $WSL_DISTRO_NAME ]; then
 	dconf load / < dconf.dump
 fi
 
-# Usage: link path/to/dotfile path/to/target
-mylink() {
-	rm $2/$1
-	ln -sr $1 $2
-}
-
 mylink "vimrc.local" /etc/vim
 mylink ".bashrc" /home/*
 mylink "spell/*" /usr/share/vim/vim91/spell
@@ -102,4 +121,3 @@ mylink "spell/*" /usr/share/vim/vim91/spell
 cd chp
 make
 cd ..
-
