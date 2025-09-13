@@ -17,6 +17,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'HiPhish/guile.vim'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
@@ -29,28 +30,31 @@ Plug 'mbbill/undotree'
 Plug 'lervag/wiki.vim'
 Plug 'preservim/vim-markdown'
 Plug 'lervag/vimtex'
+Plug 'jvirtanen/vim-hcl'
+Plug 'elixir-editors/vim-elixir'
+Plug 'avdgaag/vim-phoenix'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
-Plug 'jvirtanen/vim-hcl'
-<<<<<<< HEAD:.vimrc
-Plug 'SirVer/ultisnips'
-Plug 'elixir-editors/vim-elixir'
-Plug 'avdgaag/vim-phoenix'
 
 call plug#end()
 
 " Wiki options
 set foldenable
 let g:wiki_root = '$DROPBOX_PATH/mywiki/'
-=======
 
 call plug#end()
 
 " fzf
 nnoremap <leader>p :Files .<CR>
 nnoremap <leader>d :Dir<CR>
+nnoremap <leader>t :Tags<CR>
+let g:fzf_action = {
+  \ 'ctrl-j': 'pedit',
+  \ 'ctrl-s': 'split', 
+  \ 'ctrl-v': 'vsplit'
+\}
 
 command! Dir call fzf#run({
   \ 'source': 'find . -type d',
@@ -61,7 +65,6 @@ command! Dir call fzf#run({
 " Wiki options
 set foldenable
 " let g:wiki_root = '/mnt/c/Users/isepidm/Dropbox/mywiki/'
->>>>>>> 92f2657359bc955ccc91b86b8413c8a89fe5fd8e:home/.vimrc
 let g:markdown_recommended_style = 0
 let g:vim_markdown_folding_disabled = 0
 let g:vim_markdown_folding_level = 1

@@ -7,10 +7,11 @@ set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set autowrite		" Automatically save before commands like :next and :make
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set noexpandtab
+set autoindent
 
 set listchars=tab:\ \ ,space:·
 set nolist
@@ -74,9 +75,9 @@ noremap <Leader>zo <c-w>=
 nnoremap <leader>z :%s:\r$::g<CR>
 nnoremap <Leader>w :e ~/mywiki/wiki.md<CR>
 nnoremap <Leader>b :ls<CR>:b
-nnoremap <Leader>m :make<CR>:cope 11<CR>
-nnoremap <Leader>r :make run<CR> :cope<CR>
 nnoremap <Leader>ef :silent !mix format %<CR>:e %<CR>:redraw!<CR>
+nnoremap <Leader>m :silent make<CR><C-l>:cope 11<CR>
+nnoremap <Leader>r :silent make run<CR><C-l> :cope11<CR>
 nnoremap <Leader>st :term tree --gitignore
 nnoremap <Leader>sf :find 
 nnoremap <Leader>ss :sfind 
@@ -152,3 +153,5 @@ highlight CursorLine cterm=none ctermbg=24 gui=none guibg=#073642
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+runtime! ftplugin/man.vim
