@@ -69,12 +69,12 @@ let mapleader=" "
 " nnoremap <C-u> <C-u>zz
 nnoremap n nzzzv
 nnoremap N Nzzzv
-vnoremap <Leader>p "_dP
+nnoremap <Leader>b :ls<CR>:b
+nnoremap <leader>d :let g:current_buf = bufnr('%') <bar> bufdo if bufnr('%') != g:current_buf <bar> bdelete <bar> endif<CR><CR>
 noremap <Leader>zi <c-w>_ \| <c-w>\|
 noremap <Leader>zo <c-w>=
 nnoremap <leader>z :%s:\r$::g<CR>
 nnoremap <Leader>w :e ~/mywiki/wiki.md<CR>
-nnoremap <Leader>b :ls<CR>:b
 nnoremap <Leader>ef :silent !mix format %<CR>:e %<CR>:redraw!<CR>
 nnoremap <Leader>m :silent make<CR><C-l>:cope 11<CR>
 nnoremap <Leader>r :silent make run<CR><C-l> :cope11<CR>
