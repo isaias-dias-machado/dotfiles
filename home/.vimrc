@@ -12,6 +12,10 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin()
 
+" List your plugins here
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'HiPhish/guile.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -30,6 +34,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'jvirtanen/vim-hcl'
+<<<<<<< HEAD:.vimrc
 Plug 'SirVer/ultisnips'
 Plug 'elixir-editors/vim-elixir'
 Plug 'avdgaag/vim-phoenix'
@@ -38,17 +43,30 @@ call plug#end()
 
 " Wiki options
 set foldenable
-let g:wiki_root = '~/Dropbox/mywiki/'
+let g:wiki_root = '$DROPBOX_PATH/mywiki/'
+=======
+
+call plug#end()
+
+" fzf
+nnoremap <leader>p :Files .<CR>
+nnoremap <leader>d :Dir<CR>
+
+command! Dir call fzf#run({
+  \ 'source': 'find . -type d',
+  \ 'sink':   'edit',
+  \ 'options': '--prompt "explore: " --preview "ls -p {}"'
+  \ })
+
+" Wiki options
+set foldenable
+" let g:wiki_root = '/mnt/c/Users/isepidm/Dropbox/mywiki/'
+>>>>>>> 92f2657359bc955ccc91b86b8413c8a89fe5fd8e:home/.vimrc
 let g:markdown_recommended_style = 0
 let g:vim_markdown_folding_disabled = 0
 let g:vim_markdown_folding_level = 1
 let g:vim_markdown_override_foldtext = 1
 set conceallevel=2
-
-"=============================UltiSnips===================================
-let g:UltiSnipsExpandTrigger = '\s'
-let g:UltiSnipsJumpForwardTrigger = '<C-n>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-p>'
 
 "=============================vimtex===================================
 let g:tex_flavor='latex'
