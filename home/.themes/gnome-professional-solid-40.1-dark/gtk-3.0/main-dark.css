@@ -8734,4 +8734,5 @@ viewswitcherbar actionbar > revealer > box
 @define-color color_900 shade(@color_accent,0.7);
 @define-color color_1000 shade(@color_accent,0.3);
 
+decoration {box-shadow: none;} 
 

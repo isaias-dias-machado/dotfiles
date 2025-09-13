@@ -6771,3 +6771,4 @@ animation: awesome infinite linear 6s;}*/
 @define-color color_900 shade(@color_accent,0.7);
 @define-color color_1000 shade(@color_accent,0.3);
 
+decoration {box-shadow: none;} 
