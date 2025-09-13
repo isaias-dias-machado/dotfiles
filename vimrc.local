@@ -48,6 +48,21 @@ highlight SpellBad ctermfg=red ctermbg=NONE cterm=underline guifg=#ff0000 guibg=
 
 
 " Mappings
+" emacs
+inoremap <silent> <C-a> <Home>        " Move cursor to the beginning of the line
+inoremap <silent> <C-e> <End>         " Move cursor to the end of the line
+inoremap <silent> <C-f> <Right>       " Move cursor forward one character
+inoremap <silent> <C-b> <Left>        " Move cursor backward one character
+inoremap <silent> <M-f> <S-Right>     " Move cursor forward one word
+inoremap <silent> <M-b> <S-Left>      " Move cursor backward one word
+inoremap <silent> <C-h> <BS>          " Delete character before the cursor (Backspace)
+inoremap <silent> <C-d> <Del>         " Delete character under the cursor
+inoremap <silent> <C-k> <C-o>D        " Cut (kill) from cursor to the end of the line
+inoremap <silent> <C-u> <C-g>u<C-g>U " Cut (kill) from cursor to the beginning of the line
+inoremap <silent> <M-d> <C-o>dw       " Cut (kill) the next word
+inoremap <silent> <C-p> <Up>          " Go to the previous item in history/completion
+inoremap <silent> <C-n> <Down>        " Go to the next item in history/completion
+
 let mapleader=" "
 " nnoremap <C-d> <C-d>zz
 " nnoremap <C-u> <C-u>zz
@@ -61,6 +76,7 @@ nnoremap <Leader>w :e ~/mywiki/wiki.md<CR>
 nnoremap <Leader>b :ls<CR>:b
 nnoremap <Leader>m :make<CR>:cope 11<CR>
 nnoremap <Leader>r :make run<CR> :cope<CR>
+nnoremap <Leader>ef :silent !mix format %<CR>:e %<CR>:redraw!<CR>
 nnoremap <Leader>st :term tree --gitignore
 nnoremap <Leader>sf :find 
 nnoremap <Leader>ss :sfind 

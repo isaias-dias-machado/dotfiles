@@ -1,3 +1,4 @@
+source /etc/vim/vimrc
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -11,7 +12,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin()
 
-" List your plugins here
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -31,13 +31,14 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'jvirtanen/vim-hcl'
 Plug 'SirVer/ultisnips'
+Plug 'elixir-editors/vim-elixir'
+Plug 'avdgaag/vim-phoenix'
 
 call plug#end()
 
-
 " Wiki options
 set foldenable
-let g:wiki_root = '/mnt/c/Users/isepidm/Dropbox/mywiki/'
+let g:wiki_root = '~/Dropbox/mywiki/'
 let g:markdown_recommended_style = 0
 let g:vim_markdown_folding_disabled = 0
 let g:vim_markdown_folding_level = 1
@@ -65,7 +66,6 @@ inoremap <expr> <CR> pumvisible() ? "\<C-e>\<CR>" : "\<CR>"
 " set foldmethod=expr
 "     \ foldexpr=lsp#ui#vim#folding#foldexpr()
 "     \ foldtext=lsp#ui#vim#folding#foldtext()
-
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
