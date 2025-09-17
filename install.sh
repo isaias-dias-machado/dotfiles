@@ -13,10 +13,10 @@ fi
 check_installation() {
 	if command -v "$1" &> /dev/null
 	then
-		$2
-	else
-		echo "WARNING: Failed to install $1" >&2
+		echo "INFO: $1 is already installed" >&2
 		return
+	else
+		$2
 	fi
 }
 
@@ -126,9 +126,9 @@ if [ -z $WSL_DISTRO_NAME ]; then
 	dconf load / < dconf.dump
 fi
 
-mylink "vimrc.local" /etc/vim
-mylink ".bashrc" /home/*
-mylink "spell/*" /usr/share/vim/vim91/spell
+mylink "$HOME/dotfiles/vimrc.local" /etc/vim
+mylink "$HOME/dotfiles/.bashrc" /home/*
+mylink "$HOME/dotfiles/spell/*" /usr/share/vim/vim91/spell
 
 cd chp
 make
