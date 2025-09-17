@@ -27,7 +27,9 @@ check_installation() {
 
 # $1 /path/to/dotfile $2 /path/to/target
 mylink() {
-	rm $2
+	if [ -L $2 ]; then
+		rm $2
+	fi
 	ln -s $1 $2
 }
 
@@ -125,19 +127,17 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
 	check_installation "kubectl" install_kubernetes
 	check_installation "helm" install_helm
 	check_installation "argocd" install_argocd_cli
-	install_from_github "asdf-vm" "asdf" 'asdf-VERSION-linux-amd64.tar.gz'
-	install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
+	check_installation "asdf" install_from_github "asdf-vm" "asdf" 'asdf-VERSION-linux-amd64.tar.gz'
+	check_installation "zellij" install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
 
 elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
 	dnf install $packages
 fi
 
-if [ -z $WSL_DISTRO_NAME ]; then
+if command -v dconf; then
 	dconf load / < dconf.dump
 fi
 
-echo "Runned by user: $user"
-echo "Targeting home dir: $user_home"
 mylink "$user_home/dotfiles/vimrc.local" "/etc/vim/vimrc.local"
 mylink "$user_home/dotfiles/vimrc" "/etc/vim/vimrc.local"
 mylink "$user_home/dotfiles/bashrc" "$user_home/.bashrc"
