@@ -3,12 +3,19 @@ source /etc/os-release
 
 echo "Running on OS: $ID"
 
+if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
+	apt-get update
+elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
+	dnf update
+fi
+
 # $1: program name $2: installation function
 check_installation() {
 	if command -v "$1" &> /dev/null
 	then
 		$2
 	else
+		echo "WARNING: Failed to install $1" >&2
 		return
 	fi
 }
@@ -18,8 +25,6 @@ mylink() {
 	rm $2/$1
 	ln -sr $1 $2
 }
-
-apt-get update
 
 install_docker() {
 	if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
@@ -65,11 +70,15 @@ install_argocd_cli() {
 	rm argocd-linux-amd64
 }
 
-install_asdf() {
-	local VERSION=$(curl -s "https://api.github.com/repos/asdf-vm/asdf/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
-	curl -sSL -o asdf https://github.com/asdf-vm/asdf/releases/download/$VERSION/asdf-$VERSION-linux-amd64.tar.gz
-	sudo install -m 555 asdf /usr/local/bin/asdf
-	rm asdf
+install_from_github() {
+	local user="$1"
+	local project="$2"
+	local filename="$3"
+
+	local VERSION=$(curl -s "https://api.github.com/repos/$1/$2/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
+	curl -sSL -o asdf https://github.com/$1/$2/releases/download/$VERSION/$3
+	sudo install -m 555 $2 /usr/local/bin/$2
+	rm $2
 }
 
 packages="
@@ -106,7 +115,9 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
 	check_installation "kubectl" install_kubernetes
 	check_installation "helm" install_helm
 	check_installation "argocd" install_argocd_cli
-	check_installation "asdf" install_asdf
+	install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
+	install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
+
 elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
 	dnf install $packages
 fi
