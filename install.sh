@@ -3,6 +3,10 @@ source /etc/os-release
 
 echo "Running on OS: $ID"
 
+user=$(who | awk 'NR==1{print $1}')
+user_home=/home/$user
+cd user_home/dotfiles
+
 if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
 	apt-get update
 elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
@@ -20,10 +24,10 @@ check_installation() {
 	fi
 }
 
-# Usage: link path/to/dotfile path/to/target
+# $1 /path/to/dotfile $2 /path/to/target
 mylink() {
-	rm $2/$1
-	ln -sr $1 $2
+	rm $2
+	ln -s $1 $2
 }
 
 install_docker() {
@@ -75,10 +79,14 @@ install_from_github() {
 	local project="$2"
 	local filename="$3"
 
+	echo "INFO: Installing $2"
+
 	local VERSION=$(curl -s "https://api.github.com/repos/$1/$2/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
-	curl -sSL -o asdf https://github.com/$1/$2/releases/download/$VERSION/$3
-	sudo install -m 555 $2 /usr/local/bin/$2
-	rm $2
+	eval filename=$filename
+	echo "	INFO: Extracting file: $filename"
+	curl -SL -o /tmp/$2.gz https://github.com/$1/$2/releases/download/$VERSION/$filename
+	tar -xf /tmp/$2.gz -C /usr/local/bin/ --overwrite
+	rm /tmp/$2.gz
 }
 
 packages="
@@ -126,9 +134,10 @@ if [ -z $WSL_DISTRO_NAME ]; then
 	dconf load / < dconf.dump
 fi
 
-mylink "$HOME/dotfiles/vimrc.local" /etc/vim
-mylink "$HOME/dotfiles/.bashrc" /home/*
-mylink "$HOME/dotfiles/spell/*" /usr/share/vim/vim91/spell
+mylink "$user_home/dotfiles/vimrc.local" "/etc/vim/vimrc.local"
+mylink "$user_home/dotfiles/vimrc" "/etc/vim/vimrc.local"
+mylink "$user_home/dotfiles/bashrc" "$user_home/.bashrc"
+# mylink "$user_home/dotfiles/spell/*" "/usr/share/vim/vim9*/spell/"
 
 cd chp
 make
