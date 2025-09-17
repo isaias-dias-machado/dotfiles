@@ -67,12 +67,13 @@ install_argocd_cli() {
 
 install_asdf() {
 	local VERSION=$(curl -s "https://api.github.com/repos/asdf-vm/asdf/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
-	curl -sSL -o asdf https://github.com/asdf-vm/asdf/releases/download/v0.18.0/asdf-v0.18.0-linux-amd64.tar.gz
+	curl -sSL -o asdf https://github.com/asdf-vm/asdf/releases/download/$VERSION/asdf-$VERSION-linux-amd64.tar.gz
 	sudo install -m 555 asdf /usr/local/bin/asdf
 	rm asdf
 }
 
 packages="
+jq
 ripgrep
 tree
 make
