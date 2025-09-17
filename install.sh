@@ -1,11 +1,12 @@
 #!/bin/bash
 source /etc/os-release
 
-echo "Running on OS: $ID"
+echo "INFO: Running on OS: $ID"
 
 user=$(who | awk 'NR==1{print $1}')
 user_home=/home/$user
 cd user_home/dotfiles
+
 
 if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
 	apt-get update
@@ -77,14 +78,15 @@ install_argocd_cli() {
 install_from_github() {
 	local user="$1"
 	local project="$2"
-	local filename="$3"
 
 	echo "INFO: Installing $2"
 
 	local VERSION=$(curl -s "https://api.github.com/repos/$1/$2/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
-	eval filename=$filename
-	echo "	INFO: Extracting file: $filename"
-	curl -SL -o /tmp/$2.gz https://github.com/$1/$2/releases/download/$VERSION/$filename
+
+	local filename=$(echo "$3" | sed "s/VERSION/$VERSION/g")
+
+	echo "INFO: Extracting file: $filename"
+	curl -sSL -o /tmp/$2.gz https://github.com/$1/$2/releases/download/$VERSION/$filename
 	tar -xf /tmp/$2.gz -C /usr/local/bin/ --overwrite
 	rm /tmp/$2.gz
 }
@@ -123,7 +125,7 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
 	check_installation "kubectl" install_kubernetes
 	check_installation "helm" install_helm
 	check_installation "argocd" install_argocd_cli
-	install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
+	install_from_github "asdf-vm" "asdf" 'asdf-VERSION-linux-amd64.tar.gz'
 	install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
 
 elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
@@ -134,11 +136,9 @@ if [ -z $WSL_DISTRO_NAME ]; then
 	dconf load / < dconf.dump
 fi
 
+echo "Runned by user: $user"
+echo "Targeting home dir: $user_home"
 mylink "$user_home/dotfiles/vimrc.local" "/etc/vim/vimrc.local"
 mylink "$user_home/dotfiles/vimrc" "/etc/vim/vimrc.local"
 mylink "$user_home/dotfiles/bashrc" "$user_home/.bashrc"
 # mylink "$user_home/dotfiles/spell/*" "/usr/share/vim/vim9*/spell/"
-
-cd chp
-make
-cd ..
