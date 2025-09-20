@@ -1,17 +1,27 @@
 #!/bin/bash
-source /etc/os-release
 
-echo "Running on OS: $ID"
-
-user=$(who | awk 'NR==1{print $1}')
-user_home=/home/$user
-cd user_home/dotfiles
-
-if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
-	apt-get update
-elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
-	dnf update
+if [[ "$EUID" -eq 0 ]]; then
+	echo "Please run this script as a regular user, not as root."
+	exit 1
 fi
+
+# Keep the sudo session alive while the script is running.
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+	cd "$HOME/dotfiles" || { echo "ERROR: Could not find ~/dotfiles directory. Aborting." >&2; exit 1; }
+
+	. /etc/os-release
+	echo "Running on OS: $ID"
+
+	user=$(who | awk 'NR==1{print $1}')
+	user_home=/home/$user
+
+	if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
+		sudo apt-get update >/dev/null
+	elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
+		sudo dnf update >/dev/null
+	fi
 
 # $1: program name $2: installation function
 check_installation() {
@@ -24,72 +34,128 @@ check_installation() {
 	fi
 }
 
-# $1 /path/to/dotfile $2 /path/to/target
-mylink() {
-	rm $2
-	ln -s $1 $2
-}
+to_install=""
 
 install_docker() {
-	if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
-		install -m 0755 -d /etc/apt/keyrings
-		curl -fsSL https://download.docker.com/linux/$ID/gpg -o /etc/apt/keyrings/docker.asc
-		chmod a+r /etc/apt/keyrings/docker.asc
-		echo \
-			"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/$ID \
-			$(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-			tee /etc/apt/sources.list.d/docker.list > /dev/null
-		apt-get update
-	fi
+	echo "INFO: installing docker"
+	sudo install -m 0755 -d /etc/apt/keyrings
+	curl -fsSL https://download.docker.com/linux/$ID/gpg -o /etc/apt/keyrings/docker.asc
+	sudo chmod a+r /etc/apt/keyrings/docker.asc
+	echo \
+		"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/$ID \
+		$(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+		sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+	to_install="docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin $to_install"
 }
 
 install_minikube() {
+	echo "INFO: installing minikube"
 	curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 	sudo dpkg -i minikube_latest_amd64.deb
 }
 
 install_kubernetes() {
+	echo "INFO: installing kubectl"
 	curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.34/deb/Release.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 	sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg # allow unprivileged APT programs to read this keyring
 	# This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
 	echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.34/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 	sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list   # helps tools such as command-not-found to work correctly
-	sudo apt-get update
-	sudo apt-get install -y kubectl
-
+	to_install="kubectl $to_install"
 }
 
 install_helm() {
-	curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
-	sudo apt-get install apt-transport-https --yes
-	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
-	sudo apt-get update
-	sudo apt-get install helm
+	echo "INFO: installing helm"
+	curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+	echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+	to_install="helm $to_install"
 }
 
 install_argocd_cli() {
+	echo "INFO: installing argocd"
 	local VERSION=$(curl -L -s https://raw.githubusercontent.com/argoproj/argo-cd/stable/VERSION)
 	curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/download/v$VERSION/argocd-linux-amd64
 	sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
 	rm argocd-linux-amd64
 }
 
-install_from_github() {
-	local user="$1"
-	local project="$2"
-	local filename="$3"
+apply_apt_installations() {
+	echo "Applying installations: $to_install"
+	sudo apt-get update > /dev/null
+	sudo apt-get install -y $to_install
+}
 
+# $1 user $2 project
+install_from_github() {
 	echo "INFO: Installing $2"
 
 	local VERSION=$(curl -s "https://api.github.com/repos/$1/$2/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
 	eval filename=$filename
-	echo "	INFO: Extracting file: $filename"
+	echo "    INFO: Extracting file: $filename"
 	curl -SL -o /tmp/$2.gz https://github.com/$1/$2/releases/download/$VERSION/$filename
-	tar -xf /tmp/$2.gz -C /usr/local/bin/ --overwrite
+	sudo tar -xf /tmp/$2.gz -C /usr/local/bin/ --overwrite
 	rm /tmp/$2.gz
 }
 
+
+# $1 ssh link
+git_clone() {
+	echo "INFO: Attempting to clone from $1..."
+	git clone $1 2> /dev/null
+}
+
+fetch_open_sources() {
+	mkdir -p ~/open-sources
+	cd ~/open-sources
+	git_clone git@github.com:elixir-lang/elixir.git
+	cd - > /dev/null
+}
+
+setup_git_updater() {
+	echo "INFO: setting up automated commits on shutdown"
+	local TARGET_USER=$SUDO_USER
+	local DOTFILES_PATH=$(realpath .)
+	local SCRIPT_PATH=/usr/local/bin/git-on-shutdown.sh 
+	local SERVICE_PATH=/etc/systemd/system/git-on-shutdown.service
+	cat <<EOF | sudo tee ${SCRIPT_PATH} > /dev/null
+#!/bin/bash
+runuser -u "${TARGET_USER}" -- bash -c '
+    set -e
+    cd "${DOTFILES_DIR}"
+
+    BRANCH_NAME=\$(hostname)
+    git fetch origin
+    git checkout "\${BRANCH_NAME}" || git checkout -b "\${BRANCH_NAME}"
+    git add .
+
+    # Only commit if there are actual changes staged.
+    if ! git diff-index --quiet HEAD; then
+	git commit -m "automated: sync files for \${BRANCH_NAME}"
+    fi
+    timeout 20 git push --set-upstream "$REMOTE_NAME" "$BRANCH_NAME"
+'
+EOF
+	cat <<EOF | sudo tee ${SERVICE_PATH} > /dev/null
+[Unit]
+Description=Commit specified git repository on shutdown.
+DefaultDependencies=no
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+ExecStart=${SCRIPT_PATH}
+
+[Install]
+WantedBy=shutdown.target
+EOF
+
+	sudo chmod +x ${SCRIPT_PATH}
+	sudo systemctl daemon-reload
+	sudo systemctl enable "${SERVICE_PATH}"
+}
+
 packages="
+vim-gtk3
 jq
 ripgrep
 tree
@@ -117,28 +183,41 @@ ri
 "
 
 if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
-	apt-get install $packages -y
+	sudo apt-get install $packages -y
 	check_installation "docker" install_docker
 	check_installation "minikube" install_minikube
 	check_installation "kubectl" install_kubernetes
 	check_installation "helm" install_helm
 	check_installation "argocd" install_argocd_cli
-	install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
-	install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
-
+	apply_apt_installations
+	check_installation install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
+	check_installation install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
+	fetch_open_sources
+	setup_git_updater
 elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
-	dnf install $packages
+	sudo dnf install -y $packages
 fi
 
-if [ -z $WSL_DISTRO_NAME ]; then
-	dconf load / < dconf.dump
-fi
+# if [ -z $WSL_DISTRO_NAME ]; then
+# 	dconf load / < dconf.dump
+# fi
 
-mylink "$user_home/dotfiles/vimrc.local" "/etc/vim/vimrc.local"
-mylink "$user_home/dotfiles/vimrc" "/etc/vim/vimrc.local"
-mylink "$user_home/dotfiles/bashrc" "$user_home/.bashrc"
-# mylink "$user_home/dotfiles/spell/*" "/usr/share/vim/vim9*/spell/"
+# $1 /path/to/dotfile $2 /path/to/target
+link_files() {
+	echo "INFO: linking \"$1\""
+	sudo ln -sf "$1" "$2"
+}
+
+link_files "$HOME/dotfiles/vimrc.local" "/etc/vim/vimrc.local"
+link_files "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
+link_files "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
+for dir in /usr/share/vim/vim9* ; do
+	for file in $HOME/dotfiles/spell/* ; do
+		link_files $file "$dir/spell/"
+	done
+done
 
 cd chp
 make
-cd ..
+cd .. 
+sudo apt-get autoremove -y >/dev/null
