@@ -142,18 +142,18 @@ EOF
 	cat <<EOF | sudo tee ${SERVICE_PATH} > /dev/null
 [Unit]
 Description=Push dotfiles repository changes.
-DefaultDependencies=no
-Before=shutdown.target reboot.target halt.target network-pre.target
-After=dconf-update-on-shutdown.service
 
 [Service]
-Type=oneshot
 User=1000
 Group=1000
-ExecStart=${SCRIPT_PATH}
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=${SCRIPT_PATH}
+TimeoutSec=infinity
 
 [Install]
-WantedBy=shutdown.target
+WantedBy=multi-user.target
 EOF
 
 	sudo chmod +x ${SCRIPT_PATH}
@@ -178,16 +178,18 @@ EOF
 [Unit]
 Description=Update gnome configurations dump file.
 DefaultDependencies=no
-Before=shutdown.target git-on-shutdown.service
 
 [Service]
-Type=oneshot
 User=1000
 Group=1000
-ExecStart=${SCRIPT_PATH}
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=${SCRIPT_PATH}
+TimeoutSec=infinity
 
 [Install]
-WantedBy=shutdown.target
+WantedBy=git-on-shutdown.service
 EOF
 
 	sudo chmod +x ${SCRIPT_PATH}
