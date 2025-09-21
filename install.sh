@@ -142,6 +142,7 @@ EOF
 	cat <<EOF | sudo tee ${SERVICE_PATH} > /dev/null
 [Unit]
 Description=Push dotfiles repository changes.
+After=network.target
 
 [Service]
 User=1000
@@ -177,7 +178,7 @@ EOF
 	cat <<EOF | sudo tee ${SERVICE_PATH} > /dev/null
 [Unit]
 Description=Update gnome configurations dump file.
-DefaultDependencies=no
+After=git-on-shutdown.service
 
 [Service]
 User=1000
