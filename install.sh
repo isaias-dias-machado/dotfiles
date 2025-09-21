@@ -136,7 +136,7 @@ echo "INFO: changes detected, commiting"
 /usr/bin/git commit -m "automated: sync dotfiles files for \${BRANCH_NAME}"
 fi
 echo "INFO: pushing changes"
-timeout 20 git push --force-with-lease --set-upstream origin "\${BRANCH_NAME}"
+/usr/bin/git push --force-with-lease --set-upstream origin \${BRANCH_NAME}
 EOF
 
 	cat <<EOF | sudo tee ${SERVICE_PATH} > /dev/null
