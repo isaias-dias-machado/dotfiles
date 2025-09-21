@@ -256,7 +256,7 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1758389073
+check-timestamp=int64 1758449035
 first-run=false
 install-timestamp=int64 1757980811
 update-notification-timestamp=int64 1758408495
@@ -274,6 +274,7 @@ new-tab='<Primary><Shift>t'
 preferences='<Alt>p'
 
 [org/gnome/terminal/legacy/profiles:]
+default='7c4bd8a3-3194-4434-9db1-d23da0488b42'
 list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', 'bd4e5382-50e9-4f83-8b57-cde5dbf47d03', 'd46ea5cd-4d02-4e0b-9486-ca8de088e325', '7c4bd8a3-3194-4434-9db1-d23da0488b42']
 
 [org/gnome/terminal/legacy/profiles:/:7c4bd8a3-3194-4434-9db1-d23da0488b42]

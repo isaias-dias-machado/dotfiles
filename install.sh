@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DOTFILES_PATH="$HOME/dotfiles" 
+
 if [[ "$EUID" -eq 0 ]]; then
 	echo "Please run this script as a regular user, not as root."
 	exit 1
@@ -9,7 +11,7 @@ fi
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-	cd "$HOME/dotfiles" || { echo "ERROR: Could not find ~/dotfiles directory. Aborting." >&2; exit 1; }
+	cd ${DOTFILES_PATH} || { echo "ERROR: Could not find ~/dotfiles directory. Aborting." >&2; exit 1; }
 
 	. /etc/os-release
 	echo "Running on OS: $ID"
@@ -82,7 +84,7 @@ install_argocd_cli() {
 apply_apt_installations() {
 	echo "Applying installations: $to_install"
 	sudo apt-get update > /dev/null
-	sudo apt-get install -y $to_install
+	sudo apt-get install -y $to_install > /dev/null
 }
 
 # $1 user $2 project
@@ -114,7 +116,6 @@ fetch_open_sources() {
 setup_git_updater() {
 	echo "INFO: setting up automated commits on shutdown"
 	local TARGET_USER=$SUDO_USER
-	local DOTFILES_PATH=$(realpath .)
 	local SCRIPT_PATH=/usr/local/bin/git-on-shutdown.sh 
 	local SERVICE_PATH=/etc/systemd/system/git-on-shutdown.service
 	cat <<EOF | sudo tee ${SCRIPT_PATH} > /dev/null
@@ -140,9 +141,10 @@ EOF
 
 	cat <<EOF | sudo tee ${SERVICE_PATH} > /dev/null
 [Unit]
-Description=Commit specified git repository on shutdown.
+Description=Push dotfiles repository changes.
 DefaultDependencies=no
 Before=shutdown.target
+After=dconf-update-on-shutdown.service
 
 [Service]
 Type=oneshot
@@ -159,6 +161,39 @@ EOF
 	sudo systemctl enable "${SERVICE_PATH}"
 }
 
+setup_dconf_updater() {
+	echo "INFO: updating dconf configuration"
+	local TARGET_USER=$SUDO_USER
+	local SCRIPT_PATH=/usr/local/bin/dconf-update-on-shutdown.sh 
+	local SERVICE_PATH=/etc/systemd/system/dconf-update-on-shutdown.service
+	cat <<EOF | sudo tee ${SCRIPT_PATH} > /dev/null
+#!/bin/bash
+set -e
+
+echo "INFO: dumping gnome configs"
+dconf dump / > ${DOTFILES_PATH}/dconf.dump
+EOF
+
+	cat <<EOF | sudo tee ${SERVICE_PATH} > /dev/null
+[Unit]
+Description=Update gnome configurations dump file.
+DefaultDependencies=no
+Before=shutdown.target git-on-shutdown.service
+
+[Service]
+Type=oneshot
+User=1000
+Group=1000
+ExecStart=${SCRIPT_PATH}
+
+[Install]
+WantedBy=shutdown.target
+EOF
+
+	sudo chmod +x ${SCRIPT_PATH}
+	sudo systemctl daemon-reload
+	sudo systemctl enable "${SERVICE_PATH}"
+}
 packages="
 vim-gtk3
 jq
@@ -188,7 +223,7 @@ ri
 "
 
 if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
-	sudo apt-get install $packages -y
+	sudo apt-get install $packages -y > /dev/null
 	check_installation "docker" install_docker
 	check_installation "minikube" install_minikube
 	check_installation "kubectl" install_kubernetes
@@ -199,6 +234,7 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
 	check_installation install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
 	fetch_open_sources
 	setup_git_updater
+	setup_dconf_updater
 elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
 	sudo dnf install -y $packages
 fi
