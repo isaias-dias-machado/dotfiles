@@ -152,6 +152,7 @@ RemainAfterExit=true
 ExecStart=/bin/true
 ExecStop=${SCRIPT_PATH}
 TimeoutSec=infinity
+TimeoutStopSec=20
 
 [Install]
 WantedBy=multi-user.target
@@ -187,7 +188,7 @@ Type=oneshot
 RemainAfterExit=true
 ExecStart=/bin/true
 ExecStop=${SCRIPT_PATH}
-TimeoutSec=infinity
+TimeoutStopSec=20
 
 [Install]
 WantedBy=git-on-shutdown.service

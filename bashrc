@@ -12,6 +12,7 @@ get_kube_namespace() {
 source <(kubectl completion bash)
 source <(helm completion bash)
 source <(argocd completion bash)
+source <(asdf completion bash)
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -241,6 +242,7 @@ argocdlogin() {
 #====================================================================
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 alias df='cd ~/dotfiles'
 alias dfinstall='vi ~/dotfiles/install.sh'
@@ -255,6 +257,11 @@ alias z='zellij'
 alias key='cat $HOME/.secrets/key | clip.exe'
 alias sup='vi ~/suporte/apontamentos.md'
 alias wiki='vi ~/wiki.md'
+
+h() {
+iex <<< "h $1" | less
+}
+
 export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Kubernetes/collectors-self-monitoring"
 source /home/isaias/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
