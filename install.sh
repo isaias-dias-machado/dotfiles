@@ -143,7 +143,7 @@ EOF
 [Unit]
 Description=Push dotfiles repository changes.
 DefaultDependencies=no
-Before=shutdown.target
+Before=shutdown.target reboot.target halt.target network-pre.target
 After=dconf-update-on-shutdown.service
 
 [Service]
