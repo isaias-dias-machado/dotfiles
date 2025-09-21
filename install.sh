@@ -134,7 +134,7 @@ if ! /usr/bin/git diff-index --quiet HEAD; then
 echo "INFO: changes detected, commiting"
 /usr/bin/git commit -m "automated: sync dotfiles files for \${BRANCH_NAME}"
 echo "INFO: pushing changes"
-timeout 20 git push --set-upstream "$REMOTE_NAME" "$BRANCH_NAME"
+timeout 20 git push --set-upstream origin "\${BRANCH_NAME}"
 fi
 EOF
 
