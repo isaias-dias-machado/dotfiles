@@ -123,7 +123,6 @@ set -e
 cd "${DOTFILES_PATH}"
 
 BRANCH_NAME=\$(hostname)
-/usr/bin/git fetch origin
 /usr/bin/git checkout "\${BRANCH_NAME}" || /usr/bin/git checkout -b "\${BRANCH_NAME}"
 /usr/bin/git add .
 
