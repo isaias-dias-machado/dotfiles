@@ -123,14 +123,19 @@ set -e
 cd "${DOTFILES_PATH}"
 
 BRANCH_NAME=\$(hostname)
+echo "INFO: checking out branch"
 /usr/bin/git checkout "\${BRANCH_NAME}" || /usr/bin/git checkout -b "\${BRANCH_NAME}"
+
+echo "INFO: staging changes"
 /usr/bin/git add .
 
 # Only commit if there are actual changes staged.
 if ! /usr/bin/git diff-index --quiet HEAD; then
-/usr/bin/git commit -m "automated: sync files for \${BRANCH_NAME}"
-fi
+echo "INFO: changes detected, commiting"
+/usr/bin/git commit -m "automated: sync dotfiles files for \${BRANCH_NAME}"
+echo "INFO: pushing changes"
 timeout 20 git push --set-upstream "$REMOTE_NAME" "$BRANCH_NAME"
+fi
 EOF
 
 	cat <<EOF | sudo tee ${SERVICE_PATH} > /dev/null
@@ -152,7 +157,6 @@ EOF
 	sudo chmod +x ${SCRIPT_PATH}
 	sudo systemctl daemon-reload
 	sudo systemctl enable "${SERVICE_PATH}"
-	sudo systemctl start "${SERVICE_PATH}"
 }
 
 packages="
