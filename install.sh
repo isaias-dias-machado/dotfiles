@@ -119,22 +119,21 @@ setup_git_updater() {
 	local SERVICE_PATH=/etc/systemd/system/git-on-shutdown.service
 	cat <<EOF | sudo tee ${SCRIPT_PATH} > /dev/null
 #!/bin/bash
-runuser -u "${TARGET_USER}" -- bash -c '
-    set -e
-    cd "${DOTFILES_DIR}"
+set -e
+cd "${DOTFILES_PATH}"
 
-    BRANCH_NAME=\$(hostname)
-    git fetch origin
-    git checkout "\${BRANCH_NAME}" || git checkout -b "\${BRANCH_NAME}"
-    git add .
+BRANCH_NAME=\$(hostname)
+/usr/bin/git fetch origin
+/usr/bin/git checkout "\${BRANCH_NAME}" || /usr/bin/git checkout -b "\${BRANCH_NAME}"
+/usr/bin/git add .
 
-    # Only commit if there are actual changes staged.
-    if ! git diff-index --quiet HEAD; then
-	git commit -m "automated: sync files for \${BRANCH_NAME}"
-    fi
-    timeout 20 git push --set-upstream "$REMOTE_NAME" "$BRANCH_NAME"
-'
+# Only commit if there are actual changes staged.
+if ! /usr/bin/git diff-index --quiet HEAD; then
+/usr/bin/git commit -m "automated: sync files for \${BRANCH_NAME}"
+fi
+timeout 20 git push --set-upstream "$REMOTE_NAME" "$BRANCH_NAME"
 EOF
+
 	cat <<EOF | sudo tee ${SERVICE_PATH} > /dev/null
 [Unit]
 Description=Commit specified git repository on shutdown.
@@ -143,6 +142,8 @@ Before=shutdown.target
 
 [Service]
 Type=oneshot
+User=1000
+Group=1000
 ExecStart=${SCRIPT_PATH}
 
 [Install]
@@ -152,6 +153,7 @@ EOF
 	sudo chmod +x ${SCRIPT_PATH}
 	sudo systemctl daemon-reload
 	sudo systemctl enable "${SERVICE_PATH}"
+	sudo systemctl start "${SERVICE_PATH}"
 }
 
 packages="
