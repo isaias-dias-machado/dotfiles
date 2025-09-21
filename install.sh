@@ -237,14 +237,16 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
 	check_installation install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
 	fetch_open_sources
 	setup_git_updater
-	setup_dconf_updater
+	if command -v dconf > /dev/null; then
+		setup_dconf_updater
+	fi
 elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
 	sudo dnf install -y $packages
 fi
 
-# if [ -z $WSL_DISTRO_NAME ]; then
-# 	dconf load / < dconf.dump
-# fi
+if command -v dconf > /dev/null; then
+	dconf load / < dconf.dump
+fi
 
 # $1 /path/to/dotfile $2 /path/to/target
 link_files() {
