@@ -197,6 +197,7 @@ repos() {
     cd "$basedir/$selection" || return
   fi
 
+	export root="$basedir/$selection"
 	fcd
 	# file=$(fzf)
 
@@ -253,6 +254,7 @@ alias z='zellij'
 alias key='cat $HOME/.secrets/key | clip.exe'
 alias sup='vi ~/suporte/apontamentos.md'
 alias wiki='vi ~/wiki.md'
+alias amend='git commit --amend --no-edit'
 export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Kubernetes/collectors-self-monitoring"
 source /home/i2sidm/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
