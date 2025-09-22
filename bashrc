@@ -12,6 +12,7 @@ get_kube_namespace() {
 source <(kubectl completion bash)
 source <(helm completion bash)
 source <(argocd completion bash)
+source <(asdf completion bash)
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -73,7 +74,7 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='[$(get_kube_context):$(get_kube_namespace)] \[\033[38;5;32m\]${PWD##*/}\[\033[38;5;32m\]→\[\033[00m\] '
+    PS1='[$(get_kube_context):$(get_kube_namespace)] \[\033[93m\]${PWD##*/}\[\033[93m\] ➤\[\033[00m\] '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -242,20 +243,27 @@ argocdlogin() {
 #====================================================================
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
+alias df='cd ~/dotfiles'
+alias dfinstall='vi ~/dotfiles/install.sh'
 alias w='vim ~/mywiki/wiki.md'
 alias gl='git log --oneline'
 alias brc='vi ~/.bashrc'
 alias sbrc='. ~/.bashrc'
 alias vssh='vi ~/.ssh/config'
 alias v='vi $(fzf)'
-alias opn='wslview'
+alias opn='xdg-open'
 alias z='zellij'
 alias key='cat $HOME/.secrets/key | clip.exe'
 alias sup='vi ~/suporte/apontamentos.md'
 alias wiki='vi ~/wiki.md'
 alias amend='git commit --amend --no-edit'
+
+h() {
+iex <<< "h $1" | less
+}
+
 export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Kubernetes/collectors-self-monitoring"
-source /home/i2sidm/dotfiles/chp/chp.sh
+source /home/isaias/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
-export down='~/win/Downloads'

@@ -103,6 +103,9 @@ application-id='org.gnome.Terminal.Preferences.desktop'
 [org/gnome/desktop/notifications/application/org-gnome-terminal]
 application-id='org.gnome.Terminal.desktop'
 
+[org/gnome/desktop/notifications/application/org-pwmt-zathura]
+application-id='org.pwmt.zathura.desktop'
+
 [org/gnome/desktop/notifications/application/zoom]
 application-id='Zoom.desktop'
 
@@ -112,6 +115,7 @@ repeat-interval=uint32 21
 
 [org/gnome/desktop/peripherals/mouse]
 accel-profile='flat'
+speed=-0.016574585635359074
 
 [org/gnome/desktop/peripherals/touchpad]
 send-events='enabled'
@@ -209,6 +213,10 @@ width=640
 x=0
 y=32
 
+[org/gnome/file-roller/listing]
+list-mode='as-folder'
+show-path=false
+
 [org/gnome/nautilus/icon-view]
 default-zoom-level='small'
 
@@ -248,10 +256,10 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1738927855
+check-timestamp=int64 1758449035
 first-run=false
-install-timestamp=int64 1738714851
-update-notification-timestamp=int64 1738714921
+install-timestamp=int64 1757980811
+update-notification-timestamp=int64 1758408495
 
 [org/gnome/system/location]
 enabled=false
@@ -259,22 +267,105 @@ enabled=false
 [org/gnome/terminal/legacy]
 default-show-menubar=false
 headerbar=@mb false
+theme-variant='system'
 
 [org/gnome/terminal/legacy/keybindings]
 new-tab='<Primary><Shift>t'
 preferences='<Alt>p'
 
-[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-background-color='rgb(0,43,54)'
+[org/gnome/terminal/legacy/profiles:]
+default='7c4bd8a3-3194-4434-9db1-d23da0488b42'
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', 'bd4e5382-50e9-4f83-8b57-cde5dbf47d03', 'd46ea5cd-4d02-4e0b-9486-ca8de088e325', '7c4bd8a3-3194-4434-9db1-d23da0488b42']
+
+[org/gnome/terminal/legacy/profiles:/:7c4bd8a3-3194-4434-9db1-d23da0488b42]
+allow-bold=true
+audible-bell=false
+background-color='#2E2E34344040'
+bold-color='#D8D8DEDEE9E9'
+bold-color-same-as-fg=true
+cursor-background-color='#D8D8DEDEE9E9'
 cursor-blink-mode='on'
+cursor-colors-set=true
+cursor-foreground-color='#2E2E34344040'
+default-size-columns=80
+default-size-rows=36
+font='DejaVu Sans Mono 12'
+foreground-color='#D8D8DEDEE9E9'
+highlight-colors-set=false
+login-shell=true
+palette=['#3B3B42425252', '#BFBF61616A6A', '#A3A3BEBE8C8C', '#EBEBCBCB8B8B', '#8181A1A1C1C1', '#B4B48E8EADAD', '#8888C0C0D0D0', '#E5E5E9E9F0F0', '#4C4C56566A6A', '#BFBF61616A6A', '#A3A3BEBE8C8C', '#EBEBCBCB8B8B', '#8181A1A1C1C1', '#B4B48E8EADAD', '#8F8FBCBCBBBB', '#ECECEFEFF4F4']
+scrollbar-policy='never'
+use-system-font=false
+use-theme-background=false
+use-theme-colors=false
+use-theme-transparency=false
+visible-name='Nord'
+
+[org/gnome/terminal/legacy/profiles:/:Nord]
+allow-bold=true
+audible-bell=false
+background-color='#2E2E34344040'
+bold-color='#D8D8DEDEE9E9'
+bold-color-same-as-fg=true
+cursor-background-color='#D8D8DEDEE9E9'
+cursor-blink-mode='on'
+cursor-colors-set=true
+cursor-foreground-color='#2E2E34344040'
+default-size-columns=80
 default-size-rows=36
 font='DejaVu Sans Mono 16'
-foreground-color='rgb(213,205,205)'
+foreground-color='#D8D8DEDEE9E9'
+highlight-colors-set=false
 login-shell=true
-palette=['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']
+palette=['#3B3B42425252', '#BFBF61616A6A', '#A3A3BEBE8C8C', '#EBEBCBCB8B8B', '#8181A1A1C1C1', '#B4B48E8EADAD', '#8888C0C0D0D0', '#E5E5E9E9F0F0', '#4C4C56566A6A', '#BFBF61616A6A', '#A3A3BEBE8C8C', '#EBEBCBCB8B8B', '#8181A1A1C1C1', '#B4B48E8EADAD', '#8F8FBCBCBBBB', '#ECECEFEFF4F4']
+scrollbar-policy='never'
+use-system-font=false
+use-theme-background=false
+use-theme-colors=false
+use-theme-transparency=false
+visible-name='Nord'
+
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+audible-bell=false
+background-color='rgb(0,0,0)'
+cursor-blink-mode='on'
+default-size-columns=80
+default-size-rows=36
+font='DejaVu Sans Mono 16'
+foreground-color='rgb(255,255,255)'
+login-shell=true
+palette=['rgb(0,0,0)', 'rgb(170,0,0)', 'rgb(0,170,0)', 'rgb(170,85,0)', 'rgb(0,0,170)', 'rgb(170,0,170)', 'rgb(0,170,170)', 'rgb(170,170,170)', 'rgb(85,85,85)', 'rgb(255,85,85)', 'rgb(85,255,85)', 'rgb(255,255,85)', 'rgb(85,85,255)', 'rgb(255,85,255)', 'rgb(85,255,255)', 'rgb(255,255,255)']
 scrollbar-policy='never'
 use-system-font=false
 use-theme-colors=false
+
+[org/gnome/terminal/legacy/profiles:/:bd4e5382-50e9-4f83-8b57-cde5dbf47d03]
+use-theme-colors=false
+visible-name='new'
+
+[org/gnome/terminal/legacy/profiles:/:d46ea5cd-4d02-4e0b-9486-ca8de088e325]
+allow-bold=true
+audible-bell=false
+background-color='#28282A2A3636'
+bold-color='#F8F8F8F8F2F2'
+bold-color-same-as-fg=true
+cursor-background-color='#F8F8F8F8F2F2'
+cursor-blink-mode='on'
+cursor-colors-set=true
+cursor-foreground-color='#28282A2A3636'
+default-size-columns=80
+default-size-rows=36
+font='DejaVu Sans Mono 16'
+foreground-color='#F8F8F8F8F2F2'
+highlight-colors-set=false
+login-shell=true
+palette=['#262626262626', '#E6E647474747', '#4242E6E66C6C', '#E4E4F3F34A4A', '#9B9B6B6BDFDF', '#E3E35656A7A7', '#7575D7D7ECEC', '#F8F8F8F8F2F2', '#7A7A7A7A7A7A', '#FFFF55555555', '#5050FAFA7B7B', '#F1F1FAFA8C8C', '#BDBD9393F9F9', '#FFFF7979C6C6', '#8B8BE9E9FDFD', '#F9F9F9F9FBFB']
+scrollbar-policy='never'
+use-system-font=false
+use-theme-background=false
+use-theme-colors=false
+use-theme-transparency=false
+visible-name='Dracula'
 
 [org/gtk/gtk4/settings/file-chooser]
 date-format='regular'
