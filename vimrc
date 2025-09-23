@@ -13,6 +13,8 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 call plug#begin()
 
 " List your plugins here
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'HiPhish/guile.vim'
@@ -44,8 +46,6 @@ call plug#end()
 set foldenable
 let g:wiki_root = '$DROPBOX_PATH/mywiki/'
 
-call plug#end()
-
 " fzf
 nnoremap <leader>p :Files .<CR>
 nnoremap <leader>d :Dir<CR>
@@ -71,11 +71,15 @@ let g:vim_markdown_folding_level = 1
 let g:vim_markdown_override_foldtext = 1
 set conceallevel=2
 
-"=============================vimtex===================================
-let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
-let g:tex_conceal='abdmg'
-let g:vimtex_quickfix_enabled = 0
+"=============================ultinips===================================
+ let g:UltiSnipsExpandTrigger="<tab>"
+ let g:UltiSnipsJumpForwardTrigger="<c-l>"
+ let g:UltiSnipsJumpBackwardTrigger="<c-h>"
+""=============================vimtex===================================
+"let g:tex_flavor='latex'
+"let g:vimtex_view_method='zathura'
+"let g:tex_conceal='abdmg'
+"let g:vimtex_quickfix_enabled = 0
 
 "==============================lsp=====================================
 let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
@@ -99,7 +103,7 @@ function! s:on_lsp_buffer_enabled() abort
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-    
+   
     " refer to doc to add more commands
 endfunction
 
