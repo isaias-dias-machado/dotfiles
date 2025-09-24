@@ -1,4 +1,5 @@
 export KUBECONFIG="$HOME/.kube/monk8s:$HOME/.kube/buildk8s:$HOME/.kube/saasstg:$HOME/.kube/saasqua:$HOME/.kube/saasdev:$HOME/.kube/saastst"
+export task='CODE-228704 - Jenkins shared library'
 
 get_kube_context() {
 	local var=$(kubectl config current-context 2>/dev/null)
@@ -259,11 +260,12 @@ alias key='cat $HOME/.secrets/key | clip.exe'
 alias sup='vi ~/suporte/apontamentos.md'
 alias wiki='vi ~/wiki.md'
 alias amend='git commit --amend --no-edit'
+alias force='git push --force-with-lease'
 
 h() {
 iex <<< "h $1" | less
 }
 
 export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Kubernetes/collectors-self-monitoring"
-source /home/isaias/dotfiles/chp/chp.sh
+source /home/i2sidm/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
