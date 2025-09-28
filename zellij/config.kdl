@@ -164,6 +164,7 @@ keybinds clear-defaults=true {
         bind "Alt k" { MoveFocus "up"; }
         bind "Alt l" { MoveFocusOrTab "right"; }
         bind "Alt u" { CloseFocus; }
+        bind "Alt t" { NewTab; }
         bind "Alt m" { ToggleFloatingPanes; }
         bind "Alt n" { NewPane; }
         bind "Alt o" { MoveTab "right"; }

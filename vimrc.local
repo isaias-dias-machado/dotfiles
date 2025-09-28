@@ -50,19 +50,18 @@ highlight SpellBad ctermfg=red ctermbg=NONE cterm=underline guifg=#ff0000 guibg=
 
 " Mappings
 " emacs
-inoremap <silent> <C-a> <Home>        " Move cursor to the beginning of the line
-inoremap <silent> <C-e> <End>         " Move cursor to the end of the line
-inoremap <silent> <C-f> <Right>       " Move cursor forward one character
-inoremap <silent> <C-b> <Left>        " Move cursor backward one character
-inoremap <silent> <M-f> <S-Right>     " Move cursor forward one word
-inoremap <silent> <M-b> <S-Left>      " Move cursor backward one word
-inoremap <silent> <C-h> <BS>          " Delete character before the cursor (Backspace)
-inoremap <silent> <C-d> <Del>         " Delete character under the cursor
-inoremap <silent> <C-k> <C-o>D        " Cut (kill) from cursor to the end of the line
-inoremap <silent> <C-u> <C-g>u<C-g>U " Cut (kill) from cursor to the beginning of the line
-inoremap <silent> <M-d> <C-o>dw       " Cut (kill) the next word
-inoremap <silent> <C-p> <Up>          " Go to the previous item in history/completion
-inoremap <silent> <C-n> <Down>        " Go to the next item in history/completion
+inoremap <silent> <C-a> <Home>
+inoremap <silent> <C-e> <End>
+inoremap <silent> <C-f> <Right>
+inoremap <silent> <C-b> <Left>
+inoremap <silent> <M-f> <S-Right>     
+inoremap <silent> <M-b> <S-Left>      
+inoremap <silent> <C-h> <BS>          
+inoremap <silent> <C-d> <Del>         
+inoremap <silent> <C-u> <C-g>u<C-g>U 
+inoremap <silent> <M-d> <C-o>dw       
+inoremap <silent> <C-p> <Up>          
+inoremap <silent> <C-n> <Down>        
 
 let mapleader=" "
 " nnoremap <C-d> <C-d>zz
@@ -138,6 +137,10 @@ highlight DiffDelete cterm=bold ctermfg=9  ctermbg=17 gui=none guifg=#dc322f gui
 highlight DiffChange cterm=bold ctermfg=12 ctermbg=17 gui=none guifg=#268bd2 guibg=#073642
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=#719e07 guibg=#839496
 hi Visual ctermbg=240 guibg=#555555
+highlight Pmenu      guibg=#1f2937 guifg=#d1d5db ctermbg=236 ctermfg=253
+highlight PmenuSel   guibg=#374151 guifg=#f9fafb ctermbg=240 ctermfg=255
+highlight PmenuSbar  guibg=#111827 ctermbg=235
+highlight PmenuThumb guibg=#4b5563 ctermbg=239
 " Check if we're running in WSL
 if system('uname -r') =~ "microsoft"
     " Configure netrw to use wslview for opening URLs/files
