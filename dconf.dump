@@ -256,7 +256,7 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1758619659
+check-timestamp=int64 1759053889
 first-run=false
 install-timestamp=int64 1757980811
 update-notification-timestamp=int64 1758408495
@@ -467,7 +467,7 @@ sort-column='name'
 sort-directories-first=false
 sort-order='ascending'
 type-format='category'
-window-position=(0, 37)
+window-position=(0, 32)
 window-size=(1366, 691)
 
 [system/proxy]
