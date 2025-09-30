@@ -44,7 +44,7 @@ call plug#end()
 
 " Wiki options
 set foldenable
-let g:wiki_root = '$DROPBOX_PATH/mywiki/'
+" let g:wiki_root = '$DROPBOX_PATH/mywiki/'
 
 " fzf
 nnoremap <leader>p :Files .<CR>
