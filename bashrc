@@ -261,11 +261,12 @@ alias sup='vi ~/suporte/apontamentos.md'
 alias wiki='vi ~/wiki.md'
 alias amend='git commit --amend --no-edit'
 alias force='git push --force-with-lease'
+alias recommit='git add . && amend && force'
 
 h() {
 iex <<< "h $1" | less
 }
 
-export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Kubernetes/collectors-self-monitoring"
+export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Jenkins/lib"
 source /home/i2sidm/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
