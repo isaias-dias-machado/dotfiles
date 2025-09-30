@@ -13,6 +13,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 call plug#begin()
 
 " List your plugins here
+Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -85,6 +86,9 @@ set conceallevel=2
 " let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
 let g:lsp_document_code_action_signs_enabled = 0
 inoremap <expr> <CR> pumvisible() ? "\<C-e>\<CR>" : "\<CR>"
+
+nnoremap <buffer> <expr><c-j> lsp#scroll(+4)  
+nnoremap <buffer> <expr><c-k> lsp#scroll(-4)
 
 " allow folding
 " set foldnestmax=0
