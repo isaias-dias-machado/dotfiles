@@ -257,6 +257,7 @@ alias z='zellij'
 alias key='cat $HOME/.secrets/key | clip.exe'
 alias sup='vi ~/suporte/apontamentos.md'
 alias wiki='vi ~/wiki.md'
+alias mt='mix test --color 2>&1| less -R'
 
 h() {
 iex <<< "h $1" | less
