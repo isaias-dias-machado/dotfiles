@@ -276,6 +276,7 @@ alias wiki='vi ~/wiki.md'
 alias amend='git commit --amend --no-edit'
 alias force='git push --force-with-lease'
 alias recommit='git add . && amend && force'
+alias mt='mix test --color 2>&1| less -R'
 
 h() {
 iex <<< "h $1" | less

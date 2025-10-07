@@ -57,7 +57,7 @@ enable-hot-corners=false
 font-antialiasing='grayscale'
 font-hinting='slight'
 font-name='DejaVu Sans Ultra-Light 13'
-gtk-key-theme='Emacs'
+gtk-key-theme='Default'
 gtk-theme='gnome-professional-solid-40.1-dark'
 icon-theme='Adwaita'
 monospace-font-name='DejaVu Sans Mono 13'
@@ -256,10 +256,10 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1759053889
+check-timestamp=int64 1759512821
 first-run=false
-install-timestamp=int64 1757980811
-update-notification-timestamp=int64 1758408495
+install-timestamp=int64 1759339263
+update-notification-timestamp=int64 1759339390
 
 [org/gnome/system/location]
 enabled=false
@@ -287,6 +287,7 @@ cursor-background-color='#65657B7B8383'
 cursor-blink-mode='on'
 cursor-colors-set=true
 cursor-foreground-color='#1E1E28282C2C'
+custom-command='zellij -l welcome'
 default-size-columns=80
 default-size-rows=36
 font='DejaVu Sans Mono 10'
@@ -295,6 +296,7 @@ highlight-colors-set=false
 login-shell=true
 palette=['#070736364141', '#EBEB60606B6B', '#C3C3E8E88D8D', '#F7F7EBEB9595', '#8080CBCBC3C3', '#FFFF24249090', '#AEAEDDDDFFFF', '#FFFFFFFFFFFF', '#00002B2B3636', '#EBEB60606B6B', '#C3C3E8E88D8D', '#F7F7EBEB9595', '#7D7DC6C6BFBF', '#6C6C7171C3C3', '#343443434D4D', '#FFFFFFFFFFFF']
 scrollbar-policy='never'
+use-custom-command=true
 use-system-font=false
 use-theme-background=false
 use-theme-colors=false
