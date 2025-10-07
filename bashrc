@@ -1,5 +1,5 @@
 export KUBECONFIG="$HOME/.kube/monk8s:$HOME/.kube/buildk8s:$HOME/.kube/saasstg:$HOME/.kube/saasqua:$HOME/.kube/saasdev:$HOME/.kube/saastst"
-export task='CODE-228704 - Jenkins shared library'
+export task='CODE-228705 - Jenkins shared library'
 
 get_kube_context() {
 	local var=$(kubectl config current-context 2>/dev/null)
@@ -241,12 +241,26 @@ argocdlogin() {
 	argocd login "$1" --grpc-web --grpc-web-root-path /argocd
 }
 
+# $1 ip $2 alias $3 user (OPT)
+add_ssh() {
+	if [ "$1" -eq "--help"]; then
+		echo "Usage: add_ssh <ip/dns> <alias> [user]"
+		exit 0
+	fi
+	local user=${3:-"root"}
+	ssh-copy-id "$user@$1"
+	echo "
+Host $2
+    HostName $1
+    User $user" >> ~/.ssh/config
+}
+
 #====================================================================
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-alias df='cd ~/dotfiles'
+alias dotfiles='cd ~/dotfiles'
 alias dfinstall='vi ~/dotfiles/install.sh'
 alias w='vim ~/mywiki/wiki.md'
 alias gl='git log --oneline'
