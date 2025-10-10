@@ -231,6 +231,7 @@ curl
 gnupg
 ruby
 ri
+golang
 "
 
 if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
