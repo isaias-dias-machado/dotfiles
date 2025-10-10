@@ -277,6 +277,8 @@ alias amend='git commit --amend --no-edit'
 alias force='git push --force-with-lease'
 alias recommit='git add . && amend && force'
 alias mt='mix test --color 2>&1| less -R'
+alias snipex='vi ~/.vim/plugged/vim-snippets/snippets/elixir.snippets'
+alias snipkube='vi ~/.vim/plugged/vim-kubernetes/UltiSnips/yaml.snippets'
 
 h() {
 iex <<< "h $1" | less
