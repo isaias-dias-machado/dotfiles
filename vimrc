@@ -84,7 +84,10 @@ set conceallevel=2
 "let g:vimtex_quickfix_enabled = 0
 
 "==============================lsp=====================================
+
 let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
+let g:lsp_diagnostics_highlights_enabled = 0         " disable diagnostics support
+let g:lsp_document_highlight_enabled = 0         " disable diagnostics support
 let g:lsp_document_code_action_signs_enabled = 0
 inoremap <expr> <CR> pumvisible() ? "\<C-e>\<CR>" : "\<CR>"
 
