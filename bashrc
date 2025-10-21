@@ -239,6 +239,14 @@ argocdlogin() {
 	argocd login "$1" --grpc-web --grpc-web-root-path /argocd
 }
 
+h() {
+iex <<< "h $1" | less
+}
+
+cafe() {
+	systemd-inhibit --what=idle --why="Monitoring kerl build" bash -c "while kill -0 $1 2>/dev/null; do sleep 60; done"
+}
+
 #====================================================================
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
@@ -258,11 +266,12 @@ alias key='cat $HOME/.secrets/key | clip.exe'
 alias sup='vi ~/suporte/apontamentos.md'
 alias wiki='vi ~/wiki.md'
 alias mt='mix test --color 2>&1| less -R'
-
-h() {
-iex <<< "h $1" | less
-}
+alias os='cd ~/open-sources/'
+alias tmp='TMP=$(mktemp -d) && cd $TMP'
+alias otpbuild='KERL_CONFIGURE_OPTIONS="--without-wx --without-javac --without-et" \
+kerl build git ~/open-sources/otp my-branch otp-local-dev'
 
 export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Kubernetes/collectors-self-monitoring"
 source /home/isaias/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
+. /home/isaias/.local/share/kerl/kerl
