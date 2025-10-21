@@ -110,6 +110,7 @@ fetch_open_sources() {
 	mkdir -p ~/open-sources
 	cd ~/open-sources
 	git_clone git@github.com:elixir-lang/elixir.git
+	git_clone https://github.com/erlang/otp.git
 	cd - > /dev/null
 }
 
