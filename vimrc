@@ -30,7 +30,7 @@ Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'mbbill/undotree'
-Plug 'lervag/wiki.vim'
+" Plug 'lervag/wiki.vim'
 Plug 'preservim/vim-markdown'
 Plug 'lervag/vimtex'
 Plug 'jvirtanen/vim-hcl'
@@ -45,7 +45,7 @@ call plug#end()
 
 " Wiki options
 set foldenable
-let g:wiki_root = '$DROPBOX_PATH/mywiki/'
+" let g:wiki_root = '$DROPBOX_PATH/mywiki/'
 
 " fzf
 nnoremap <leader>p :Files .<CR>
