@@ -32,7 +32,8 @@ check_installation() {
 		echo "INFO: $1 is already installed" >&2
 		return
 	else
-		$2
+		shift
+		$@
 	fi
 }
 
@@ -41,7 +42,7 @@ to_install=""
 install_docker() {
 	echo "INFO: installing docker"
 	sudo install -m 0755 -d /etc/apt/keyrings
-	curl -fsSL https://download.docker.com/linux/$ID/gpg -o /etc/apt/keyrings/docker.asc
+	sudo curl -fsSL https://download.docker.com/linux/$ID/gpg -o /etc/apt/keyrings/docker.asc
 	sudo chmod a+r /etc/apt/keyrings/docker.asc
 	echo \
 		"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/$ID \
@@ -82,21 +83,23 @@ install_argocd_cli() {
 }
 
 apply_apt_installations() {
-	echo "Applying installations: $to_install"
+	echo "INFO: Applying installations: $to_install"
 	sudo apt-get update > /dev/null
 	sudo apt-get install -y $to_install > /dev/null
 }
 
-# $1 user $2 project
+# $1 user $2 project $3 filename
 install_from_github() {
+	set -x
 	echo "INFO: Installing $2"
 
 	local VERSION=$(curl -s "https://api.github.com/repos/$1/$2/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
-	eval filename=$filename
+	eval filename=$3
 	echo "    INFO: Extracting file: $filename"
 	curl -SL -o /tmp/$2.gz https://github.com/$1/$2/releases/download/$VERSION/$filename
 	sudo tar -xf /tmp/$2.gz -C /usr/local/bin/ --overwrite
-	rm /tmp/$2.gz
+	# rm /tmp/$2.gz
+	set +x
 }
 
 
@@ -199,6 +202,7 @@ EOF
 	sudo systemctl enable "${SERVICE_PATH}"
 }
 packages="
+gawk
 vim-gtk3
 jq
 ripgrep
@@ -234,8 +238,8 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
 	check_installation "helm" install_helm
 	check_installation "argocd" install_argocd_cli
 	apply_apt_installations
-	check_installation install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
-	check_installation install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
+	check_installation "asdf" install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
+	check_installation "zellij" install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
 	fetch_open_sources
 	setup_git_updater
 	if command -v dconf > /dev/null; then
