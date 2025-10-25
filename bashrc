@@ -246,7 +246,7 @@ argocdlogin() {
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-alias df='cd ~/dotfiles'
+alias dotfiles='cd ~/dotfiles'
 alias dfinstall='vi ~/dotfiles/install.sh'
 alias w='vim ~/mywiki/wiki.md'
 alias gl='git log --oneline'
@@ -261,11 +261,12 @@ alias sup='vi ~/suporte/apontamentos.md'
 alias wiki='vi ~/wiki.md'
 alias amend='git commit --amend --no-edit'
 alias force='git push --force-with-lease'
+alias po='systemctl poweroff'
 
 h() {
 iex <<< "h $1" | less
 }
 
 export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Kubernetes/collectors-self-monitoring"
-source /home/i2sidm/dotfiles/chp/chp.sh
+source /home/isaias/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
