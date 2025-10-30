@@ -259,6 +259,7 @@ link_files() {
 link_files "$HOME/dotfiles/vimrc.local" "/etc/vim/vimrc.local"
 link_files "$HOME/dotfiles/vimrc" "$HOME/.vimrc"
 link_files "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
+link_files "$HOME/dotfiles/vim" "$HOME/.vim"
 for dir in /usr/share/vim/vim9* ; do
 	for file in $HOME/dotfiles/spell/* ; do
 		link_files $file "$dir/spell/"
