@@ -154,7 +154,7 @@ titlebar-font='Cantarell Bold 8'
 titlebar-uses-system-font=false
 
 [org/gnome/evince/default]
-window-ratio=(1.2592592592592593, 0.71321321321321318)
+window-ratio=(1.2648148148148148, 1.1358024691358024)
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -256,7 +256,7 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1761398380
+check-timestamp=int64 1761763391
 first-run=false
 install-timestamp=int64 1761049973
 update-notification-timestamp=int64 1761050067

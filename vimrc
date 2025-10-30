@@ -73,6 +73,7 @@ let g:vim_markdown_override_foldtext = 1
 set conceallevel=2
 
 "=============================ultinips===================================
+ nnoremap <C-s> :call UltiSnips#RefreshSnippets()<CR>
  let g:UltiSnipsExpandTrigger="<tab>"
  let g:UltiSnipsJumpForwardTrigger="<c-l>"
  let g:UltiSnipsJumpBackwardTrigger="<c-h>"
@@ -81,7 +82,10 @@ set conceallevel=2
 "let g:vimtex_view_method='zathura'
 "let g:tex_conceal='abdmg'
 "let g:vimtex_quickfix_enabled = 0
-
+"==============================elixir=====================================
+au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
+au BufRead,BufNewFile mix.lock set filetype=elixir
 "==============================lsp=====================================
 let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
 let g:lsp_document_code_action_signs_enabled = 0

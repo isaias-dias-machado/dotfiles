@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/isaias/hacking/elixir/pflv/lib/pflv_web/controllers/hello_html'
+let g:netrw_dirhist_8='/home/isaias/hacking/elixir/pflv'
+let g:netrw_dirhist_7='/home/isaias/hacking/elixir/pflv/lib/pflv_web/components/layouts'
+let g:netrw_dirhist_6='/home/isaias/hacking/elixir/pflv/lib/pflv_web/controllers'
+let g:netrw_dirhist_5='/home/isaias/hacking/elixir/pflv/lib/pflv_web'
+let g:netrw_dirhist_4='/home/isaias/hacking/elixir/pflv/lib/pflv_web/controllers'
+let g:netrw_dirhist_3='/home/isaias/hacking/elixir/pflv/lib/pflv_web/controllers/page_html'
+let g:netrw_dirhist_2='/home/isaias/hacking/elixir/pflv/lib/pflv_web/controllers'
+let g:netrw_dirhist_1='/home/isaias/hacking/elixir/pflv'
+let g:netrw_dirhist_0='/home/isaias/hacking/elixir/pflv/lib/pflv_web/controllers/hello_html'
