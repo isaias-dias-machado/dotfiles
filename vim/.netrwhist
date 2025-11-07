@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/tmp/tmp.bl38tMuuT3/tmp'
 let g:netrw_dirhist_8='/tmp/tmp.jG7E1KfPRj/tmp'
 let g:netrw_dirhist_7='/home/isaias/hacking/elixir/help'
 let g:netrw_dirhist_6='/home/isaias/hacking/elixir/help/_build'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_3='/home/isaias/hacking/elixir/help'
 let g:netrw_dirhist_2='/home/isaias/.cache/exh'
 let g:netrw_dirhist_1='/home/isaias/.cache/exh/checksums'
 let g:netrw_dirhist_0='/home/isaias/hacking/elixir/help'
-let g:netrw_dirhist_9='/home/isaias/hacking/elixir/help/lib/exhelp'
