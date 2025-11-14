@@ -68,6 +68,7 @@ let mapleader=" "
 " nnoremap <C-u> <C-u>zz
 nnoremap n nzzzv
 nnoremap N Nzzzv
+vnoremap <Leader>p "_dP
 nnoremap <Leader>b :ls<CR>:b
 nnoremap <leader>d :let g:current_buf = bufnr('%') <bar> bufdo if bufnr('%') != g:current_buf <bar> bdelete <bar> endif<CR><CR>
 noremap <Leader>zi <c-w>_ \| <c-w>\|
@@ -136,11 +137,14 @@ highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=#719e07 gui
 highlight DiffDelete cterm=bold ctermfg=9  ctermbg=17 gui=none guifg=#dc322f guibg=#073642
 highlight DiffChange cterm=bold ctermfg=12 ctermbg=17 gui=none guifg=#268bd2 guibg=#073642
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=#719e07 guibg=#839496
+highlight Visual ctermbg=240 guibg=#555555
+highlight Folded ctermbg=237 ctermfg=223
 hi Visual ctermbg=240 guibg=#555555
 highlight Pmenu      guibg=#1f2937 guifg=#d1d5db ctermbg=236 ctermfg=253
 highlight PmenuSel   guibg=#374151 guifg=#f9fafb ctermbg=240 ctermfg=255
 highlight PmenuSbar  guibg=#111827 ctermbg=235
 highlight PmenuThumb guibg=#4b5563 ctermbg=239
+
 " Check if we're running in WSL
 if system('uname -r') =~ "microsoft"
     " Configure netrw to use wslview for opening URLs/files
