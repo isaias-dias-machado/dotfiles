@@ -255,6 +255,10 @@ Host $2
     User $user" >> ~/.ssh/config
 }
 
+cafe() {
+	systemd-inhibit --what=idle --why="Monitoring kerl build" bash -c "while kill -0 $1 2>/dev/null; do sleep 60; done"
+}
+
 #====================================================================
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
@@ -291,9 +295,10 @@ commit() {
 $2"
 }
 
-h() {
-iex <<< "h $1" | less
-}
+alias os='cd ~/open-sources/'
+alias tmp='TMP=$(mktemp -d) && cd $TMP'
+alias otpbuild='KERL_CONFIGURE_OPTIONS="--without-wx --without-javac --without-et" \
+kerl build git ~/open-sources/otp my-branch otp-local-dev'
 
 export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Jenkins/lib"
 source /home/i2sidm/dotfiles/chp/chp.sh

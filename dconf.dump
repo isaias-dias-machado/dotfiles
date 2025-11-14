@@ -65,7 +65,7 @@ show-battery-percentage=false
 text-scaling-factor=1.0
 
 [org/gnome/desktop/notifications]
-application-children=['libreoffice-writer', 'gnome-power-panel', 'org-gnome-evolution', 'firefox-esr', 'org-gnome-software', 'org-gnome-terminal', 'org-gnome-terminal-preferences', 'org-gnome-settings', 'org-gnome-characters', 'org-gnome-nautilus', 'org-gnome-baobab', 'gnome-network-panel', 'zoom']
+application-children=['libreoffice-writer', 'gnome-power-panel', 'org-gnome-evolution', 'firefox-esr', 'org-gnome-software', 'org-gnome-terminal', 'org-gnome-terminal-preferences', 'org-gnome-settings', 'org-gnome-characters', 'org-gnome-nautilus', 'org-gnome-baobab', 'gnome-network-panel', 'zoom', 'gnome-printers-panel']
 
 [org/gnome/desktop/notifications/application/firefox-esr]
 application-id='firefox-esr.desktop'
@@ -75,6 +75,9 @@ application-id='gnome-network-panel.desktop'
 
 [org/gnome/desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-printers-panel]
+application-id='gnome-printers-panel.desktop'
 
 [org/gnome/desktop/notifications/application/libreoffice-writer]
 application-id='libreoffice-writer.desktop'
@@ -154,7 +157,7 @@ titlebar-font='Cantarell Bold 8'
 titlebar-uses-system-font=false
 
 [org/gnome/evince/default]
-window-ratio=(1.2592592592592593, 0.71321321321321318)
+window-ratio=(1.2648148148148148, 1.1358024691358024)
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -256,10 +259,10 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1760248701
+check-timestamp=int64 1762950697
 first-run=false
-install-timestamp=int64 1759339263
-update-notification-timestamp=int64 1759339390
+install-timestamp=int64 1762286535
+update-notification-timestamp=int64 1762295691
 
 [org/gnome/system/location]
 enabled=false
