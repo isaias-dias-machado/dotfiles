@@ -1,5 +1,5 @@
-export KUBECONFIG="$HOME/.kube/monk8s:$HOME/.kube/buildk8s:$HOME/.kube/saasstg:$HOME/.kube/saasqua:$HOME/.kube/saasdev:$HOME/.kube/saastst"
-export task='CODE-228705 - Jenkins shared library'
+touch .env
+source $HOME/.env
 
 get_kube_context() {
 	local var=$(kubectl config current-context 2>/dev/null)
@@ -265,6 +265,7 @@ alias dfinstall='vi ~/dotfiles/install.sh'
 alias w='vim ~/mywiki/wiki.md'
 alias gl='git log --oneline'
 alias brc='vi ~/.bashrc'
+alias _env='vi ~/.env'
 alias sbrc='. ~/.bashrc'
 alias vssh='vi ~/.ssh/config'
 alias v='vi $(fzf)'
@@ -279,6 +280,16 @@ alias recommit='git add . && amend && force'
 alias mt='mix test --color 2>&1| less -R'
 alias snipex='vi ~/.vim/plugged/vim-snippets/snippets/elixir.snippets'
 alias snipkube='vi ~/.vim/plugged/vim-kubernetes/UltiSnips/yaml.snippets'
+alias tokengen='openssl rand -base64 32'
+alias stashpull='git stash && git pull && git stash pop'
+
+# $1 task number $2 msg
+commit() {
+	local task_ref="task$1"
+	git commit -m "${!task_ref}
+
+$2"
+}
 
 h() {
 iex <<< "h $1" | less
