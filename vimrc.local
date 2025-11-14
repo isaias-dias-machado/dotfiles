@@ -68,6 +68,7 @@ let mapleader=" "
 " nnoremap <C-u> <C-u>zz
 nnoremap n nzzzv
 nnoremap N Nzzzv
+vnoremap <Leader>p "_dP
 nnoremap <Leader>b :ls<CR>:b
 nnoremap <leader>d :let g:current_buf = bufnr('%') <bar> bufdo if bufnr('%') != g:current_buf <bar> bdelete <bar> endif<CR><CR>
 noremap <Leader>zi <c-w>_ \| <c-w>\|
