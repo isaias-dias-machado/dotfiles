@@ -13,6 +13,8 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 call plug#begin()
 
 " List your plugins here
+Plug 'martinda/Jenkinsfile-vim-syntax'    
+Plug 'andrewstuart/vim-kubernetes'
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -87,7 +89,10 @@ au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
 au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
 au BufRead,BufNewFile mix.lock set filetype=elixir
 "==============================lsp=====================================
+
 let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
+let g:lsp_diagnostics_highlights_enabled = 0         " disable diagnostics support
+let g:lsp_document_highlight_enabled = 0         " disable diagnostics support
 let g:lsp_document_code_action_signs_enabled = 0
 inoremap <expr> <CR> pumvisible() ? "\<C-e>\<CR>" : "\<CR>"
 

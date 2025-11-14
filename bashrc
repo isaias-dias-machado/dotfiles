@@ -1,4 +1,5 @@
-export KUBECONFIG="$HOME/.kube/monk8s:$HOME/.kube/buildk8s:$HOME/.kube/saasstg:$HOME/.kube/saasqua:$HOME/.kube/saasdev:$HOME/.kube/saastst"
+touch .env
+source $HOME/.env
 
 get_kube_context() {
 	local var=$(kubectl config current-context 2>/dev/null)
@@ -198,6 +199,7 @@ repos() {
     cd "$basedir/$selection" || return
   fi
 
+	export root="$basedir/$selection"
 	fcd
 	# file=$(fzf)
 
@@ -239,12 +241,22 @@ argocdlogin() {
 	argocd login "$1" --grpc-web --grpc-web-root-path /argocd
 }
 
-h() {
-iex <<< "h $1" | less
-}
-
 cafe() {
 	systemd-inhibit --what=idle --why="Monitoring kerl build" bash -c "while kill -0 $1 2>/dev/null; do sleep 60; done"
+}
+
+# $1 ip $2 alias $3 user (OPT)
+add_ssh() {
+	if [ "$1" -eq "--help"]; then
+		echo "Usage: add_ssh <ip/dns> <alias> [user]"
+		exit 0
+	fi
+	local user=${3:-"root"}
+	ssh-copy-id "$user@$1"
+	echo "
+Host $2
+    HostName $1
+    User $user" >> ~/.ssh/config
 }
 
 #====================================================================
@@ -252,11 +264,12 @@ cafe() {
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-alias df='cd ~/dotfiles'
+alias dotfiles='cd ~/dotfiles'
 alias dfinstall='vi ~/dotfiles/install.sh'
 alias w='vim ~/mywiki/wiki.md'
 alias gl='git log --oneline'
 alias brc='vi ~/.bashrc'
+alias _env='vi ~/.env'
 alias sbrc='. ~/.bashrc'
 alias vssh='vi ~/.ssh/config'
 alias v='vi $(fzf)'
@@ -265,13 +278,28 @@ alias z='zellij'
 alias key='cat $HOME/.secrets/key | clip.exe'
 alias sup='vi ~/suporte/apontamentos.md'
 alias wiki='vi ~/wiki.md'
+alias amend='git commit --amend --no-edit'
+alias force='git push --force-with-lease'
+alias recommit='git add . && amend && force'
 alias mt='mix test --color 2>&1| less -R'
 alias os='cd ~/open-sources/'
 alias tmp='TMP=$(mktemp -d) && cd $TMP'
 alias otpbuild='KERL_CONFIGURE_OPTIONS="--without-wx --without-javac --without-et" \
 kerl build git ~/open-sources/otp my-branch otp-local-dev'
+alias snipex='vi ~/.vim/plugged/vim-snippets/snippets/elixir.snippets'
+alias snipkube='vi ~/.vim/plugged/vim-kubernetes/UltiSnips/yaml.snippets'
+alias tokengen='openssl rand -base64 32'
+alias stashpull='git stash && git pull && git stash pop'
 
-export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Kubernetes/collectors-self-monitoring"
-source /home/isaias/dotfiles/chp/chp.sh
+# $1 task number $2 msg
+commit() {
+	local task_ref="task$1"
+	git commit -m "${!task_ref}
+
+$2"
+}
+
+export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Jenkins/lib"
+source /home/i2sidm/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 . /home/isaias/.local/share/kerl/kerl

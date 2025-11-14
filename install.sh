@@ -66,6 +66,10 @@ install_kubernetes() {
 	to_install="kubectl $to_install"
 }
 
+install_kustomize() {
+	curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+}
+
 install_helm() {
 	echo "INFO: installing helm"
 	curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
@@ -79,6 +83,13 @@ install_argocd_cli() {
 	curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/download/v$VERSION/argocd-linux-amd64
 	sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
 	rm argocd-linux-amd64
+}
+
+install_postgresql() {
+	echo "INFO: installing postgres"
+	sudo apt install -y postgresql-common
+	sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+	to_install="postgresql $to_install"
 }
 
 apply_apt_installations() {
@@ -164,6 +175,13 @@ EOF
 	sudo systemctl enable "${SERVICE_PATH}"
 }
 
+asdf_configs() {
+	asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git
+	asdf plugin update --all
+	asdf install erlang 27
+	asdf install elixir 18.4
+}
+
 setup_dconf_updater() {
 	echo "INFO: updating dconf configuration"
 	local TARGET_USER=$SUDO_USER
@@ -225,6 +243,8 @@ curl
 gnupg
 ruby
 ri
+golang
+unzip
 "
 
 if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
@@ -234,9 +254,11 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
 	check_installation "kubectl" install_kubernetes
 	check_installation "helm" install_helm
 	check_installation "argocd" install_argocd_cli
+	check_installation "postgresql" install_argocd_cli
 	apply_apt_installations
-	check_installation install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
-	check_installation install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
+	check_installation "asdf" install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
+	check_installation "zellij" install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
+	asdf_configs
 	fetch_open_sources
 	setup_git_updater
 	if command -v dconf > /dev/null; then
