@@ -1,0 +1,4 @@
+vim/.netrwhist
+vim/undodir
+vim/plugged
+!vim/plugged/vim-snippets
