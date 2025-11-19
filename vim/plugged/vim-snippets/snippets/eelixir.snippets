@@ -1,9 +1,9 @@
 extends html
 
 snippet layouts
-	<Layouts.app flash={@flash}>
+	<Layouts.${1:name} flash={@flash}>
 		$0
-	</Layouts.app>
+	</Layouts.$1>
 snippet % <% %>
 	<% ${0} %>
 snippet = <%= %>

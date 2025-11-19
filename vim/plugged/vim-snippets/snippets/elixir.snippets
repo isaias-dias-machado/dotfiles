@@ -471,3 +471,60 @@ snippet view
 			"""
 		end}
 	end
+
+## LIVEVIEW ##
+
+snippet lv "LiveView module" b
+	defmodule ${1:App}Web.${2:Page}Live do
+		use $1Web, :live_view
+
+		def mount(_params, _session, socket) do
+			{:ok, socket}
+		end
+
+		def render(assigns) do
+			~H"""
+			<div class="$3">
+				$0
+			</div>
+			"""
+		end
+	end
+
+snippet lc "LiveView component" b
+	defmodule ${1:AppWeb}.${2:Name}Component do
+		use ${1:AppWeb}, :live_component
+
+		def render(assigns) do
+			~H"""
+			<div class="$3">
+				$0
+			</div>
+			"""
+		end
+
+		def handle_event("${4:event}", _params, socket) do
+			{:noreply, socket}
+		end
+	end
+
+snippet lvhe "handle_event" b
+	def handle_event("${1:event_name}", ${2:params}, socket) do
+		$0
+		{:noreply, socket}
+	end
+
+# Handle info
+snippet lvhi "handle_info" b
+	def handle_info(${1:message}, socket) do
+		$0
+		{:noreply, socket}
+	end
+
+# Assign
+snippet lvas "assign socket" i
+	assign(socket, ${1:key}: ${2:value})$0
+
+# Update
+snippet lvup "update socket" i
+	update(socket, :${1:key}, fn ${2:val} -> ${3:val} end)$0
