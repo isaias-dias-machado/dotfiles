@@ -282,6 +282,10 @@ alias amend='git commit --amend --no-edit'
 alias force='git push --force-with-lease'
 alias recommit='git add . && amend && force'
 alias mt='mix test --color 2>&1| less -R'
+alias os='cd ~/open-sources/'
+alias tmp='TMP=$(mktemp -d) && cd $TMP'
+alias otpbuild='KERL_CONFIGURE_OPTIONS="--without-wx --without-javac --without-et" \
+kerl build git ~/open-sources/otp my-branch otp-local-dev'
 alias snipex='vi ~/.vim/plugged/vim-snippets/snippets/elixir.snippets'
 alias snipkube='vi ~/.vim/plugged/vim-kubernetes/UltiSnips/yaml.snippets'
 alias tokengen='openssl rand -base64 32'
@@ -294,11 +298,6 @@ commit() {
 
 $2"
 }
-
-alias os='cd ~/open-sources/'
-alias tmp='TMP=$(mktemp -d) && cd $TMP'
-alias otpbuild='KERL_CONFIGURE_OPTIONS="--without-wx --without-javac --without-et" \
-kerl build git ~/open-sources/otp my-branch otp-local-dev'
 
 export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Jenkins/lib"
 source /home/i2sidm/dotfiles/chp/chp.sh

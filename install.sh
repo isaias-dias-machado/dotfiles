@@ -218,6 +218,8 @@ EOF
 	sudo systemctl enable "${SERVICE_PATH}"
 }
 packages="
+fd-find
+npm
 vim-gtk3
 jq
 ripgrep

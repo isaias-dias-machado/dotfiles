@@ -42,6 +42,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
+Plug 'masukomi/vim-markdown-folding'
 
 call plug#end()
 
@@ -68,10 +69,10 @@ command! Dir call fzf#run({
 " Wiki options
 set foldenable
 " let g:wiki_root = '/mnt/c/Users/isepidm/Dropbox/mywiki/'
-let g:markdown_recommended_style = 0
-let g:vim_markdown_folding_disabled = 0
-let g:vim_markdown_folding_level = 1
-let g:vim_markdown_override_foldtext = 1
+" let g:markdown_recommended_style = 0
+" let g:vim_markdown_folding_disabled = 0
+" let g:vim_markdown_folding_level = 1
+" let g:vim_markdown_override_foldtext = 1
 set conceallevel=2
 
 "=============================ultinips===================================

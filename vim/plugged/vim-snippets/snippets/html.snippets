@@ -78,9 +78,9 @@ snippet docx
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
 	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 # Attributes
-snippet attr
+snippet attribute
 	${1:attribute}="${0:property}"
-snippet attr+
+snippet attribute+
 	${1:attribute}="${2:property}" attr+
 snippet .
 	class="${1}"
@@ -264,7 +264,7 @@ snippet dialog
 		${0}
 	</dialog>
 snippet div
-	<div>
+	<div ${1:class=}$2>
 		${0}
 	</div>
 snippet div.
