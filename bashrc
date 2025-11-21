@@ -264,6 +264,7 @@ cafe() {
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
+alias vi=nvim
 alias dotfiles='cd ~/dotfiles'
 alias dfinstall='vi ~/dotfiles/install.sh'
 alias w='vim ~/mywiki/wiki.md'

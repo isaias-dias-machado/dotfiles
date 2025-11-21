@@ -1,5 +1,6 @@
 return {
   { "sainnhe/gruvbox-material" },
+  { "jeetsukumaran/vim-indentwise" },
   { "mbbill/undotree" },
   { "tpope/vim-commentary" },
   { "tpope/vim-surround" },
@@ -7,11 +8,5 @@ return {
   { "elixir-editors/vim-elixir" },
   { "honza/vim-snippets" },
   { "andrewstuart/vim-kubernetes" },
-  {
-    "L3MON4D3/LuaSnip",
-    config = function()
-      require("luasnip.loaders.from_ultisnips").lazy_load()
-    end,
-    { "avdgaag/vim-phoenix" },
-  },
+  { "avdgaag/vim-phoenix" },
 }
