@@ -9,4 +9,5 @@ return {
   { "honza/vim-snippets" },
   { "andrewstuart/vim-kubernetes" },
   { "avdgaag/vim-phoenix" },
+  { "rafamadriz/friendly-snippets" },
 }
