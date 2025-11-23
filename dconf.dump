@@ -9,8 +9,8 @@ height=476
 width=600
 
 [ca/desrt/dconf-editor]
-saved-pathbar-path='/org/gnome/terminal/legacy/keybindings/'
-saved-view='/org/gnome/terminal/legacy/keybindings/'
+saved-pathbar-path='/org/gnome/terminal/legacy/always-check-default-terminal'
+saved-view='/org/gnome/terminal/'
 show-warning=false
 window-height=500
 window-is-maximized=true
@@ -29,7 +29,7 @@ is-maximized=false
 window-size=(960, 600)
 
 [org/gnome/control-center]
-last-panel='power'
+last-panel='keyboard'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
@@ -242,7 +242,7 @@ custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybin
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
 binding='<Alt>Return'
-command='gnome-terminal'
+command='kitty'
 name='Terminal'
 
 [org/gnome/shell]
@@ -259,10 +259,10 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1763557219
+check-timestamp=int64 1763904103
 first-run=false
-install-timestamp=int64 1762286535
-update-notification-timestamp=int64 1763557304
+install-timestamp=int64 1763630410
+update-notification-timestamp=int64 1763630480
 
 [org/gnome/system/location]
 enabled=false
