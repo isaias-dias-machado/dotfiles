@@ -12,6 +12,7 @@ vim.opt.hidden = false
 vim.opt.swapfile = false
 vim.opt.list = false
 vim.opt.wrap = true
+vim.opt.textwidth = 80
 vim.opt.listchars = {
   tab = "  ",
   space = "·",
