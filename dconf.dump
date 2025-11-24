@@ -259,7 +259,7 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1763904103
+check-timestamp=int64 1763972780
 first-run=false
 install-timestamp=int64 1763630410
 update-notification-timestamp=int64 1763630480
