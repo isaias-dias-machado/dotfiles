@@ -16,3 +16,10 @@ vim.api.nvim_create_user_command("Dir", function()
     end
   end)
 end, {})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "Jenkinsfile",
+  callback = function()
+    vim.bo.filetype = "groovy"
+  end,
+})

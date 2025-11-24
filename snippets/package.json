@@ -1,0 +1,22 @@
+{
+  "name": "my-personal-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "elixir",
+        "path": "./elixir.json"
+      },
+      {
+        "language": [
+          "eelixir",
+          "heex"
+        ],
+        "path": "./snippets/eelixir.json"
+      },
+      {
+        "language": "groovy",
+        "path": "./groovy.json"
+      }
+    ]
+  }
+}
