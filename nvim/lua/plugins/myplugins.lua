@@ -1,8 +1,10 @@
 return {
   { "sainnhe/gruvbox-material" },
+  { "martinda/Jenkinsfile-vim-syntax" },
   { "jeetsukumaran/vim-indentwise" },
   { "mbbill/undotree" },
   { "tpope/vim-commentary" },
+  { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
   { "tpope/vim-rsi" },
   { "elixir-editors/vim-elixir" },
