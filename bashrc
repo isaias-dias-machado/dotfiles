@@ -1,4 +1,3 @@
-touch .env
 source $HOME/.env
 
 get_kube_context() {

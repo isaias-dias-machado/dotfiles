@@ -26,6 +26,8 @@ echo "Running on OS: $ID"
 user=$(who | awk 'NR==1{print $1}')
 user_home=/home/$user
 
+to_install=""
+
 if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
   sudo apt-get update >/dev/null
 elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
@@ -43,7 +45,19 @@ check_installation() {
   fi
 }
 
-to_install=""
+install_neovim() {
+  echo "INFO: installing neovim"
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+  chmod u+x nvim-linux-x86_64.appimage
+  sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
+
+  echo "INFO: installing dejavu nerd font"
+  curl -o /tmp/font.zip -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/DejaVuSansMono.zip
+  unzip /tmp/font.zip -d ~/.local/share/fonts/
+  rm /tmp/font.zip
+
+  fc-cache -fv
+}
 
 install_docker() {
   echo "INFO: installing docker"
@@ -183,9 +197,8 @@ EOF
 
 asdf_configs() {
   asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git
+  asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
   asdf plugin update --all
-  asdf install erlang 27
-  asdf install elixir 18.4
 }
 
 setup_dconf_updater() {
@@ -263,6 +276,7 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
   check_installation "helm" install_helm
   check_installation "argocd" install_argocd_cli
   check_installation "psql" install_postgresql
+  check_installation "nvim" install_neovim
   apply_apt_installations
   check_installation "asdf" install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
   check_installation "zellij" install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
@@ -282,12 +296,14 @@ fi
 
 # $1 /path/to/dotfile $2 /path/to/target
 link_files() {
-  echo "INFO: linking \"$1\""
+  echo "INFO: sym linking \"$1\""
   sudo ln -sf "$1" "$2"
 }
 
 link_files "$HOME/dotfiles/nvim" "$HOME/.config/nvim"
 link_files "$HOME/dotfiles/friendly-snippets" "$HOME/.local/share/nvim/snippets"
+
+link_files "$HOME/dotfiles/zellij" "$HOME/.config/zellij"
 
 link_files "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
 link_files "$HOME/dotfiles/vim" "$HOME/.vim"
@@ -298,7 +314,4 @@ link_files "$HOME/dotfiles/vim" "$HOME/.vim"
 #   done
 # done
 
-cd chp
-make
-cd ..
 sudo apt-get autoremove -y >/dev/null
