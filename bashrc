@@ -299,6 +299,4 @@ commit() {
 $2"
 }
 
-export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Jenkins/lib"
-source /home/i2sidm/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'

@@ -238,6 +238,7 @@ EOF
 }
 packages="
 fd-find
+xclip
 npm
 vim-gtk3
 jq
