@@ -38,7 +38,8 @@ check_installation() {
     echo "INFO: $1 is already installed" >&2
     return
   else
-    $2
+    shift
+    $@
   fi
 }
 
@@ -86,9 +87,9 @@ install_helm() {
 install_argocd_cli() {
   echo "INFO: installing argocd"
   local VERSION=$(curl -L -s https://raw.githubusercontent.com/argoproj/argo-cd/stable/VERSION)
-  curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/download/v$VERSION/argocd-linux-amd64
-  sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
-  rm argocd-linux-amd64
+  curl -sSL -o /tmp/argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/download/v$VERSION/argocd-linux-amd64
+  sudo install -m 555 /tmp/argocd-linux-amd64 /usr/local/bin/argocd
+  rm /tmp/argocd-linux-amd64
 }
 
 install_postgresql() {
@@ -109,7 +110,7 @@ install_from_github() {
   echo "INFO: Installing $2"
 
   local VERSION=$(curl -s "https://api.github.com/repos/$1/$2/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
-  eval filename=$filename
+  eval filename=$3
   echo "    INFO: Extracting file: $filename"
   curl -SL -o /tmp/$2.gz https://github.com/$1/$2/releases/download/$VERSION/$filename
   sudo tar -xf /tmp/$2.gz -C /usr/local/bin/ --overwrite
