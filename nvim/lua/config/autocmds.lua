@@ -23,3 +23,15 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     vim.bo.filetype = "groovy"
   end,
 })
+
+-- Helm filetype detection
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*/templates/*.yaml", "*/templates/*.tpl", "*/templates/*.yml" },
+  callback = function()
+    local path = vim.fn.expand("%:p")
+    -- Check if we're in a Helm chart (Chart.yaml exists in parent directories)
+    if vim.fn.findfile("Chart.yaml", path .. ";") ~= "" then
+      vim.bo.filetype = "helm"
+    end
+  end,
+})
