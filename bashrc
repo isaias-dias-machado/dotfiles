@@ -290,6 +290,7 @@ alias snipex='vi ~/.vim/plugged/vim-snippets/snippets/elixir.snippets'
 alias snipkube='vi ~/.vim/plugged/vim-kubernetes/UltiSnips/yaml.snippets'
 alias tokengen='openssl rand -base64 32'
 alias stashpull='git stash && git pull && git stash pop'
+alias clip='xclip -selection clipboard'
 
 # $1 task number $2 msg
 commit() {
