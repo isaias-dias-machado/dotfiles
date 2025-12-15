@@ -239,6 +239,7 @@ EOF
 packages="
 fd-find
 xclip
+zathura
 npm
 vim-gtk3
 jq
