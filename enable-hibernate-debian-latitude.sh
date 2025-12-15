@@ -16,6 +16,9 @@ sudo swapon --show
 free -h
 
 echo "INFO: Configuring hibernation"
+
+echo "blacklist intel_hid" | sudo tee /etc/modprobe.d/blacklist-intel-hid.conf
+
 id=$(sudo findmnt -no UUID -T /swapfile)
 
 PARTITION_UUID=$(findmnt -no UUID -T /swapfile)
