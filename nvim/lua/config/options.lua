@@ -6,6 +6,7 @@ require("config.filetypes")
 
 vim.opt.path:append(vim.fn.stdpath("config") .. "/**")
 vim.opt.sidescrolloff = 0
+vim.opt.spelllang = "pt_pt,en_gb"
 vim.opt.clipboard = ""
 vim.opt.guicursor = ""
 vim.opt.hidden = false

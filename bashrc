@@ -2,12 +2,12 @@ touch .env
 source $HOME/.env
 
 get_kube_context() {
-	local var=$(kubectl config current-context 2>/dev/null)
-	echo "${var##*@}"
+  local var=$(kubectl config current-context 2>/dev/null)
+  echo "${var##*@}"
 }
 
 get_kube_namespace() {
-    kubectl config view --minify --output 'jsonpath={..namespace}' 2>/dev/null || echo default
+  kubectl config view --minify --output 'jsonpath={..namespace}' 2>/dev/null || echo default
 }
 
 source <(kubectl completion bash)
@@ -21,8 +21,8 @@ source <(asdf completion bash)
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -49,12 +49,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -63,43 +63,42 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='[$(get_kube_context):$(get_kube_namespace)] \[\033[93m\]${PWD##*/}\[\033[93m\] ➤\[\033[00m\] '
+  # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1='[$(get_kube_context):$(get_kube_namespace)] \[\033[93m\]${PWD##*/}\[\033[93m\] ➤\[\033[00m\] '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+xterm* | rxvt*)
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  ;;
+*) ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
+  #alias grep='grep --color=auto'
+  #alias fgrep='fgrep --color=auto'
+  #alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -116,7 +115,7 @@ fi
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -134,18 +133,18 @@ export LIBGL_ALWAYS_SOFTWARE=1
 
 #===============================FZF==================================
 fcd() {
-    local dir
-    if command -v fd &> /dev/null; then
-        dir=$(fd --type d . | fzf)
-    else
-        dir=$(find . -type d | fzf)
-    fi
+  local dir
+  if command -v fd &>/dev/null; then
+    dir=$(fd --type d . | fzf)
+  else
+    dir=$(find . -type d | fzf)
+  fi
 
-    # If a directory was selected, cd into it.
-    if [ -n "$dir" ]; then
-        cd "$dir" || return
-    fi
-} 
+  # If a directory was selected, cd into it.
+  if [ -n "$dir" ]; then
+    cd "$dir" || return
+  fi
+}
 
 frg() {
   # Search for a pattern in files using ripgrep and select a result with fzf.
@@ -199,64 +198,64 @@ repos() {
     cd "$basedir/$selection" || return
   fi
 
-	export root="$basedir/$selection"
-	fcd
-	# file=$(fzf)
+  export root="$basedir/$selection"
+  fcd
+  # file=$(fzf)
 
-	# if [ -n "$file" ]; then
-	# 	vi $file
-	# fi
+  # if [ -n "$file" ]; then
+  # 	vi $file
+  # fi
 }
 
 f() {
-	$1 $(fzf)
+  $1 $(fzf)
 }
 
 ireb() {
-	git add .
-	git commit -m tmp
-	git rebase -i HEAD~2
+  git add .
+  git commit -m tmp
+  git rebase -i HEAD~2
 }
 
 secret() {
-	local last_command=$(fc -ln -1)
+  local last_command=$(fc -ln -1)
 
-	if [[ "$last_command" == secret* ]]; then
-			echo "Error: Last command was 'secret'. Aborting to prevent loop."
-			return 1
-	fi
+  if [[ "$last_command" == secret* ]]; then
+    echo "Error: Last command was 'secret'. Aborting to prevent loop."
+    return 1
+  fi
 
-	local base_cmd="${last_command% *}"
+  local base_cmd="${last_command% *}"
 
-	local replacement="'jsonpath={.data.$1}' | base64 -d | clip.exe"
+  local replacement="'jsonpath={.data.$1}' | base64 -d | clip.exe"
 
-	local new_cmd="$base_cmd $replacement"
-	
-	echo "$new_cmd"
+  local new_cmd="$base_cmd $replacement"
 
-	eval "$new_cmd"
+  echo "$new_cmd"
+
+  eval "$new_cmd"
 }
 
 argocdlogin() {
-	argocd login "$1" --grpc-web --grpc-web-root-path /argocd
+  argocd login "$1" --grpc-web --grpc-web-root-path /argocd
 }
 
 # $1 ip $2 alias $3 user (OPT)
 add_ssh() {
-	if [ "$1" -eq "--help"]; then
-		echo "Usage: add_ssh <ip/dns> <alias> [user]"
-		exit 0
-	fi
-	local user=${3:-"root"}
-	ssh-copy-id "$user@$1"
-	echo "
+  if [ "$1" -eq "--help"]; then
+    echo "Usage: add_ssh <ip/dns> <alias> [user]"
+    exit 0
+  fi
+  local user=${3:-"root"}
+  ssh-copy-id "$user@$1"
+  echo "
 Host $2
     HostName $1
-    User $user" >> ~/.ssh/config
+    User $user" >>~/.ssh/config
 }
 
 cafe() {
-	systemd-inhibit --what=idle --why="Monitoring kerl build" bash -c "while kill -0 $1 2>/dev/null; do sleep 60; done"
+  systemd-inhibit --what=idle --why="Monitoring kerl build" bash -c "while kill -0 $1 2>/dev/null; do sleep 60; done"
 }
 
 #====================================================================
@@ -269,7 +268,7 @@ alias dotfiles='cd ~/dotfiles'
 alias dfinstall='vi ~/dotfiles/install.sh'
 alias w='vim ~/mywiki/wiki.md'
 alias gl='git log --oneline'
-alias brc='vi ~/.bashrc'
+alias brc='vi ~/dotfiles/bashrc'
 alias _env='vi ~/.env'
 alias sbrc='. ~/.bashrc'
 alias vssh='vi ~/.ssh/config'
@@ -287,6 +286,7 @@ alias os='cd ~/open-sources/'
 alias tmp='TMP=$(mktemp -d) && cd $TMP'
 alias otpbuild='KERL_CONFIGURE_OPTIONS="--without-wx --without-javac --without-et" \
 kerl build git ~/open-sources/otp my-branch otp-local-dev'
+alias snip='vi ~/.local/share/nvim/lazy/friendly-snippets/snippets'
 alias snipex='vi ~/.vim/plugged/vim-snippets/snippets/elixir.snippets'
 alias snipkube='vi ~/.vim/plugged/vim-kubernetes/UltiSnips/yaml.snippets'
 alias tokengen='openssl rand -base64 32'
@@ -294,8 +294,8 @@ alias stashpull='git stash && git pull && git stash pop'
 
 # $1 task number $2 msg
 commit() {
-	local task_ref="task$1"
-	git commit -m "${!task_ref}
+  local task_ref="task$1"
+  git commit -m "${!task_ref}
 
 $2"
 }

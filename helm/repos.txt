@@ -1,0 +1,11 @@
+jenkins https://charts.jenkins.io
+sonatype https://sonatype.github.io/helm3-charts/
+grafana https://grafana.github.io/helm-charts
+docker-postfix https://bokysan.github.io/docker-postfix/
+prometheus-community https://prometheus-community.github.io/helm-charts
+open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+argo https://argoproj.github.io/argo-helm
+bitnami https://charts.bitnami.com/bitnami
+jenkins-infra https://jenkins-infra.github.io/helm-charts
+stakater https://stakater.github.io/stakater-charts
+oracle https://oracle.github.io/helm-charts
