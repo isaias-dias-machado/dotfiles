@@ -92,13 +92,6 @@ install_argocd_cli() {
   rm /tmp/argocd-linux-amd64
 }
 
-install_postgresql() {
-  echo "INFO: installing postgres"
-  sudo apt install -y postgresql-common
-  sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
-  to_install="postgresql $to_install"
-}
-
 apply_apt_installations() {
   echo "Applying installations: $to_install"
   sudo apt-get update >/dev/null
@@ -224,7 +217,13 @@ EOF
   sudo systemctl enable "${SERVICE_PATH}"
 }
 packages="
+inotify-tools
 fd-find
+xclip
+zathura
+fzf
+libncurses-dev
+autoconf
 npm
 vim-gtk3
 jq
@@ -249,6 +248,7 @@ apt-transport-https
 ca-certificates
 curl
 gnupg
+postgres
 ruby
 ri
 golang
@@ -262,7 +262,7 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
   check_installation "kubectl" install_kubernetes
   check_installation "helm" install_helm
   check_installation "argocd" install_argocd_cli
-  check_installation "psql" install_postgresql
+  check_installation "nvim" install_neovim
   apply_apt_installations
   check_installation "asdf" install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
   check_installation "zellij" install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"

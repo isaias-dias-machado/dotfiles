@@ -10,7 +10,7 @@ return {
       providers = {
         snippets = {
           min_keyword_length = 2,
-          score_offset = 100,
+          score_offset = 2,
           opts = {
             friendly_snippets = true,
             extended_filetypes = {
@@ -20,7 +20,7 @@ return {
         },
         lsp = {
           min_keyword_length = 3,
-          score_offset = 2,
+          score_offset = 4,
         },
         path = {
           min_keyword_length = 3,
