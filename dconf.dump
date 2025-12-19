@@ -29,7 +29,7 @@ is-maximized=false
 window-size=(960, 600)
 
 [org/gnome/control-center]
-last-panel='power'
+last-panel='mouse'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
@@ -132,7 +132,8 @@ speed=-0.016574585635359074
 
 [org/gnome/desktop/peripherals/touchpad]
 send-events='enabled'
-speed=0.63207547169811318
+speed=0.8340611353711791
+tap-to-click=false
 two-finger-scrolling-enabled=true
 
 [org/gnome/desktop/privacy]
@@ -258,8 +259,11 @@ name='Terminal'
 
 [org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1]
 binding='<Control><Alt>Delete'
-command='gnome-session-quit --power-off'
+command='systemctl hibernate'
 name='Shutdown'
+
+[org/gnome/settings-daemon/plugins/power]
+power-button-action='hibernate'
 
 [org/gnome/shell]
 app-picker-layout=[{'org.gnome.Calendar.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'org.gnome.Music.desktop': <{'position': <5>}>, 'simple-scan.desktop': <{'position': <6>}>, 'org.gnome.Settings.desktop': <{'position': <7>}>, 'libreoffice-startcenter.desktop': <{'position': <8>}>, 'org.gnome.Totem.desktop': <{'position': <9>}>, 'org.gnome.Snapshot.desktop': <{'position': <10>}>, 'org.gnome.Characters.desktop': <{'position': <11>}>, 'Utilities': <{'position': <12>}>, 'libreoffice-calc.desktop': <{'position': <13>}>, 'libreoffice-draw.desktop': <{'position': <14>}>, 'org.gnome.Tour.desktop': <{'position': <15>}>, 'libreoffice-impress.desktop': <{'position': <16>}>, 'org.gnome.Shotwell.desktop': <{'position': <17>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <18>}>, 'htop.desktop': <{'position': <19>}>, 'gvim.desktop': <{'position': <20>}>, 'org.gnome.Calculator.desktop': <{'position': <21>}>, 'org.gnome.font-viewer.desktop': <{'position': <22>}>, 'org.gnome.Loupe.desktop': <{'position': <23>}>}, {'im-config.desktop': <{'position': <0>}>, 'org.freedesktop.MalcontentControl.desktop': <{'position': <1>}>, 'org.gnome.SystemMonitor.desktop': <{'position': <2>}>, 'org.gnome.TextEditor.desktop': <{'position': <3>}>}]
@@ -276,11 +280,11 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1765810264
+check-timestamp=int64 1766131351
 first-run=false
 install-timestamp=int64 1763630410
 packagekit-historical-updates-timestamp=uint64 1765810484
-update-notification-timestamp=int64 1763630480
+update-notification-timestamp=int64 1766079872
 
 [org/gnome/system/location]
 enabled=false
@@ -492,7 +496,7 @@ sort-column='name'
 sort-directories-first=false
 sort-order='ascending'
 type-format='category'
-window-position=(0, 32)
+window-position=(26, 23)
 window-size=(1366, 691)
 
 [system/proxy]
