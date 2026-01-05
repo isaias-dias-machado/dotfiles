@@ -1,3 +1,4 @@
+export PROJECTS_DIR=$HOME/cleva
 export DROPBOX_PATH=~/win/Dropbox
 export KUBECONFIG="$HOME/.kube/monk8s:$HOME/.kube/buildk8s:$HOME/.kube/saasstg:$HOME/.kube/saasqua:$HOME/.kube/saasdev:$HOME/.kube/saastst"
 export task1='CODE-236005 - Jenkins shared library: applying to prd'

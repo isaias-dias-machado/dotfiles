@@ -46,8 +46,22 @@ check_installation() {
 
 to_install=""
 
+install_neovim() {
+  echo "INFO: installing neovim"
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+  chmod u+x nvim-linux-x86_64.appimage
+  sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
+
+  echo "INFO: installing dejavu nerd font"
+  curl -o /tmp/font.zip -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/DejaVuSansMono.zip
+  unzip /tmp/font.zip -d ~/.local/share/fonts/
+  rm /tmp/font.zip
+
+  fc-cache -fv
+}
+
 install_docker() {
-  echo "INFO: installing minikube"
+  echo "INFO: installing docker"
   curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
   sudo sh /tmp/get-docker.sh
 }
@@ -90,7 +104,7 @@ install_argocd_cli() {
 apply_apt_installations() {
   echo "Applying installations: $to_install"
   sudo apt-get update >/dev/null
-  sudo apt-get install -y $to_install >/dev/null
+  sudo apt-get install -y $to_install
 }
 
 # $1 user $2 project
@@ -292,13 +306,12 @@ link_files() {
 }
 
 mkdir -p ~/.config
-link_files "$HOME/dotfiles/.env" "$HOME/.env"
+link_files "$HOME/dotfiles/env" "$HOME/.env"
 
 link_files "$HOME/dotfiles/nvim" "$HOME/.config/"
 link_files "$HOME/dotfiles/snippets" "$HOME/.local/share/nvim/snippets"
 
 link_files "$HOME/dotfiles/zellij" "$HOME/.config/"
-
 
 link_files "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
 link_files "$HOME/dotfiles/vim" "$HOME/.vim"

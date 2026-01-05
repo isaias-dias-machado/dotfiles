@@ -1,4 +1,3 @@
-touch .env
 source $HOME/.env
 
 get_kube_context() {
@@ -192,26 +191,6 @@ repos() {
   # Find directories one level deep in the provided path (or current dir if none is given)
   # and pipe them to fzf for selection.
   basedir=$PROJECTS_DIR
-  selection=$(find "$basedir" -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | fzf)
-
-  if [[ -n "$selection" ]]; then
-    cd "$basedir/$selection" || return
-  fi
-
-  export root="$basedir/$selection"
-  fcd
-  # file=$(fzf)
-
-  # if [ -n "$file" ]; then
-  # 	vi $file
-  # fi
-}
-
-hacking() {
-  local dir
-  # Find directories one level deep in the provided path (or current dir if none is given)
-  # and pipe them to fzf for selection.
-  basedir=$HOME/hacking
   selection=$(find "$basedir" -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | fzf)
 
   if [[ -n "$selection" ]]; then
