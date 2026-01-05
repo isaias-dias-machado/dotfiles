@@ -19,15 +19,15 @@ return {
           },
         },
         lsp = {
-          min_keyword_length = 3,
+          min_keyword_length = 2,
           score_offset = 4,
         },
         path = {
-          min_keyword_length = 3,
+          min_keyword_length = 2,
           score_offset = 1,
         },
         buffer = {
-          min_keyword_length = 5,
+          min_keyword_length = 2,
           score_offset = -100,
         },
       },
