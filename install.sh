@@ -62,19 +62,25 @@ install_neovim() {
 install_docker() {
   echo "INFO: installing docker"
   sudo install -m 0755 -d /etc/apt/keyrings
-  curl -fsSL https://download.docker.com/linux/$ID/gpg -o /etc/apt/keyrings/docker.asc
+  sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
   sudo chmod a+r /etc/apt/keyrings/docker.asc
-  echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/$ID \
-		$(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
-    sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+
+  # Add the repository to Apt sources:
+  sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/debian
+Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+
   to_install="docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin $to_install"
 }
 
 install_minikube() {
   echo "INFO: installing minikube"
-  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
-  sudo dpkg -i minikube_latest_amd64.deb
+  curl -o /tmp -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+  sudo dpkg -i /tmp/minikube_latest_amd64.deb
 }
 
 install_kubernetes() {
@@ -261,7 +267,7 @@ apt-transport-https
 ca-certificates
 curl
 gnupg
-postgres
+postgresql
 ruby
 ri
 golang
@@ -285,6 +291,16 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
   if command -v dconf >/dev/null; then
     setup_dconf_updater
   fi
+
+  #configure postgres
+  CURRENT_USER=$(whoami)
+
+  # Set postgres password
+  sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'postgres';"
+
+  # Create or update current user as superuser
+  sudo -u postgres psql -c "CREATE USER $CURRENT_USER WITH SUPERUSER;" 2>/dev/null ||
+    sudo -u postgres psql -c "ALTER USER $CURRENT_USER WITH SUPERUSER;"
 elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
   sudo dnf install -y $packages
 fi
@@ -299,10 +315,10 @@ link_files() {
   sudo ln -sf "$1" "$2"
 }
 
-link_files "$HOME/dotfiles/nvim" "$HOME/.config/nvim"
+link_files "$HOME/dotfiles/nvim" "$HOME/.config/"
 link_files "$HOME/dotfiles/friendly-snippets" "$HOME/.local/share/nvim/snippets"
 
-link_files "$HOME/dotfiles/zellij" "$HOME/.config/zellij"
+link_files "$HOME/dotfiles/zellij" "$HOME/.config/"
 
 link_files "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
 link_files "$HOME/dotfiles/vim" "$HOME/.vim"

@@ -8,10 +8,16 @@ return {
   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
   lazy = false,
   opts = {
+    view_options = {
+      sort = {
+        { "name", "asc" },
+      },
+    },
     delete_to_trash = true,
     skip_confirm_for_simple_edits = true,
     prompt_save_on_select_new_entry = false,
     keymaps = {
+      ["<leader>oq"] = "actions.send_to_qflist",
       ["!"] = {
         callback = function()
           local oil = require("oil")
