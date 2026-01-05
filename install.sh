@@ -46,15 +46,9 @@ check_installation() {
 to_install=""
 
 install_docker() {
-  echo "INFO: installing docker"
-  sudo install -m 0755 -d /etc/apt/keyrings
-  curl -fsSL https://download.docker.com/linux/$ID/gpg -o /etc/apt/keyrings/docker.asc
-  sudo chmod a+r /etc/apt/keyrings/docker.asc
-  echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/$ID \
-		$(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
-    sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
-  to_install="docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin $to_install"
+ curl -fsSL https://get.docker.com -o get-docker.sh
+
+ sudo sh get-docker.sh
 }
 
 install_minikube() {
@@ -287,7 +281,7 @@ link_files() {
 }
 
 link_files "$HOME/dotfiles/nvim" "$HOME/.config/nvim"
-link_files "$HOME/dotfiles/friendly-snippets" "$HOME/.local/share/nvim/snippets"
+link_files "$HOME/dotfiles/snippets" "$HOME/.local/share/nvim/snippets"
 
 link_files "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
 link_files "$HOME/dotfiles/vim" "$HOME/.vim"
