@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 DOTFILES_PATH="$HOME/dotfiles"
 
@@ -46,15 +47,15 @@ check_installation() {
 to_install=""
 
 install_docker() {
- curl -fsSL https://get.docker.com -o get-docker.sh
-
- sudo sh get-docker.sh
+  echo "INFO: installing minikube"
+  curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+  sudo sh /tmp/get-docker.sh
 }
 
 install_minikube() {
   echo "INFO: installing minikube"
-  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
-  sudo dpkg -i minikube_latest_amd64.deb
+  curl -o /tmp -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+  sudo dpkg -i /tmp/minikube_latest_amd64.deb
 }
 
 install_kubernetes() {
@@ -242,7 +243,7 @@ apt-transport-https
 ca-certificates
 curl
 gnupg
-postgres
+postgresql
 ruby
 ri
 golang
@@ -266,6 +267,16 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
   if command -v dconf >/dev/null; then
     setup_dconf_updater
   fi
+
+  #configure postgres
+  CURRENT_USER=$(whoami)
+
+  # Set postgres password
+  sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'postgres';"
+
+  # Create or update current user as superuser
+  sudo -u postgres psql -c "CREATE USER $CURRENT_USER WITH SUPERUSER;" 2>/dev/null ||
+    sudo -u postgres psql -c "ALTER USER $CURRENT_USER WITH SUPERUSER;"
 elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
   sudo dnf install -y $packages
 fi
@@ -280,8 +291,14 @@ link_files() {
   sudo ln -sf "$1" "$2"
 }
 
-link_files "$HOME/dotfiles/nvim" "$HOME/.config/nvim"
+mkdir -p ~/.config
+link_files "$HOME/dotfiles/.env" "$HOME/.env"
+
+link_files "$HOME/dotfiles/nvim" "$HOME/.config/"
 link_files "$HOME/dotfiles/snippets" "$HOME/.local/share/nvim/snippets"
+
+link_files "$HOME/dotfiles/zellij" "$HOME/.config/"
+
 
 link_files "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
 link_files "$HOME/dotfiles/vim" "$HOME/.vim"
