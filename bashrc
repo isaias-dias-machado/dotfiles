@@ -312,6 +312,9 @@ alias snipkube='vi ~/.vim/plugged/vim-kubernetes/UltiSnips/yaml.snippets'
 alias tokengen='openssl rand -base64 32'
 alias stashpull='git stash && git pull && git stash pop'
 
+alias db="psql -d $CUR_DATABASE"
+alias droptestdb="MIX_ENV=test mix ecto.drop"
+
 # $1 task number $2 msg
 commit() {
   local task_ref="task$1"
@@ -323,3 +326,4 @@ $2"
 export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Jenkins/lib"
 source /home/i2sidm/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export ERL_AFLAGS='-kernel shell_history enabled  -kernel shell_history_path \".erl.history\"'
