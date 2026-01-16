@@ -1,7 +1,7 @@
 export PROJECTS_DIR=$HOME/cleva
 export DROPBOX_PATH=~/win/Dropbox
 export KUBECONFIG="$HOME/.kube/monk8s:$HOME/.kube/buildk8s:$HOME/.kube/saasstg:$HOME/.kube/saasqua:$HOME/.kube/saasdev:$HOME/.kube/saastst"
-export task1='CODE-236005 - Jenkins shared library: applying to prd'
+export task1='CODE-237272 - shared library checkout on all builk8s jobs'
 export task2='CODE-234509 - SAAS: create dashboard with SAAS QUA environment'
 export task3='CODE-236006 - centralize telemetry infrastructure/code'
 
