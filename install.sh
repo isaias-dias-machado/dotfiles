@@ -226,6 +226,7 @@ EOF
   sudo systemctl enable "${SERVICE_PATH}"
 }
 packages="
+viddy
 inotify-tools
 fd-find
 xclip

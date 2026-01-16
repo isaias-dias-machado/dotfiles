@@ -4,6 +4,12 @@
 -- opts.rocks.enaled = false
 require("config.filetypes")
 
+-- In your init.lua
+vim.opt.tabstop = 4 -- Display tab characters as 4 spaces wide
+vim.opt.shiftwidth = 2 -- Use 2 spaces for indentation (>>, <<, auto-indent)
+vim.opt.expandtab = true -- Convert tabs to spaces when you press Tab
+vim.opt.softtabstop = 2 -- Make Tab key insert 2 spaces
+
 vim.opt.path:append(vim.fn.stdpath("config") .. "/**")
 vim.opt.sidescrolloff = 0
 vim.opt.spelllang = "pt_pt,en_gb"
