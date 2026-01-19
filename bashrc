@@ -210,12 +210,6 @@ f() {
   $1 $(fzf)
 }
 
-ireb() {
-  git add .
-  git commit -m tmp
-  git rebase -i HEAD~2
-}
-
 secret() {
   local last_command=$(fc -ln -1)
 
@@ -257,6 +251,13 @@ cafe() {
   systemd-inhibit --what=idle --why="Monitoring kerl build" bash -c "while kill -0 $1 2>/dev/null; do sleep 60; done"
 }
 
+v() {
+  local selected=$(fzf)
+  if [ -n "$selected" ]; then
+    vi $selected
+  fi
+}
+
 #====================================================================
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
@@ -271,7 +272,6 @@ alias brc='vi ~/dotfiles/bashrc'
 alias _env='vi ~/.env'
 alias sbrc='. ~/.bashrc'
 alias vssh='vi ~/.ssh/config'
-alias v='vi $(fzf)'
 alias opn='xdg-open'
 alias z='zellij'
 alias key='cat $HOME/.secrets/key | clip.exe'
@@ -301,8 +301,6 @@ alias wkgp="watch kubectl get pods"
 alias netshootkube='kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot'
 alias netshoot='kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot'
 
-alias codex='codex --dangerously-bypass-approvals-and-sandbox'
-
 gerritreview() {
   local branch
   branch="$(git symbolic-ref --quiet --short HEAD)" || return 1
@@ -313,6 +311,26 @@ gerritsubmit() {
   local branch
   branch="$(git symbolic-ref --quiet --short HEAD)" || return 1
   git push origin "HEAD:refs/for/${branch}%submit=1"
+}
+
+alias cmakeB="cmake -B build"
+alias cmakeb="cmake --build build"
+
+alias codex="codex --dangerously-bypass-approvals-and-sandbox"
+alias oc="opencode"
+
+out() {
+  cc $1
+  ./a.out
+}
+
+cman() {
+  man -k . |
+    grep -E '\((2|3)\)' |
+    fzf --prompt='man> ' --delimiter=' - ' --nth=1 |
+    sed 's/ - .*//' |
+    awk '{print $1}' |
+    xargs -r man
 }
 
 # $1 task number $2 msg
@@ -327,9 +345,35 @@ export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Jenkins/lib"
 source /home/i2sidm/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export ERL_AFLAGS='-kernel shell_history enabled  -kernel shell_history_path \".erl.history\"'
+export PATH="$HOME/.local/bin:$PATH"
 
-shopt -s globstar
+# opencode
+export PATH=/home/isaias/.opencode/bin:$PATH
+###-begin-opencode-completions-###
+#
+# yargs command completion script
+#
+# Installation: opencode completion >> ~/.bashrc
+#    or opencode completion >> ~/.bash_profile on OSX.
+#
+_opencode_yargs_completions() {
+  local cur_word args type_list
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+  cur_word="${COMP_WORDS[COMP_CWORD]}"
+  args=("${COMP_WORDS[@]}")
+
+  # ask yargs to generate completions.
+  # see https://stackoverflow.com/a/40944195/7080036 for the spaces-handling awk
+  mapfile -t type_list < <(opencode --get-yargs-completions "${args[@]}")
+  mapfile -t COMPREPLY < <(compgen -W "$(printf '%q ' "${type_list[@]}")" -- "${cur_word}" |
+    awk '/ / { print "\""$0"\"" } /^[^ ]+$/ { print $0 }')
+
+  # if no match was found, fall back to filename completion
+  if [ ${#COMPREPLY[@]} -eq 0 ]; then
+    COMPREPLY=()
+  fi
+
+  return 0
+}
+complete -o bashdefault -o default -F _opencode_yargs_completions opencode
+###-end-opencode-completions-###

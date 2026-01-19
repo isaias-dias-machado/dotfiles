@@ -6,6 +6,9 @@ return {
       ["<CR>"] = { "fallback" },
     },
     sources = {
+      per_filetype = {
+        codecompanion = { "codecompanion" },
+      },
       default = { "snippets", "lsp", "path", "buffer" },
       providers = {
         snippets = {
@@ -19,7 +22,7 @@ return {
           },
         },
         lsp = {
-          min_keyword_length = 2,
+          min_keyword_length = 0,
           score_offset = 4,
         },
         path = {
