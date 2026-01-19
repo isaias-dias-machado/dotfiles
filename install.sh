@@ -329,4 +329,8 @@ link_files "$HOME/dotfiles/vim" "$HOME/.vim"
 #   done
 # done
 
+sudo groupadd docker
+
+sudo usermod -aG docker $USER
+
 sudo apt-get autoremove -y >/dev/null
