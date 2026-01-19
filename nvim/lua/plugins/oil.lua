@@ -12,6 +12,7 @@ return {
       sort = {
         { "name", "asc" },
       },
+      show_hidden = true,
     },
     delete_to_trash = true,
     skip_confirm_for_simple_edits = true,

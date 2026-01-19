@@ -10,6 +10,7 @@ vim.opt.shiftwidth = 2 -- Use 2 spaces for indentation (>>, <<, auto-indent)
 vim.opt.expandtab = true -- Convert tabs to spaces when you press Tab
 vim.opt.softtabstop = 2 -- Make Tab key insert 2 spaces
 
+vim.g.root_spec = { { ".git" }, "cwd" }
 vim.opt.path:append(vim.fn.stdpath("config") .. "/**")
 vim.opt.sidescrolloff = 0
 vim.opt.spelllang = "pt_pt,en_gb"
