@@ -29,7 +29,7 @@ is-maximized=false
 window-size=(960, 600)
 
 [org/gnome/control-center]
-last-panel='mouse'
+last-panel='sound'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
@@ -230,6 +230,24 @@ y=32
 [org/gnome/file-roller/listing]
 list-mode='as-folder'
 show-path=false
+sort-method='name'
+sort-type='ascending'
+
+[org/gnome/file-roller/ui]
+sidebar-width=200
+window-height=480
+window-width=600
+
+[org/gnome/gnome-system-monitor]
+maximized=false
+show-dependencies=false
+show-whose-processes='user'
+window-height=720
+window-width=800
+
+[org/gnome/gnome-system-monitor/proctree]
+col-26-visible=false
+col-26-width=0
 
 [org/gnome/nautilus/icon-view]
 default-zoom-level='small'
@@ -246,7 +264,11 @@ show-image-thumbnails='never'
 
 [org/gnome/nautilus/window-state]
 initial-size=(984, 633)
-maximized=false
+initial-size-file-chooser=(890, 550)
+maximized=true
+
+[org/gnome/portal/filechooser/org.gnome.Nautilus]
+last-folder-path='/home/isaias/Videos/The Godfather Part III 1990 Coda Cut REMASTERED 1080p BluRay H264 AAC 5.1'
 
 [org/gnome/settings-daemon/plugins/media-keys]
 custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
@@ -280,11 +302,11 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1766131351
+check-timestamp=int64 1769942012
 first-run=false
 install-timestamp=int64 1763630410
 packagekit-historical-updates-timestamp=uint64 1765810484
-update-notification-timestamp=int64 1766079872
+update-notification-timestamp=int64 1769809164
 
 [org/gnome/system/location]
 enabled=false
@@ -348,7 +370,7 @@ palette=['#2A2A2A2A2A2A', '#D5D54E4E5353', '#B9B9CACA4A4A', '#E7E7C5C54747', '#7
 scrollbar-policy='never'
 use-system-font=false
 use-theme-background=false
-use-theme-colors=false
+use-theme-colors=true
 use-theme-transparency=false
 visible-name='Tomorrow Night Bright'
 
@@ -402,6 +424,30 @@ use-theme-colors=false
 use-theme-transparency=false
 visible-name='Gruvbox Material Dark'
 
+[org/gnome/terminal/legacy/profiles:/:Gruvbox-material-light]
+allow-bold=true
+audible-bell=false
+background-color='#FBFBF1F1C7C7'
+bold-color='#656547473535'
+bold-color-same-as-fg=true
+cursor-background-color='#656547473535'
+cursor-blink-mode='on'
+cursor-colors-set=true
+cursor-foreground-color='#FBFBF1F1C7C7'
+default-size-columns=80
+default-size-rows=36
+font='DejaVuSansM Nerd Font Mono 12'
+foreground-color='#656547473535'
+highlight-colors-set=false
+login-shell=true
+palette=['#F2F2E5E5BCBC', '#C1C14A4A4A4A', '#6C6C78782E2E', '#B4B471710909', '#454570707A7A', '#94945E5E8080', '#4C4C7A7A5D5D', '#656547473535', '#F2F2E5E5BCBC', '#C1C14A4A4A4A', '#6C6C78782E2E', '#B4B471710909', '#454570707A7A', '#94945E5E8080', '#4C4C7A7A5D5D', '#656547473535']
+scrollbar-policy='never'
+use-system-font=false
+use-theme-background=false
+use-theme-colors=false
+use-theme-transparency=false
+visible-name='Gruvbox Material Light'
+
 [org/gnome/terminal/legacy/profiles:/:Nord]
 allow-bold=true
 audible-bell=false
@@ -429,16 +475,20 @@ visible-name='Nord'
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 audible-bell=false
 background-color='rgb(0,0,0)'
+bold-is-bright=true
 cursor-blink-mode='on'
+custom-command='zellij -l welcome'
 default-size-columns=80
 default-size-rows=36
 font='DejaVu Sans Mono 16'
 foreground-color='rgb(255,255,255)'
 login-shell=true
-palette=['rgb(0,0,0)', 'rgb(170,0,0)', 'rgb(0,170,0)', 'rgb(170,85,0)', 'rgb(0,0,170)', 'rgb(170,0,170)', 'rgb(0,170,170)', 'rgb(170,170,170)', 'rgb(85,85,85)', 'rgb(255,85,85)', 'rgb(85,255,85)', 'rgb(255,255,85)', 'rgb(85,85,255)', 'rgb(255,85,255)', 'rgb(85,255,255)', 'rgb(255,255,255)']
+palette=['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']
 scrollbar-policy='never'
+use-custom-command=true
 use-system-font=false
-use-theme-colors=false
+use-theme-colors=true
+visible-name='Solarized'
 
 [org/gnome/terminal/legacy/profiles:/:bd4e5382-50e9-4f83-8b57-cde5dbf47d03]
 use-theme-colors=false

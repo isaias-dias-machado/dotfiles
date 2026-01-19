@@ -4,6 +4,7 @@
 -- opts.rocks.enaled = false
 require("config.filetypes")
 
+vim.g.root_spec = { { ".git" }, "cwd" }
 vim.opt.path:append(vim.fn.stdpath("config") .. "/**")
 vim.opt.sidescrolloff = 0
 vim.opt.spelllang = "pt_pt,en_gb"
