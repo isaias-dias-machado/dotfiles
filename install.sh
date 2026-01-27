@@ -82,6 +82,12 @@ install_kubernetes() {
   to_install="kubectl $to_install"
 }
 
+install_k9s() {
+  wget -O /tmp/k9s_linux_amd64.deb https://github.com/derailed/k9s/releases/latest/download/k9s_linux_amd64.deb &&
+    sudo apt install /tmp/k9s_linux_amd64.deb &&
+    rm /tmp/k9s_linux_amd64.deb
+}
+
 install_kustomize() {
   curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
 }
@@ -117,6 +123,10 @@ install_from_github() {
   curl -SL -o /tmp/$2.gz https://github.com/$1/$2/releases/download/$VERSION/$filename
   sudo tar -xf /tmp/$2.gz -C /usr/local/bin/ --overwrite
   rm /tmp/$2.gz
+}
+
+install_viddy() {
+  wget -O /tmp/viddy.tar.gz https://github.com/sachaos/viddy/releases/download/v1.3.0/viddy-v1.3.0-linux-x86_64.tar.gz && tar xvf /tmp/viddy.tar.gz -C /tmp && sudo mv /tmp/viddy /usr/local/bin
 }
 
 # $1 ssh link
@@ -226,7 +236,6 @@ EOF
   sudo systemctl enable "${SERVICE_PATH}"
 }
 packages="
-viddy
 inotify-tools
 fd-find
 xclip
@@ -270,9 +279,11 @@ if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
   check_installation "docker" install_docker
   check_installation "minikube" install_minikube
   check_installation "kubectl" install_kubernetes
+  check_installation "k9s" install_k9s
   check_installation "helm" install_helm
   check_installation "argocd" install_argocd_cli
   check_installation "nvim" install_neovim
+  check_installation "viddy" install_viddy
   apply_apt_installations
   check_installation "asdf" install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
   check_installation "zellij" install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"

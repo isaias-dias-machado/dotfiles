@@ -294,6 +294,13 @@ alias stashpull='git stash && git pull && git stash pop'
 alias db="psql -d $CUR_DATABASE"
 alias droptestdb="MIX_ENV=test mix ecto.drop"
 
+alias watch="viddy"
+alias gdiff="viddy git diff --color"
+alias wkgp="watch kubectl get pods"
+
+alias netshootkube='kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot'
+alias netshoot='kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot'
+
 # $1 task number $2 msg
 commit() {
   local task_ref="task$1"
@@ -306,3 +313,9 @@ export CUR_PROJ="/home/i2sidm/cleva/infrastructure-tools/Jenkins/lib"
 source /home/i2sidm/dotfiles/chp/chp.sh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export ERL_AFLAGS='-kernel shell_history enabled  -kernel shell_history_path \".erl.history\"'
+
+shopt -s globstar
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
