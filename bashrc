@@ -301,6 +301,20 @@ alias wkgp="watch kubectl get pods"
 alias netshootkube='kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot'
 alias netshoot='kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot'
 
+alias codex='codex --dangerously-bypass-approvals-and-sandbox'
+
+gerritreview() {
+  local branch
+  branch="$(git symbolic-ref --quiet --short HEAD)" || return 1
+  git push origin "HEAD:refs/for/${branch}"
+}
+
+gerritsubmit() {
+  local branch
+  branch="$(git symbolic-ref --quiet --short HEAD)" || return 1
+  git push origin "HEAD:refs/for/${branch}%submit=1"
+}
+
 # $1 task number $2 msg
 commit() {
   local task_ref="task$1"
