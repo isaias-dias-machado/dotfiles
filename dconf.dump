@@ -32,6 +32,9 @@ window-size=(960, 600)
 last-panel='sound'
 window-state=(980, 640, false)
 
+[org/gnome/desktop/a11y/applications]
+screen-magnifier-enabled=false
+
 [org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'YaST']
 
@@ -73,6 +76,7 @@ icon-theme='Adwaita'
 monospace-font-name='DejaVu Sans Mono 13'
 show-battery-percentage=false
 text-scaling-factor=1.0
+toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
 application-children=['libreoffice-writer', 'gnome-power-panel', 'org-gnome-evolution', 'firefox-esr', 'org-gnome-software', 'org-gnome-terminal', 'org-gnome-terminal-preferences', 'org-gnome-settings', 'org-gnome-characters', 'org-gnome-nautilus', 'org-gnome-baobab', 'gnome-network-panel', 'zoom', 'gnome-printers-panel']
@@ -270,6 +274,9 @@ maximized=true
 [org/gnome/portal/filechooser/org.gnome.Nautilus]
 last-folder-path='/home/isaias/Videos/The Godfather Part III 1990 Coda Cut REMASTERED 1080p BluRay H264 AAC 5.1'
 
+[org/gnome/settings-daemon/plugins/color]
+night-light-schedule-automatic=false
+
 [org/gnome/settings-daemon/plugins/media-keys]
 custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
 logout=@as []
@@ -286,6 +293,7 @@ name='Shutdown'
 
 [org/gnome/settings-daemon/plugins/power]
 power-button-action='hibernate'
+sleep-inactive-ac-type='nothing'
 
 [org/gnome/shell]
 app-picker-layout=[{'org.gnome.Calendar.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'org.gnome.Music.desktop': <{'position': <5>}>, 'simple-scan.desktop': <{'position': <6>}>, 'org.gnome.Settings.desktop': <{'position': <7>}>, 'libreoffice-startcenter.desktop': <{'position': <8>}>, 'org.gnome.Totem.desktop': <{'position': <9>}>, 'org.gnome.Snapshot.desktop': <{'position': <10>}>, 'org.gnome.Characters.desktop': <{'position': <11>}>, 'Utilities': <{'position': <12>}>, 'libreoffice-calc.desktop': <{'position': <13>}>, 'libreoffice-draw.desktop': <{'position': <14>}>, 'org.gnome.Tour.desktop': <{'position': <15>}>, 'libreoffice-impress.desktop': <{'position': <16>}>, 'org.gnome.Shotwell.desktop': <{'position': <17>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <18>}>, 'htop.desktop': <{'position': <19>}>, 'gvim.desktop': <{'position': <20>}>, 'org.gnome.Calculator.desktop': <{'position': <21>}>, 'org.gnome.font-viewer.desktop': <{'position': <22>}>, 'org.gnome.Loupe.desktop': <{'position': <23>}>}, {'im-config.desktop': <{'position': <0>}>, 'org.freedesktop.MalcontentControl.desktop': <{'position': <1>}>, 'org.gnome.SystemMonitor.desktop': <{'position': <2>}>, 'org.gnome.TextEditor.desktop': <{'position': <3>}>}]
@@ -302,11 +310,11 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1769942012
+check-timestamp=int64 1771497846
 first-run=false
 install-timestamp=int64 1763630410
 packagekit-historical-updates-timestamp=uint64 1765810484
-update-notification-timestamp=int64 1769809164
+update-notification-timestamp=int64 1771241216
 
 [org/gnome/system/location]
 enabled=false
