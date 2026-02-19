@@ -1,5 +1,7 @@
 source $HOME/.env
 
+export EDITOR=nvim
+
 get_kube_context() {
   local var=$(kubectl config current-context 2>/dev/null)
   echo "${var##*@}"
@@ -280,10 +282,11 @@ v() {
 
 #====================================================================
 
+export PATH="$HOME/go/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-alias vi=nvim
+alias vi="nvim"
 alias dotfiles='cd ~/dotfiles'
 alias dfinstall='vi ~/dotfiles/install.sh'
 alias w='vim ~/mywiki/wiki.md'
@@ -319,6 +322,7 @@ alias cmakeb="cmake --build build"
 
 alias codex="codex --dangerously-bypass-approvals-and-sandbox"
 alias oc="opencode"
+alias gemini="gemini --yolo"
 
 out() {
   cc $1
