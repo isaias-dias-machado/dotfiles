@@ -315,6 +315,15 @@ link_files() {
   sudo ln -sf "$1" "$2"
 }
 
+mkdir -p ~/.local/share/nvim/site/pack/plugins/start/
+
+cd !$
+git clone https://github.com/stevearc/oil.nvim
+git clone https://github.com/ludovicchabant/vim-gutentags
+git clone https://github.com/stevearc/conform.nvim
+git clone https://github.com/ibhagwan/fzf-lua.git
+cd -
+
 link_files "$HOME/dotfiles/nvim" "$HOME/.config/"
 link_files "$HOME/dotfiles/friendly-snippets" "$HOME/.local/share/nvim/snippets"
 

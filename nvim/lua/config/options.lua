@@ -2,8 +2,19 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 -- opts.rocks.enaled = false
-require("config.filetypes")
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 
+vim.opt.wrap = false
+vim.opt.sidescroll = 1
+vim.opt.sidescrolloff = 20
+
+vim.g.mapleader = " "
+vim.opt.hlsearch = false
+vim.opt.syntax = "off"
+vim.opt.background = "light"
 vim.g.root_spec = { { ".git" }, "cwd" }
 vim.opt.path:append(vim.fn.stdpath("config") .. "/**")
 vim.opt.sidescrolloff = 0
@@ -13,7 +24,6 @@ vim.opt.guicursor = ""
 vim.opt.hidden = false
 vim.opt.swapfile = false
 vim.opt.list = false
-vim.opt.wrap = true
 vim.opt.textwidth = 80
 vim.opt.listchars = {
   tab = "  ",
@@ -21,3 +31,106 @@ vim.opt.listchars = {
   trail = "-",
   nbsp = "+",
 }
+
+vim.keymap.set("n", "*", "*N", { desc = "Search work inplace" })
+
+-- vim.keymap.set("n", "<Leader>/", ":grep '' | copen<Left><Left><Left><Left><Left><Left><Left><Left><Left>", { desc = "Grep and Open Quickfix" })
+-- vim.keymap.set("n", "<Leader><Leader>", ":find *", { desc = "Find Directory" })
+
+vim.keymap.set("n", "<Leader>fd", "<cmd>Dir<cr>", { desc = "Find Directory" })
+vim.keymap.set("v", "<Leader>p", '"_dP', { desc = "Preserve yanked content on paste" })
+vim.keymap.set("n", "-", '<cmd>Ex<cr>')
+
+vim.opt.path:append("**") 
+vim.opt.path:append("~/.config/nvim/lua/config/options.lua") 
+
+local undodir = vim.fn.stdpath("cache") .. "/undo"
+if vim.fn.isdirectory(undodir) == 0 then
+  vim.fn.mkdir(undodir, "p")
+end
+
+vim.opt.undofile = true
+vim.opt.undodir = undodir
+
+if vim.fn.executable("rg") == 1 then
+    vim.opt.grepprg = "rg --vimgrep --smart-case"
+    vim.opt.grepformat = "%f:%l:%c:%m"
+end
+
+vim.api.nvim_create_user_command("Dir", function()
+  local dirs = vim.fn.systemlist("find . -type d -not -path '*/.*'")
+  vim.ui.select(dirs, {
+    prompt = "Select directory:",
+  }, function(choice)
+    if choice then
+      vim.cmd("edit " .. choice)
+    end
+  end)
+end, {})
+
+require("oil").setup({
+    columns = { "icon" },
+    view_options = {
+        show_hidden = true,
+    },
+})
+
+vim.keymap.set("n", "-", "<CMD>Oil<CR>")
+
+local tags_cache = vim.fn.stdpath("cache") .. "/tags"
+if vim.fn.isdirectory(tags_cache) == 0 then
+    vim.fn.mkdir(tags_cache, "p")
+end
+
+vim.g.gutentags_project_root = { ".git", "Makefile", "src" }
+vim.g.gutentags_ctags_tagfile = ".tags"
+vim.g.gutentags_cache_dir = tags_cache
+vim.g.gutentags_quiet = 1
+vim.g.gutentags_ctags_exclude = { 
+    "node_modules", 
+    "build", 
+    "_build", 
+    ".git", 
+    "bin", 
+    "obj", 
+    "*.json", 
+    "*.md" 
+}
+
+require("conform").setup({
+  formatters_by_ft = {
+    c = { "clang-format" },
+    cpp = { "clang-format" },
+    elixir = { "mix format" },
+  },
+  format_on_save = {
+    timeout_ms = 500,
+    lsp_fallback = false,
+  },
+})
+
+
+require('fzf-lua').setup({
+  actions = {
+    files = {
+      ["enter"]       = FzfLua.actions.file_edit_or_qf,
+      ["ctrl-s"]      = FzfLua.actions.file_split,
+      ["ctrl-v"]      = FzfLua.actions.file_vsplit,
+      ["ctrl-t"]      = FzfLua.actions.file_tabedit,
+      ["alt-q"]       = FzfLua.actions.file_sel_to_qf,
+      ["alt-Q"]       = FzfLua.actions.file_sel_to_ll,
+      ["alt-i"]       = FzfLua.actions.toggle_ignore,
+      ["alt-h"]       = FzfLua.actions.toggle_hidden,
+      ["alt-f"]       = FzfLua.actions.toggle_follow,
+      ["ctrl-j"] = function(selected)
+        vim.cmd("pedit " .. selected[1])
+      end
+    }
+  }
+})
+
+vim.keymap.set('n', '<leader><leader>', FzfLua.files)
+vim.keymap.set('n', '<leader>/', FzfLua.live_grep)
+
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
