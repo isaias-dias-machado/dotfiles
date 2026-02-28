@@ -365,11 +365,11 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1771752914
+check-timestamp=int64 1772189863
 first-run=false
 install-timestamp=int64 1771501371
 packagekit-historical-updates-timestamp=uint64 1771501371
-update-notification-timestamp=int64 1771501478
+update-notification-timestamp=int64 1772116626
 
 [org/gnome/system/location]
 enabled=false
@@ -556,9 +556,10 @@ visible-name='Solarized'
 [org/gnome/terminal/legacy/profiles:/:bd4e5382-50e9-4f83-8b57-cde5dbf47d03]
 audible-bell=false
 background-color='rgb(255,255,255)'
+cursor-blink-mode='off'
 custom-command='zellij'
-default-size-columns=120
-default-size-rows=30
+default-size-columns=140
+default-size-rows=35
 font='DejaVuSansM Nerd Font Mono 12'
 foreground-color='rgb(0,0,0)'
 scrollbar-policy='never'
@@ -619,7 +620,7 @@ sort-column='name'
 sort-directories-first=false
 sort-order='ascending'
 type-format='category'
-window-position=(26, 23)
+window-position=(277, 190)
 window-size=(1366, 691)
 
 [system/proxy]

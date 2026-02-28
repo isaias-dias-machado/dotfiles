@@ -11,6 +11,10 @@ vim.opt.wrap = false
 vim.opt.sidescroll = 1
 vim.opt.sidescrolloff = 20
 
+vim.opt.textwidth = 0
+vim.opt.wrapmargin = 0
+vim.opt.formatoptions:remove({ "t", "c" })
+
 vim.g.mapleader = " "
 vim.opt.hlsearch = false
 vim.opt.syntax = "off"
@@ -73,6 +77,7 @@ require("oil").setup({
     view_options = {
         show_hidden = true,
     },
+  skip_confirm_for_simple_edits = true,
 })
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>")
@@ -97,17 +102,24 @@ vim.g.gutentags_ctags_exclude = {
     "*.md" 
 }
 
-require("conform").setup({
-  formatters_by_ft = {
-    c = { "clang-format" },
-    cpp = { "clang-format" },
-    elixir = { "mix format" },
-  },
-  format_on_save = {
-    timeout_ms = 500,
-    lsp_fallback = false,
-  },
-})
+-- require("conform").setup({
+--   formatters_by_ft = {
+--     c = { "clang-format" },
+--     cpp = { "clang-format" },
+--     elixir = { "mix" },
+--   },
+--   formatters = {
+--     mix = {
+--       command = "mix",
+--       args = { "format", "-" },
+--       stdin = true,
+--     },
+--   },
+--   format_on_save = {
+--     timeout_ms = 500,
+--     lsp_fallback = false,
+--   },
+-- })
 
 
 require('fzf-lua').setup({
@@ -123,14 +135,20 @@ require('fzf-lua').setup({
       ["alt-h"]       = FzfLua.actions.toggle_hidden,
       ["alt-f"]       = FzfLua.actions.toggle_follow,
       ["ctrl-j"] = function(selected)
-        vim.cmd("pedit " .. selected[1])
+        if not selected or #selected == 0 then return end
+        
+        local path, line = selected[1]:match("^(.-):(%d+):")
+        
+        if path and line then
+          vim.cmd("pedit +normal\\ " .. line .. "Gzz " .. vim.fn.fnameescape(path))
+        end
       end
     }
   }
 })
 
 vim.keymap.set('n', '<leader><leader>', FzfLua.files)
-vim.keymap.set('n', '<leader>/', FzfLua.live_grep)
+vim.keymap.set('n', '<leader>/', FzfLua.grep_project)
 
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
