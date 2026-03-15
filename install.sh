@@ -235,6 +235,7 @@ EOF
   sudo systemctl daemon-reload
   sudo systemctl enable "${SERVICE_PATH}"
 }
+
 packages="
 inotify-tools
 fd-find
@@ -242,7 +243,6 @@ xclip
 zathura
 fzf
 libncurses-dev
-autoconf
 npm
 vim-gtk3
 jq
@@ -266,11 +266,18 @@ net-tools
 apt-transport-https
 ca-certificates
 curl
-gnupg
 postgresql
-ruby
-ri
-golang
+gnupg
+uncrustify
+texinfo
+build-essential
+autoconf
+automake
+libtool
+gettext
+texinfo
+python3-dev
+libgnunet-dev
 unzip
 "
 
@@ -317,12 +324,15 @@ link_files() {
 
 mkdir -p ~/.local/share/nvim/site/pack/plugins/start/
 
-cd !$
+pushd ~/.local/share/nvim/site/pack/plugins/start/
 git clone https://github.com/stevearc/oil.nvim
 git clone https://github.com/ludovicchabant/vim-gutentags
 git clone https://github.com/stevearc/conform.nvim
 git clone https://github.com/ibhagwan/fzf-lua.git
-cd -
+git clone https://github.com/mfussenegger/nvim-dap.git
+git clone https://github.com/rcarriga/nvim-dap-ui.git
+git clone https://github.com/pechorin/any-jump.vim
+popd
 
 link_files "$HOME/dotfiles/nvim" "$HOME/.config/"
 link_files "$HOME/dotfiles/friendly-snippets" "$HOME/.local/share/nvim/snippets"
@@ -337,6 +347,33 @@ link_files "$HOME/dotfiles/vim" "$HOME/.vim"
 #     link_files $file "$dir/spell/"
 #   done
 # done
+
+# Install cpptools debug adapter
+mkdir -p ~/.local/share/nvim/cpptools
+cd ~/.local/share/nvim/cpptools
+
+curl -L -o cpptools.vsix https://github.com/microsoft/vscode-cpptools/releases/download/v1.30.5/cpptools-linux-x64.vsix
+
+unzip -o cpptools.vsix 1>/dev/null
+chmod +x extension/debugAdapters/bin/OpenDebugAD7
+
+rm cpptools.vsix
+
+echo "Installation complete."
+echo "Path to binary: $(pwd)/extension/debugAdapters/bin/OpenDebugAD7"
+
+### cache glibc ctags
+
+mkdir -p ~/.cache/ctags
+mkdir -p ~/open-sources/glibc
+
+pushd ~/open-sources/glibc
+apt source glibc
+popd
+
+ctags -R -f ~/.cache/ctags/stdlib.tags /usr/include
+
+###
 
 sudo groupadd docker
 
