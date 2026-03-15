@@ -2,6 +2,7 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 -- opts.rocks.enaled = false
+
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -82,6 +83,10 @@ require("oil").setup({
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>")
 
+-- TAGS
+
+vim.o.tags = vim.o.tags .. ',' .. vim.fn.expand('~/.cache/ctags/stdlib.tags') .. ',tags'
+
 local tags_cache = vim.fn.stdpath("cache") .. "/tags"
 if vim.fn.isdirectory(tags_cache) == 0 then
     vim.fn.mkdir(tags_cache, "p")
@@ -152,3 +157,89 @@ vim.keymap.set('n', '<leader>/', FzfLua.grep_project)
 
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+-- Build and Debug --
+
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+    pattern = [=[[^l]*]=],
+    command = "cwindow",
+})
+
+vim.keymap.set('n', '<leader>m', ':silent make | redraw!<CR>')
+
+local build_configs = {
+    c = "make",
+    elixir = "mix compile"
+}
+
+for ft, command in pairs(build_configs) do
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = ft,
+        callback = function()
+            vim.opt_local.makeprg = command
+        end,
+    })
+
+    vim.api.nvim_create_autocmd("BufWritePost", {
+        pattern = (ft == "c") and { "*.c", "*.h" } or "*.ex,*.exs",
+        callback = function()
+            vim.cmd("silent make | redraw!")
+        end,
+    })
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "c",
+    callback = function()
+        vim.bo.commentstring = "/* %s */"
+    end
+})
+
+local dap = require('dap')
+
+local cpptools_path = vim.fn.expand('~/.local/share/nvim/cpptools/extension/debugAdapters/bin/OpenDebugAD7')
+
+dap.adapters.cppdbg = {
+  id = 'cppdbg',
+  type = 'executable',
+  command = cpptools_path,
+}
+
+dap.configurations.c = {
+  {
+    name = "Launch a.out (ASan)",
+    type = "cppdbg",
+    request = "launch",
+    program = function()
+      return vim.fn.getcwd() .. '/a.out'
+    end,
+    cwd = '${workspaceFolder}',
+    stopAtEntry = false,
+    -- Pass ASAN_OPTIONS as environment variables
+    environment = {
+      { name = "ASAN_OPTIONS", value = "detect_leaks=0:abort_on_error=1:halt_on_error=1" },
+    },
+    setupCommands = {
+      {
+        text = '-enable-pretty-printing',
+        description = 'enable pretty printing',
+        ignoreFailures = false
+      },
+      -- This ensures GDB catches the ASan crash immediately
+      {
+        text = 'handle SIGABRT stop nopass',
+        description = 'stop on ASan abort',
+        ignoreFailures = true
+      },
+    },
+  },
+}
+
+vim.keymap.set('n', '<F5>', function() dap.continue() end)
+vim.keymap.set('n', '<F10>', function() dap.step_over() end)
+vim.keymap.set('n', '<F11>', function() dap.step_into() end)
+vim.keymap.set('n', '<F12>', function() dap.step_out() end)
+vim.keymap.set('n', '<leader>b', function() dap.toggle_breakpoint() end)
+vim.keymap.set('n', '<leader>dr', function() dap.repl.open() end)
+
+-- --

@@ -331,10 +331,9 @@ v() {
 
 cman() {
   man -k . |
-    grep -E '\((2|3)\)' |
+    grep -E '\((2|3|3type)\)' |
     fzf --prompt='man> ' --delimiter=' - ' --nth=1 |
-    sed 's/ - .*//' |
-    awk '{print $1}' |
+    sed 's/ - .*//' | awk '{printf $2; printf " "; printf $1}' | sed 's/(//' | sed 's/)//' |
     xargs -r man
 }
 
