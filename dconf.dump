@@ -18,7 +18,7 @@ window-width=540
 
 [desktop/ibus/general]
 preload-engines=['xkb:us::eng']
-version='1.5.27'
+version='1.5.32'
 
 [org/gnome/Totem]
 active-plugins=['movie-properties', 'save-file', 'open-directory', 'recent', 'skipto', 'autoload-subtitles', 'rotation', 'mpris', 'apple-trailers', 'variable-rate', 'screenshot', 'screensaver', 'vimeo']
