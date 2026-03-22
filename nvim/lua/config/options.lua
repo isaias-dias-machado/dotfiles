@@ -48,6 +48,7 @@ vim.keymap.set("n", "-", '<cmd>Ex<cr>')
 
 vim.opt.path:append("**") 
 vim.opt.path:append("~/.config/nvim/lua/config/options.lua") 
+vim.opt.path:append("~/.config/nvim/ftplugin") 
 
 local undodir = vim.fn.stdpath("cache") .. "/undo"
 if vim.fn.isdirectory(undodir) == 0 then
@@ -77,6 +78,9 @@ require("oil").setup({
     columns = { "icon" },
     view_options = {
         show_hidden = true,
+        sort = {
+          { "name", "asc" },
+        },
     },
   skip_confirm_for_simple_edits = true,
 })
@@ -106,26 +110,6 @@ vim.g.gutentags_ctags_exclude = {
     "*.json", 
     "*.md" 
 }
-
--- require("conform").setup({
---   formatters_by_ft = {
---     c = { "clang-format" },
---     cpp = { "clang-format" },
---     elixir = { "mix" },
---   },
---   formatters = {
---     mix = {
---       command = "mix",
---       args = { "format", "-" },
---       stdin = true,
---     },
---   },
---   format_on_save = {
---     timeout_ms = 500,
---     lsp_fallback = false,
---   },
--- })
-
 
 require('fzf-lua').setup({
   actions = {
@@ -160,33 +144,31 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 -- Build and Debug --
 
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
-    pattern = [=[[^l]*]=],
-    command = "cwindow",
-})
+-- vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+--     pattern = [=[[^l]*]=],
+--     command = "cwindow",
+-- })
 
-vim.keymap.set('n', '<leader>m', ':silent make | redraw!<CR>')
+vim.opt.makeprg = "./_build.sh %"
 
-local build_configs = {
-    c = "make",
-    elixir = "mix compile"
+local compile_filetypes = {
+  elixir = true,
+  c = true,
+  cpp = true,
+  python = true,
+  javascript = true,
+  typescript = true,
 }
 
-for ft, command in pairs(build_configs) do
-    vim.api.nvim_create_autocmd("FileType", {
-        pattern = ft,
-        callback = function()
-            vim.opt_local.makeprg = command
-        end,
-    })
-
-    vim.api.nvim_create_autocmd("BufWritePost", {
-        pattern = (ft == "c") and { "*.c", "*.h" } or "*.ex,*.exs",
-        callback = function()
-            vim.cmd("silent make | redraw!")
-        end,
-    })
-end
+vim.api.nvim_create_autocmd("BufWritePost", {
+  callback = function()
+    if not compile_filetypes[vim.bo.filetype] then
+      return
+    end
+    vim.cmd("silent make | redraw! | cope")
+  end,
+})
+vim.keymap.set('n', '<leader>m', ':silent make | redraw! | cope<CR>')
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "c",
@@ -194,52 +176,4 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo.commentstring = "/* %s */"
     end
 })
-
-local dap = require('dap')
-
-local cpptools_path = vim.fn.expand('~/.local/share/nvim/cpptools/extension/debugAdapters/bin/OpenDebugAD7')
-
-dap.adapters.cppdbg = {
-  id = 'cppdbg',
-  type = 'executable',
-  command = cpptools_path,
-}
-
-dap.configurations.c = {
-  {
-    name = "Launch a.out (ASan)",
-    type = "cppdbg",
-    request = "launch",
-    program = function()
-      return vim.fn.getcwd() .. '/a.out'
-    end,
-    cwd = '${workspaceFolder}',
-    stopAtEntry = false,
-    -- Pass ASAN_OPTIONS as environment variables
-    environment = {
-      { name = "ASAN_OPTIONS", value = "detect_leaks=0:abort_on_error=1:halt_on_error=1" },
-    },
-    setupCommands = {
-      {
-        text = '-enable-pretty-printing',
-        description = 'enable pretty printing',
-        ignoreFailures = false
-      },
-      -- This ensures GDB catches the ASan crash immediately
-      {
-        text = 'handle SIGABRT stop nopass',
-        description = 'stop on ASan abort',
-        ignoreFailures = true
-      },
-    },
-  },
-}
-
-vim.keymap.set('n', '<F5>', function() dap.continue() end)
-vim.keymap.set('n', '<F10>', function() dap.step_over() end)
-vim.keymap.set('n', '<F11>', function() dap.step_into() end)
-vim.keymap.set('n', '<F12>', function() dap.step_out() end)
-vim.keymap.set('n', '<leader>b', function() dap.toggle_breakpoint() end)
-vim.keymap.set('n', '<leader>dr', function() dap.repl.open() end)
-
 -- --
