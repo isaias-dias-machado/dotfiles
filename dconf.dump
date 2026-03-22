@@ -28,8 +28,196 @@ subtitle-encoding='UTF-8'
 is-maximized=false
 window-size=(960, 600)
 
+[org/gnome/builder]
+window-maximized=true
+window-size=(-1, -1)
+
+[org/gnome/builder/code-insight]
+semantic-highlighting=false
+
+[org/gnome/builder/editor]
+check-spelling=false
+completion-n-rows=5
+draw-spaces=@as []
+font-name='DejaVu Sans Mono Bold 12'
+interactive-completion=false
+keybindings='vim'
+show-line-changes=false
+show-line-diagnostics=false
+show-line-numbers=false
+show-line-selection-styling=false
+style-scheme-name='Adwaita'
+
+[org/gnome/builder/editor/language/automake]
+insert-spaces-instead-of-tabs=false
+insert-trailing-newline=true
+tab-width=8
+
+[org/gnome/builder/editor/language/blueprint]
+auto-indent=true
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=false
+overwrite-braces=true
+tab-width=2
+
+[org/gnome/builder/editor/language/c-sharp]
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=false
+overwrite-braces=true
+spaces-style=['before-left-paren']
+tab-width=8
+
+[org/gnome/builder/editor/language/c]
+auto-indent=true
+indent-width=2
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+spaces-style=['before-left-paren']
+tab-width=8
+
+[org/gnome/builder/editor/language/chdr]
+auto-indent=true
+indent-width=2
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+spaces-style=['before-left-paren']
+tab-width=8
+
+[org/gnome/builder/editor/language/commonlisp]
+auto-indent=true
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+overwrite-braces=true
+right-margin-position=100
+tab-width=2
+
+[org/gnome/builder/editor/language/cpp]
+auto-indent=true
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+tab-width=4
+
+[org/gnome/builder/editor/language/css]
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+tab-width=2
+
+[org/gnome/builder/editor/language/gradle]
+auto-indent=true
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+overwrite-braces=true
+tab-width=2
+
+[org/gnome/builder/editor/language/html]
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+tab-width=2
+
+[org/gnome/builder/editor/language/java]
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+overwrite-braces=true
+tab-width=2
+
+[org/gnome/builder/editor/language/js]
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+tab-width=2
+
+[org/gnome/builder/editor/language/makefile]
+insert-spaces-instead-of-tabs=false
+insert-trailing-newline=true
+tab-width=8
+
+[org/gnome/builder/editor/language/markdown]
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+tab-width=4
+trim-trailing-whitespace=false
+
+[org/gnome/builder/editor/language/python]
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+tab-width=4
+
+[org/gnome/builder/editor/language/python3]
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+tab-width=4
+
+[org/gnome/builder/editor/language/ruby]
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+tab-width=2
+
+[org/gnome/builder/editor/language/rust]
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+right-margin-position=100
+tab-width=4
+
+[org/gnome/builder/editor/language/vala]
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+tab-width=4
+
+[org/gnome/builder/editor/language/xml]
+auto-indent=true
+insert-matching-brace=true
+insert-spaces-instead-of-tabs=true
+insert-trailing-newline=true
+overwrite-braces=true
+tab-width=2
+
+[org/gnome/builder/shellcmd]
+run-commands=['7cb9dd77-3aa1-4b47-a10c-8f4bd6373219']
+
+[org/gnome/builder/shellcmd/7cb9dd77-3aa1-4b47-a10c-8f4bd6373219]
+accelerator='<Alt>m'
+argv=['./_build.sh']
+cwd='$CWD'
+display-name='build'
+env=@as []
+
+[org/gnome/builder/shellcmd/projects/mini-beam2]
+run-commands=@as []
+
+[org/gnome/calculator]
+base=10
+button-mode='basic'
+source-currency=''
+source-units='degree'
+target-currency=''
+target-units='radian'
+window-maximized=false
+window-size=(360, 616)
+
 [org/gnome/control-center]
-last-panel='display'
+last-panel='mouse'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/a11y/applications]
@@ -79,7 +267,10 @@ text-scaling-factor=1.0
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
-application-children=['libreoffice-writer', 'gnome-power-panel', 'org-gnome-evolution', 'firefox-esr', 'org-gnome-software', 'org-gnome-terminal', 'org-gnome-terminal-preferences', 'org-gnome-settings', 'org-gnome-characters', 'org-gnome-nautilus', 'org-gnome-baobab', 'gnome-network-panel', 'zoom', 'gnome-printers-panel', 'org-gnome-shell-extensions']
+application-children=['libreoffice-writer', 'gnome-power-panel', 'org-gnome-evolution', 'firefox-esr', 'org-gnome-software', 'org-gnome-terminal', 'org-gnome-terminal-preferences', 'org-gnome-settings', 'org-gnome-characters', 'org-gnome-nautilus', 'org-gnome-baobab', 'gnome-network-panel', 'zoom', 'gnome-printers-panel', 'org-gnome-shell-extensions', 'debian-xterm']
+
+[org/gnome/desktop/notifications/application/debian-xterm]
+application-id='debian-xterm.desktop'
 
 [org/gnome/desktop/notifications/application/firefox-esr]
 application-id='firefox-esr.desktop'
@@ -135,7 +326,7 @@ repeat-interval=uint32 21
 
 [org/gnome/desktop/peripherals/mouse]
 accel-profile='flat'
-speed=-0.016574585635359074
+speed=0.25764192139737996
 
 [org/gnome/desktop/peripherals/touchpad]
 send-events='enabled'
@@ -175,6 +366,16 @@ titlebar-font='Cantarell Bold 8'
 titlebar-uses-system-font=false
 
 [org/gnome/evince/default]
+continuous=true
+dual-page=false
+dual-page-odd-left=false
+enable-spellchecking=true
+fullscreen=false
+inverted-colors=false
+show-sidebar=true
+sidebar-page='thumbnails'
+sidebar-size=132
+sizing-mode='automatic'
 window-ratio=(1.2648148148148148, 1.1358024691358024)
 
 [org/gnome/evolution-data-server]
@@ -365,11 +566,11 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1772189863
+check-timestamp=int64 1774174822
 first-run=false
 install-timestamp=int64 1771501371
 packagekit-historical-updates-timestamp=uint64 1771501371
-update-notification-timestamp=int64 1772116626
+update-notification-timestamp=int64 1774174826
 
 [org/gnome/system/location]
 enabled=false
@@ -557,11 +758,13 @@ visible-name='Solarized'
 audible-bell=false
 background-color='rgb(255,255,255)'
 cursor-blink-mode='off'
-custom-command='zellij'
-default-size-columns=140
-default-size-rows=35
-font='DejaVuSansM Nerd Font Mono 12'
+custom-command='tmux'
+default-size-columns=160
+default-size-rows=40
+font='DejaVuSansM Nerd Font Mono 13'
 foreground-color='rgb(0,0,0)'
+login-shell=false
+palette=['rgb(23,20,33)', 'rgb(192,28,40)', 'rgb(38,162,105)', 'rgb(162,115,76)', 'rgb(18,72,139)', 'rgb(163,71,186)', 'rgb(42,161,179)', 'rgb(208,207,204)', 'rgb(144,141,152)', 'rgb(246,97,81)', 'rgb(51,209,122)', 'rgb(233,173,12)', 'rgb(42,123,222)', 'rgb(192,97,203)', 'rgb(51,199,222)', 'rgb(255,255,255)']
 scrollbar-policy='never'
 use-custom-command=true
 use-system-font=false
@@ -603,11 +806,12 @@ sort-column='name'
 sort-directories-first=false
 sort-order='ascending'
 type-format='category'
-window-size=(983, 319)
+view-type='list'
+window-size=(983, 372)
 
 [org/gtk/settings/color-chooser]
-custom-colors=[(0.83333333333333337, 0.80277777777777781, 0.80277777777777781, 1.0), (0.51372549019607838, 0.58039215686274515, 0.58823529411764708, 1.0), (0.20333333333333334, 0.16657066666666664, 0.050155555555555564, 1.0), (0.85000000000000009, 0.75616000000000005, 0.45900000000000007, 1.0), (0.93333333333333335, 0.90980392156862744, 0.83529411764705885, 1.0), (0.67000000000000004, 0.52689487179487182, 0.13846666666666668, 1.0), (0.99215686274509807, 0.96470588235294119, 0.8901960784313725, 1.0), (0.77350000000000008, 0.89634999999999987, 0.91000000000000003, 1.0)]
-selected-color=(true, 0.0, 0.0, 0.0, 1.0)
+custom-colors=[(0.56385000000000007, 0.55291111111111113, 0.59666666666666668, 1.0), (0.83333333333333337, 0.80277777777777781, 0.80277777777777781, 1.0), (0.51372549019607838, 0.58039215686274515, 0.58823529411764708, 1.0), (0.20333333333333334, 0.16657066666666664, 0.050155555555555564, 1.0), (0.85000000000000009, 0.75616000000000005, 0.45900000000000007, 1.0), (0.93333333333333335, 0.90980392156862744, 0.83529411764705885, 1.0), (0.67000000000000004, 0.52689487179487182, 0.13846666666666668, 1.0), (0.99215686274509807, 0.96470588235294119, 0.8901960784313725, 1.0)]
+selected-color=(true, 0.56385000000000007, 0.55291111111111113, 0.59666666666666668, 1.0)
 
 [org/gtk/settings/file-chooser]
 date-format='regular'

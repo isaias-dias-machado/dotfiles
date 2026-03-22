@@ -311,6 +311,12 @@ alias clip='xclip -selection clipboard'
 alias db="psql -d $CUR_DATABASE"
 alias droptestdb="MIX_ENV=test mix ecto.drop"
 
+newscrpt() {
+  touch "$1"
+  chmod +x "$1"
+  vi "$1"
+}
+
 alias cmakeB="cmake -B build"
 alias cmakeb="cmake --build build"
 
@@ -379,3 +385,6 @@ _opencode_yargs_completions() {
 }
 complete -o bashdefault -o default -F _opencode_yargs_completions opencode
 ###-end-opencode-completions-###
+
+# NPM global bin (added by Qwen Code installer)
+export PATH="$HOME/.npm-global/bin:$PATH"
