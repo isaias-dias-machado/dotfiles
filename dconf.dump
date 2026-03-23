@@ -1,3 +1,10 @@
+[apps/light-locker]
+idle-hint=false
+late-locking=false
+lock-after-screensaver=uint32 5
+lock-on-lid=false
+lock-on-suspend=true
+
 [apps/seahorse]
 server-auto-retrieve=false
 
@@ -253,14 +260,18 @@ sources=[('xkb', 'us')]
 xkb-options=['compose:ralt', 'caps:swapescape', 'grp:win_space_toggle']
 
 [org/gnome/desktop/interface]
+cursor-blink=true
+cursor-blink-time=1200
+cursor-size=0
+cursor-theme='default'
 document-font-name='DejaVu Sans Ultra-Light 13'
 enable-hot-corners=false
 font-antialiasing='grayscale'
 font-hinting='slight'
-font-name='DejaVu Sans Ultra-Light 13'
-gtk-key-theme='Default'
-gtk-theme='gnome-professional-solid-40.1-dark'
-icon-theme='Adwaita'
+font-name='Sans 10'
+gtk-key-theme=''
+gtk-theme='Xfce'
+icon-theme='Tango'
 monospace-font-name='DejaVu Sans Mono 13'
 show-battery-percentage=false
 text-scaling-factor=1.0
@@ -326,6 +337,8 @@ repeat-interval=uint32 21
 
 [org/gnome/desktop/peripherals/mouse]
 accel-profile='flat'
+double-click=400
+drag-threshold=8
 speed=0.25764192139737996
 
 [org/gnome/desktop/peripherals/touchpad]
@@ -342,8 +355,9 @@ idle-delay=uint32 300
 
 [org/gnome/desktop/sound]
 allow-volume-above-100-percent=true
-event-sounds=true
-theme-name='__custom'
+event-sounds=false
+input-feedback-sounds=false
+theme-name='default'
 
 [org/gnome/desktop/wm/keybindings]
 begin-move=['<Shift><Alt>l']
@@ -361,6 +375,8 @@ switch-windows=['<Alt>grave']
 switch-windows-backward=['<Shift><Alt>grave']
 
 [org/gnome/desktop/wm/preferences]
+action-middle-click-titlebar='lower'
+button-layout='icon,menu:minimize,maximize,close'
 theme='Adwaita'
 titlebar-font='Cantarell Bold 8'
 titlebar-uses-system-font=false
@@ -566,7 +582,7 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1774174822
+check-timestamp=int64 1774259663
 first-run=false
 install-timestamp=int64 1771501371
 packagekit-historical-updates-timestamp=uint64 1771501371
@@ -824,7 +840,7 @@ sort-column='name'
 sort-directories-first=false
 sort-order='ascending'
 type-format='category'
-window-position=(277, 190)
+window-position=(277, 206)
 window-size=(1366, 691)
 
 [system/proxy]

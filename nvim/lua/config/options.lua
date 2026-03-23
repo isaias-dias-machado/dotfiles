@@ -41,6 +41,7 @@ vim.keymap.set("n", "*", "*N", { desc = "Search work inplace" })
 
 -- vim.keymap.set("n", "<Leader>/", ":grep '' | copen<Left><Left><Left><Left><Left><Left><Left><Left><Left>", { desc = "Grep and Open Quickfix" })
 -- vim.keymap.set("n", "<Leader><Leader>", ":find *", { desc = "Find Directory" })
+vim.keymap.set("n", "<Leader>,", ":ls<CR>:b ")
 
 vim.keymap.set("n", "<Leader>fd", "<cmd>Dir<cr>", { desc = "Find Directory" })
 vim.keymap.set("v", "<Leader>p", '"_dP', { desc = "Preserve yanked content on paste" })
@@ -165,10 +166,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     if not compile_filetypes[vim.bo.filetype] then
       return
     end
-    vim.cmd("silent make | redraw! | cope")
+    vim.cmd("silent make | redraw!")
   end,
 })
-vim.keymap.set('n', '<leader>m', ':silent make | redraw! | cope<CR>')
+vim.keymap.set('n', '<leader>m', ':silent make | redraw!<CR>')
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "c",
