@@ -388,3 +388,5 @@ complete -o bashdefault -o default -F _opencode_yargs_completions opencode
 
 # NPM global bin (added by Qwen Code installer)
 export PATH="$HOME/.npm-global/bin:$PATH"
+
+setxkbmap -option caps:escape
