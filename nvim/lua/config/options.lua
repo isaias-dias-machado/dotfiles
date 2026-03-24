@@ -161,6 +161,11 @@ local compile_filetypes = {
   typescript = true,
 }
 
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+  pattern = "*",
+  command = "cwindow",
+})
+
 vim.api.nvim_create_autocmd("BufWritePost", {
   callback = function()
     if not compile_filetypes[vim.bo.filetype] then
@@ -169,7 +174,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     vim.cmd("silent make | redraw!")
   end,
 })
-vim.keymap.set('n', '<leader>m', ':silent make | redraw!<CR>')
+vim.keymap.set('n', '<leader>m', ':silent make | redraw!')
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "c",
