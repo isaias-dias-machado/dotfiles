@@ -1,6 +1,6 @@
 source $HOME/.env
 
-export EDITOR="nvim -u ~/.config/nvim/lua/config/options.lua"
+export EDITOR="nvim"
 
 get_kube_context() {
   local var=$(kubectl config current-context 2>/dev/null)
@@ -77,7 +77,8 @@ fi
 if [ "$color_prompt" = yes ]; then
   # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
   # PS1='[$(get_kube_context):$(get_kube_namespace)] \[\033[93m\]${PWD##*/}\[\033[93m\] ➤\[\033[00m\] '
-  PS1='\[\033[1;36m\]${PWD##*/}\[\033[1;36m\] ➤\[\033[00m\] '
+  # PS1="\[\033[1;36m\]${PWD##*/} ➤\[\033[00m\] "
+  PS1="\[\033[1;36m\]\w ➤\[\033[00m\] "
 else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -280,7 +281,7 @@ export PATH="$HOME/go/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-alias vi="nvim -u ~/.config/nvim/lua/config/options.lua"
+alias vi="nvim"
 alias dotfiles='cd ~/dotfiles'
 alias dfinstall='vi ~/dotfiles/install.sh'
 alias w='vi ~/mywiki/wiki.md'
@@ -310,6 +311,8 @@ alias stashpull='git stash && git pull && git stash pop'
 alias clip='xclip -selection clipboard'
 alias db="psql -d $CUR_DATABASE"
 alias droptestdb="MIX_ENV=test mix ecto.drop"
+
+alias vimplugs="cd ~/.local/share/nvim/site/pack/plugins/start/"
 
 newscrpt() {
   touch "$1"
