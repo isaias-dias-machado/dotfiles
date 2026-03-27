@@ -332,6 +332,8 @@ git clone https://github.com/ibhagwan/fzf-lua.git
 git clone https://github.com/mfussenegger/nvim-dap.git
 git clone https://github.com/rcarriga/nvim-dap-ui.git
 git clone https://github.com/pechorin/any-jump.vim
+git clone https://github.com/tpope/vim-rsi
+git clone https://github.com/tpope/vim-surround
 popd
 
 link_files "$HOME/dotfiles/nvim" "$HOME/.config/"

@@ -3,6 +3,9 @@
 -- Add any additional options here
 -- opts.rocks.enaled = false
 
+vim.opt.fileencoding = "utf-8"
+vim.opt.fileencodings = { "utf-8", "latin1" }
+
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -37,12 +40,20 @@ vim.opt.listchars = {
   nbsp = "+",
 }
 
+vim.keymap.set({"n"}, "<CR>", "i<CR><esc>")
+vim.keymap.set({"n"}, "<leader><BS>", "I<CR><esc>")
+vim.keymap.set({"n"}, "<leader><CR>", "A<CR><esc>")
+vim.keymap.set({"n", "v", "x"}, "<C-L>", "20zl")
+vim.keymap.set({"n", "v", "x"}, "<C-H>", "20zh")
+
 vim.keymap.set("n", "*", "*N", { desc = "Search work inplace" })
 
 -- vim.keymap.set("n", "<Leader>/", ":grep '' | copen<Left><Left><Left><Left><Left><Left><Left><Left><Left>", { desc = "Grep and Open Quickfix" })
 -- vim.keymap.set("n", "<Leader><Leader>", ":find *", { desc = "Find Directory" })
 vim.keymap.set("n", "<Leader>,", ":ls<CR>:b ")
 
+vim.keymap.set("n", "<Leader>s", 'viw"zy:%s/\\<<C-r>"\\>//g<Left><Left>', { silent = true })
+vim.keymap.set("v", "<Leader>s", '"hy:%s/\\<<C-r>"\\>//g<Left><Left>', { silent = true })
 vim.keymap.set("n", "<Leader>fd", "<cmd>Dir<cr>", { desc = "Find Directory" })
 vim.keymap.set("v", "<Leader>p", '"_dP', { desc = "Preserve yanked content on paste" })
 vim.keymap.set("n", "-", '<cmd>Ex<cr>')
@@ -176,10 +187,3 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 vim.keymap.set('n', '<leader>m', ':silent make | redraw!')
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "c",
-    callback = function()
-        vim.bo.commentstring = "/* %s */"
-    end
-})
--- --
