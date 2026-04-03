@@ -166,6 +166,23 @@ frg() {
   fi
 }
 
+gg() {
+  # Search for a pattern in files using ripgrep and select a result with fzf.
+  local line
+  line=$(rg --line-number --no-heading --color=always . | fzf --ansi \
+    --preview "echo {} | cut -d: -f1,2 | sed 's/:/ /'" \
+    --preview-window "up,60%,border-top")
+
+  # If a line was selected, open the file in Vim at that line number.
+  if [ -n "$line" ]; then
+    local file
+    local line_num
+    file=$(echo "$line" | cut -d: -f1)
+    line_num=$(echo "$line" | cut -d: -f2)
+    geany "$file":"$line_num"
+  fi
+}
+
 fssh() {
   local host
   host=$(grep '^Host ' ~/.ssh/config | awk '{print $2}' | fzf)
@@ -335,6 +352,13 @@ v() {
   local selected=$(fzf)
   if [ -n "$selected" ]; then
     vi $selected
+  fi
+}
+
+g() {
+  local selected=$(fzf)
+  if [ -n "$selected" ]; then
+    geany $selected
   fi
 }
 
