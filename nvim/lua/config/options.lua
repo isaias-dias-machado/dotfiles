@@ -185,5 +185,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     vim.cmd("silent make | redraw!")
   end,
 })
-vim.keymap.set('n', '<leader>m', ':silent make | redraw!')
 
+vim.keymap.set('n', '<leader>m', ':silent make | redraw!')
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
+vim.keymap.set('t', 'q', [[<C-\><C-n>:q<cr>]])
