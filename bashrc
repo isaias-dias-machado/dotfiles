@@ -342,6 +342,7 @@ alias cmakeb="cmake --build build"
 
 alias codex="codex --dangerously-bypass-approvals-and-sandbox"
 alias oc="opencode"
+alias clock="timedatectl | rg Local"
 
 out() {
   cc $1
@@ -383,7 +384,6 @@ $2"
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export ERL_AFLAGS='-kernel shell_history enabled  -kernel shell_history_path \".erl.history\"'
-export PATH="$HOME/.local/bin:$PATH"
 
 # opencode
 export PATH=/home/isaias/.opencode/bin:$PATH
@@ -415,8 +415,5 @@ _opencode_yargs_completions() {
 }
 complete -o bashdefault -o default -F _opencode_yargs_completions opencode
 ###-end-opencode-completions-###
-
-# NPM global bin (added by Qwen Code installer)
-export PATH="$HOME/.npm-global/bin:$PATH"
 
 setxkbmap -option caps:escape
