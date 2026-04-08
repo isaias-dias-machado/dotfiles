@@ -1,5 +1,5 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-vim.keymap.set("n", "<Leader>fd", "<cmd>Dir<cr>", { desc = "Find Directory" })
-vim.keymap.set("v", "<Leader>p", '"_dP', { desc = "Preserve yanked content on paste" })
+-- vim.keymap.set("n", "<Leader>fd", "<cmd>Dir<cr>", { desc = "Find Directory" })
+-- vim.keymap.set("v", "<Leader>p", '"_dP', { desc = "Preserve yanked content on paste" })
