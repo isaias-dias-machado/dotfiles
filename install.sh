@@ -334,6 +334,10 @@ git clone https://github.com/rcarriga/nvim-dap-ui.git
 git clone https://github.com/pechorin/any-jump.vim
 git clone https://github.com/tpope/vim-rsi
 git clone https://github.com/tpope/vim-surround
+git clone https://github.com/mrjones2014/smart-splits.nvim
+git clone https://github.com/mfussenegger/nvim-dap
+git clone https://github.com/rcarriga/nvim-dap-ui
+git clone https://github.com/theHamsta/nvim-dap-virtual-text
 popd
 
 link_files "$HOME/dotfiles/nvim" "$HOME/.config/"
