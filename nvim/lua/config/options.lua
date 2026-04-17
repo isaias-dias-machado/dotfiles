@@ -3,7 +3,10 @@
 -- Add any additional options here
 -- opts.rocks.enaled = false
 
-vim.opt.fileencoding = "utf-8"
+vim.cmd("colorscheme darkblue")
+vim.cmd("syntax off")
+vim.g.loaded_matchparen = 1
+
 vim.opt.fileencodings = { "utf-8", "latin1" }
 
 vim.opt.expandtab = true
@@ -40,7 +43,6 @@ vim.opt.listchars = {
   nbsp = "+",
 }
 
-vim.keymap.set("n", "<CR>", "i<CR><esc>")
 vim.keymap.set("n", "<leader><BS>", "I<CR><esc>")
 vim.keymap.set("n", "<leader><CR>", "A<CR><esc>")
 vim.keymap.set({"n", "v", "x"}, "<C-L>", "20zl")
@@ -54,7 +56,7 @@ vim.keymap.set("n", "*", "*N", { desc = "Search work inplace" })
 vim.keymap.set("n", "<Leader>,", ":ls<CR>:b ")
 
 vim.keymap.set("n", "<Leader>s", 'viw"zy:%s/\\<<C-r>"\\>//g<Left><Left>', { silent = true })
-vim.keymap.set("v", "<Leader>s", '"hy:%s/\\<<C-r>"\\>//g<Left><Left>', { silent = true })
+vim.keymap.set("v", "<Leader>s", '"hy:%s/<C-r>"//g<Left><Left>', { silent = true })
 vim.keymap.set("n", "<Leader>fd", "<cmd>Dir<cr>", { desc = "Find Directory" })
 vim.keymap.set("v", "<Leader>p", '"_dP', { desc = "Preserve yanked content on paste" })
 vim.keymap.set("n", "-", '<cmd>Ex<cr>')
@@ -193,26 +195,3 @@ vim.keymap.set("n", "<F5>", function()
 end, { noremap = true, silent = true })
 
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
-
--- recommended mappings
--- resizing splits
--- these keymaps will also accept a range,
--- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
-vim.keymap.set("n", "<A-t>", "<cmd>bel vs | term<CR>i")
-vim.keymap.set("n", '<A-n>', "<cmd>bel vs<cr>")
-vim.keymap.set({"n", "t"}, '<A-u>', "<cmd>close<cr>")
-vim.keymap.set({"n", "t"}, '<C-h>', require('smart-splits').resize_left)
-vim.keymap.set({"n", "t"}, '<C-j>', require('smart-splits').resize_down)
-vim.keymap.set({"n", "t"}, '<C-k>', require('smart-splits').resize_up)
-vim.keymap.set({"n", "t"}, '<C-l>', require('smart-splits').resize_right)
--- moving between splits
-vim.keymap.set({"n", "t"}, '<A-h>', require('smart-splits').move_cursor_left)
-vim.keymap.set({"n", "t"}, '<A-j>', require('smart-splits').move_cursor_down)
-vim.keymap.set({"n", "t"}, '<A-k>', require('smart-splits').move_cursor_up)
-vim.keymap.set({"n", "t"}, '<A-l>', require('smart-splits').move_cursor_right)
-vim.keymap.set({"n", "t"}, '<A-\\>', require('smart-splits').move_cursor_previous)
--- swapping buffers betwindows
--- vim.keymap.set({"n"}, '<leader>h', require('smart-splits').swap_buf_left)
--- vim.keymap.set({"n"}, '<leader>j', require('smart-splits').swap_buf_down)
--- vim.keymap.set({"n"}, '<leader>k', require('smart-splits').swap_buf_up)
--- vim.keymap.set({"n"}, '<leader>l', require('smart-splits').swap_buf_right)
