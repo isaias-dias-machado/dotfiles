@@ -78,7 +78,7 @@ if [ "$color_prompt" = yes ]; then
   # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
   # PS1='[$(get_kube_context):$(get_kube_namespace)] \[\033[93m\]${PWD##*/}\[\033[93m\] ➤\[\033[00m\] '
   # PS1="\[\033[1;36m\]${PWD##*/} ➤\[\033[00m\] "
-  PS1="\[\033[1;36m\]\w ➤\[\033[00m\] "
+  PS1="\[\033[1;38;5;42m\]\w ➤\[\033[00m\] "
 else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -328,6 +328,9 @@ alias stashpull='git stash && git pull && git stash pop'
 alias clip='xclip -selection clipboard'
 alias db="psql -d $CUR_DATABASE"
 alias droptestdb="MIX_ENV=test mix ecto.drop"
+alias emacs='emacs -nw'
+
+export ASAN_OPTIONS=abort_on_error=1
 
 alias vimplugs="cd ~/.local/share/nvim/site/pack/plugins/start/"
 
@@ -372,6 +375,24 @@ cman() {
       sed 's/(//' | \
       sed 's/)//' |
     xargs -r man
+}
+
+perfon() {
+  echo "-1" | sudo tee /proc/sys/kernel/perf_event_paranoid
+  echo 0 | sudo tee /proc/sys/kernel/nmi_watchdog
+}
+
+perfoff() {
+  echo 3 | sudo tee /proc/sys/kernel/perf_event_paranoid
+  echo 1 | sudo tee /proc/sys/kernel/nmi_watchdog
+}
+
+perf_thoroughput() {
+  perf stat -e cycles,instructions,branch-misses "$@"
+}
+
+perf_cache() {
+  perf stat -e cache-misses,cache-references,L1-dcache-loads,L1-dcache-load-misses "$@"
 }
 
 # $1 task number $2 msg
