@@ -868,7 +868,7 @@ sort-column='name'
 sort-directories-first=false
 sort-order='ascending'
 type-format='category'
-window-position=(282, 204)
+window-position=(277, 187)
 window-size=(1366, 691)
 
 [system/proxy]
