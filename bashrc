@@ -438,3 +438,4 @@ complete -o bashdefault -o default -F _opencode_yargs_completions opencode
 ###-end-opencode-completions-###
 
 setxkbmap -option caps:escape
+. "$HOME/.cargo/env"

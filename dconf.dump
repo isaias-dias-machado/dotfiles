@@ -519,6 +519,10 @@ initial-size=(984, 633)
 initial-size-file-chooser=(890, 550)
 maximized=true
 
+[org/gnome/nm-applet/eap/09ef7856-2772-4962-9460-8c9c7aeb58a8]
+ignore-ca-cert=false
+ignore-phase2-ca-cert=false
+
 [org/gnome/portal/filechooser/org.gnome.Nautilus]
 last-folder-path='/home/isaias/Videos/The Godfather Part III 1990 Coda Cut REMASTERED 1080p BluRay H264 AAC 5.1'
 

@@ -4,7 +4,7 @@
 -- opts.rocks.enaled = false
 
 vim.cmd("colorscheme darkblue")
-vim.cmd("syntax off")
+-- vim.cmd("syntax off")
 vim.g.loaded_matchparen = 1
 
 vim.opt.fileencodings = { "utf-8", "latin1" }
@@ -168,6 +168,8 @@ vim.opt.makeprg = "./_build.sh %"
 
 local compile_filetypes = {
   elixir = true,
+  erlang = true,
+  rust = true,
   c = true,
   cpp = true,
   python = true,
