@@ -7,6 +7,8 @@ vim.cmd("colorscheme darkblue")
 -- vim.cmd("syntax off")
 vim.g.loaded_matchparen = 1
 
+vim.g.markdown_folding = 1
+
 vim.opt.fileencodings = { "utf-8", "latin1" }
 
 vim.opt.expandtab = true
