@@ -55,7 +55,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-xterm-color | *-256color) color_prompt=yes ;;
+xterm-color | *-256color | *-kitty) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -77,7 +77,7 @@ fi
 if [ "$color_prompt" = yes ]; then
   # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
   # PS1='[$(get_kube_context):$(get_kube_namespace)] \[\033[93m\]${PWD##*/}\[\033[93m\] ➤\[\033[00m\] '
-  # PS1="\[\033[1;36m\]${PWD##*/} ➤\[\033[00m\] "
+  # PS1="\[\033[1;38;5;42m\]${PWD##*/} ➤\[\033[00m\] "
   PS1="\[\033[1;38;5;42m\]\w ➤\[\033[00m\] "
 else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -346,6 +346,7 @@ alias cmakeb="cmake --build build"
 alias codex="codex --dangerously-bypass-approvals-and-sandbox"
 alias oc="opencode"
 alias clock="timedatectl | rg Local"
+alias claude="claude --dangerously-skip-permissions"
 
 out() {
   cc $1
