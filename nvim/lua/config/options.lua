@@ -169,6 +169,8 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.opt.makeprg = "./_build.sh %"
 
 local compile_filetypes = {
+  css = true,
+  html = true,
   elixir = true,
   erlang = true,
   rust = true,
@@ -199,3 +201,30 @@ vim.keymap.set("n", "<F5>", function()
 end, { noremap = true, silent = true })
 
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
+
+vim.cmd('set rtp^="/home/isaias/.opam/default/share/ocp-indent/vim')
+
+-- LSP Configuration (vim.lsp.config for Neovim 0.11+)
+vim.lsp.config('rust_analyzer', {
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy",
+      },
+    },
+  },
+})
+
+vim.lsp.config('ocamllsp', {})
+
+vim.lsp.config('gopls', {})
+
+vim.lsp.config('gleam', {})
+
+vim.lsp.config('elp', {})
+
+vim.lsp.config('elixirls', {
+  cmd = { "elixir-ls" },
+})
+
+vim.lsp.enable({ 'rust_analyzer', 'ocamllsp', 'gleam', 'elixirls', 'gopls', 'elp' })
