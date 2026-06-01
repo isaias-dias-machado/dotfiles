@@ -440,3 +440,6 @@ complete -o bashdefault -o default -F _opencode_yargs_completions opencode
 
 setxkbmap -option caps:escape
 . "$HOME/.cargo/env"
+
+# Pi
+export PATH="/home/isaias/.npm-global/bin:$PATH"

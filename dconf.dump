@@ -65,7 +65,7 @@ window-size=(960, 600)
 
 [org/gnome/builder]
 window-maximized=true
-window-size=(-1, -1)
+window-size=(851, 530)
 
 [org/gnome/builder/code-insight]
 semantic-highlighting=false
@@ -872,7 +872,7 @@ sort-column='name'
 sort-directories-first=false
 sort-order='ascending'
 type-format='category'
-window-position=(277, 187)
+window-position=(272, 165)
 window-size=(1366, 691)
 
 [system/proxy]
