@@ -329,6 +329,7 @@ alias clip='xclip -selection clipboard'
 alias db="psql -d $CUR_DATABASE"
 alias droptestdb="MIX_ENV=test mix ecto.drop"
 alias emacs='emacs -nw'
+alias confignvim='cd ~/.config/nvim/'
 
 export ASAN_OPTIONS=abort_on_error=1
 
