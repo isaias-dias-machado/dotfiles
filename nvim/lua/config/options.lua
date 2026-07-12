@@ -20,7 +20,6 @@ vim.opt.softtabstop = 2
 vim.opt.wrap = false
 vim.opt.sidescroll = 5
 vim.opt.sidescrolloff = 0
-vim.opt.textwidth = 80
 vim.opt.wrapmargin = 0
 vim.opt.formatoptions:remove({ "t", "c" })
 
