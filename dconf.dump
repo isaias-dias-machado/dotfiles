@@ -50,13 +50,18 @@ preload-engines=['xkb:us::eng']
 version='1.5.32'
 
 [org/blueman/general]
-window-properties=[541, 352, 1228, 162]
+window-properties=[541, 352, 1243, 249]
 
 [org/blueman/plugins/autoconnect]
 services=[('C3:0F:E7:B3:54:A1', '00000000-0000-0000-0000-000000000000')]
 
 [org/blueman/plugins/recentconns]
-recent-connections=[{'adapter': '9C:FC:E8:A0:8D:12', 'address': '08:DF:1F:D5:CC:CA', 'alias': 'Bose Mini II SoundLink', 'icon': 'audio-card', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1775726807.3066165'}, {'adapter': '9C:FC:E8:A0:8D:12', 'address': 'C3:0F:E7:B3:54:A1', 'alias': 'RP107 MIDI', 'icon': 'blueman', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1784653980.8928154', 'device': '/org/bluez/hci0/dev_C3_0F_E7_B3_54_A1'}, {'adapter': '9C:FC:E8:A0:8D:12', 'address': 'FC:0F:E7:B3:54:A1', 'alias': 'RP107 Audio', 'icon': 'audio-card', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1784653893.9081025', 'device': '/org/bluez/hci0/dev_FC_0F_E7_B3_54_A1'}]
+recent-connections=[{'adapter': '9C:FC:E8:A0:8D:12', 'address': '08:DF:1F:D5:CC:CA', 'alias': 'Bose Mini II SoundLink', 'icon': 'audio-card', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1775726807.3066165'}, {'adapter': '9C:FC:E8:A0:8D:12', 'address': 'C3:0F:E7:B3:54:A1', 'alias': 'RP107 MIDI', 'icon': 'blueman', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1784653980.8928154', 'device': '/org/bluez/hci0/dev_C3_0F_E7_B3_54_A1'}, {'adapter': '9C:FC:E8:A0:8D:12', 'address': 'FC:0F:E7:B3:54:A1', 'alias': 'RP107 Audio', 'icon': 'audio-card', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1784653893.9081025', 'device': '/org/bluez/hci0/dev_FC_0F_E7_B3_54_A1'}, {'adapter': '9C:FC:E8:A0:8D:12', 'address': '28:9A:4B:A7:61:B2', 'alias': 'Rival 3 Wireless', 'icon': 'blueman', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1787565851.0231662', 'device': '/org/bluez/hci0/dev_28_9A_4B_A7_61_B2'}]
+
+[org/gnome/Snapshot]
+is-maximized=false
+window-height=640
+window-width=800
 
 [org/gnome/Totem]
 active-plugins=['movie-properties', 'save-file', 'open-directory', 'recent', 'skipto', 'autoload-subtitles', 'rotation', 'mpris', 'apple-trailers', 'variable-rate', 'screenshot', 'screensaver', 'vimeo']
@@ -291,7 +296,7 @@ sources=[('xkb', 'us')]
 xkb-options=['compose:ralt', 'caps:swapescape', 'grp:win_space_toggle']
 
 [org/gnome/desktop/interface]
-color-scheme='prefer-light'
+color-scheme='prefer-dark'
 cursor-blink=true
 cursor-blink-time=1180
 cursor-size=0
@@ -302,7 +307,7 @@ font-antialiasing='grayscale'
 font-hinting='slight'
 font-name='Sans 10'
 gtk-key-theme=''
-gtk-theme='Adwaita'
+gtk-theme='Adwaita-dark'
 icon-theme='Tango'
 monospace-font-name='DejaVu Sans Mono 13'
 show-battery-percentage=false
