@@ -260,7 +260,7 @@ window-maximized=false
 window-size=(360, 616)
 
 [org/gnome/control-center]
-last-panel='mouse'
+last-panel='background'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/a11y/applications]
@@ -289,6 +289,13 @@ translate=true
 categories=['X-SuSE-YaST']
 name='suse-yast.directory'
 translate=true
+
+[org/gnome/desktop/background]
+picture-options='zoom'
+picture-uri='file:///usr/share/desktop-base/emerald-theme/wallpaper/gnome-background.xml'
+picture-uri-dark='file:///usr/share/desktop-base/emerald-theme/wallpaper/gnome-background.xml'
+primary-color='#ffffff'
+secondary-color='#000000'
 
 [org/gnome/desktop/input-sources]
 current=uint32 0
@@ -386,6 +393,12 @@ two-finger-scrolling-enabled=true
 
 [org/gnome/desktop/privacy]
 report-technical-problems=true
+
+[org/gnome/desktop/screensaver]
+picture-options='zoom'
+picture-uri='file:///usr/share/desktop-base/emerald-theme/wallpaper/gnome-background.xml'
+primary-color='#ffffff'
+secondary-color='#000000'
 
 [org/gnome/desktop/session]
 idle-delay=uint32 300
@@ -627,7 +640,7 @@ name=''
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1774259663
+check-timestamp=int64 1787827665
 first-run=false
 install-timestamp=int64 1771501371
 packagekit-historical-updates-timestamp=uint64 1771501371
