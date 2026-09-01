@@ -58,216 +58,12 @@ services=[('C3:0F:E7:B3:54:A1', '00000000-0000-0000-0000-000000000000')]
 [org/blueman/plugins/recentconns]
 recent-connections=[{'adapter': '9C:FC:E8:A0:8D:12', 'address': '08:DF:1F:D5:CC:CA', 'alias': 'Bose Mini II SoundLink', 'icon': 'audio-card', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1775726807.3066165'}, {'adapter': '9C:FC:E8:A0:8D:12', 'address': 'C3:0F:E7:B3:54:A1', 'alias': 'RP107 MIDI', 'icon': 'blueman', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1784653980.8928154', 'device': '/org/bluez/hci0/dev_C3_0F_E7_B3_54_A1'}, {'adapter': '9C:FC:E8:A0:8D:12', 'address': 'FC:0F:E7:B3:54:A1', 'alias': 'RP107 Audio', 'icon': 'audio-card', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1784653893.9081025', 'device': '/org/bluez/hci0/dev_FC_0F_E7_B3_54_A1'}, {'adapter': '9C:FC:E8:A0:8D:12', 'address': '28:9A:4B:A7:61:B2', 'alias': 'Rival 3 Wireless', 'icon': 'blueman', 'name': 'Audio and input profiles', 'uuid': '00000000-0000-0000-0000-000000000000', 'time': '1787565851.0231662', 'device': '/org/bluez/hci0/dev_28_9A_4B_A7_61_B2'}]
 
-[org/gnome/Snapshot]
-is-maximized=false
-window-height=640
-window-width=800
-
-[org/gnome/Totem]
-active-plugins=['movie-properties', 'save-file', 'open-directory', 'recent', 'skipto', 'autoload-subtitles', 'rotation', 'mpris', 'apple-trailers', 'variable-rate', 'screenshot', 'screensaver', 'vimeo']
-subtitle-encoding='UTF-8'
-
-[org/gnome/baobab/ui]
-is-maximized=false
-window-size=(960, 600)
-
-[org/gnome/builder]
-window-maximized=true
-window-size=(851, 530)
-
-[org/gnome/builder/code-insight]
-semantic-highlighting=false
-
-[org/gnome/builder/editor]
-check-spelling=false
-completion-n-rows=5
-draw-spaces=@as []
-font-name='DejaVu Sans Mono Bold 12'
-interactive-completion=false
-keybindings='vim'
-show-line-changes=false
-show-line-diagnostics=false
-show-line-numbers=false
-show-line-selection-styling=false
-style-scheme-name='Adwaita'
-
-[org/gnome/builder/editor/language/automake]
-insert-spaces-instead-of-tabs=false
-insert-trailing-newline=true
-tab-width=8
-
-[org/gnome/builder/editor/language/blueprint]
-auto-indent=true
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=false
-overwrite-braces=true
-tab-width=2
-
-[org/gnome/builder/editor/language/c-sharp]
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=false
-overwrite-braces=true
-spaces-style=['before-left-paren']
-tab-width=8
-
-[org/gnome/builder/editor/language/c]
-auto-indent=true
-indent-width=2
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-spaces-style=['before-left-paren']
-tab-width=8
-
-[org/gnome/builder/editor/language/chdr]
-auto-indent=true
-indent-width=2
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-spaces-style=['before-left-paren']
-tab-width=8
-
-[org/gnome/builder/editor/language/commonlisp]
-auto-indent=true
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-overwrite-braces=true
-right-margin-position=100
-tab-width=2
-
-[org/gnome/builder/editor/language/cpp]
-auto-indent=true
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-tab-width=4
-
-[org/gnome/builder/editor/language/css]
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-tab-width=2
-
-[org/gnome/builder/editor/language/gradle]
-auto-indent=true
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-overwrite-braces=true
-tab-width=2
-
-[org/gnome/builder/editor/language/html]
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-tab-width=2
-
-[org/gnome/builder/editor/language/java]
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-overwrite-braces=true
-tab-width=2
-
-[org/gnome/builder/editor/language/js]
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-tab-width=2
-
-[org/gnome/builder/editor/language/makefile]
-insert-spaces-instead-of-tabs=false
-insert-trailing-newline=true
-tab-width=8
-
-[org/gnome/builder/editor/language/markdown]
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-tab-width=4
-trim-trailing-whitespace=false
-
-[org/gnome/builder/editor/language/python]
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-tab-width=4
-
-[org/gnome/builder/editor/language/python3]
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-tab-width=4
-
-[org/gnome/builder/editor/language/ruby]
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-tab-width=2
-
-[org/gnome/builder/editor/language/rust]
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-right-margin-position=100
-tab-width=4
-
-[org/gnome/builder/editor/language/vala]
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-tab-width=4
-
-[org/gnome/builder/editor/language/xml]
-auto-indent=true
-insert-matching-brace=true
-insert-spaces-instead-of-tabs=true
-insert-trailing-newline=true
-overwrite-braces=true
-tab-width=2
-
-[org/gnome/builder/shellcmd]
-run-commands=['7cb9dd77-3aa1-4b47-a10c-8f4bd6373219']
-
-[org/gnome/builder/shellcmd/7cb9dd77-3aa1-4b47-a10c-8f4bd6373219]
-accelerator='<Alt>m'
-argv=['./_build.sh']
-cwd='$CWD'
-display-name='build'
-env=@as []
-
-[org/gnome/builder/shellcmd/projects/mini-beam2]
-run-commands=@as []
-
-[org/gnome/calculator]
-base=10
-button-mode='basic'
-source-currency=''
-source-units='degree'
-target-currency=''
-target-units='radian'
-window-maximized=false
-window-size=(360, 616)
-
 [org/gnome/control-center]
-last-panel='background'
+last-panel='mouse'
 window-state=(980, 640, false)
 
-[org/gnome/desktop/a11y/applications]
-screen-magnifier-enabled=false
-
 [org/gnome/desktop/app-folders]
-folder-children=['Utilities', 'YaST']
+folder-children=['System', 'Utilities', 'YaST', 'Pardus']
 
 [org/gnome/desktop/app-folders/folders/Pardus]
 categories=['X-Pardus-Apps']
@@ -280,9 +76,8 @@ name='X-GNOME-Shell-System.directory'
 translate=true
 
 [org/gnome/desktop/app-folders/folders/Utilities]
-apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop']
-categories=['X-GNOME-Utilities']
-name='X-GNOME-Utilities.directory'
+apps=['org.gnome.Connections.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.seahorse.Application.desktop']
+name='X-GNOME-Shell-Utilities.directory'
 translate=true
 
 [org/gnome/desktop/app-folders/folders/YaST]
@@ -298,101 +93,41 @@ primary-color='#ffffff'
 secondary-color='#000000'
 
 [org/gnome/desktop/input-sources]
-current=uint32 0
 sources=[('xkb', 'us')]
-xkb-options=['compose:ralt', 'caps:swapescape', 'grp:win_space_toggle']
+xkb-options=['caps:swapescape', 'compose:ralt']
 
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
-cursor-blink=true
-cursor-blink-time=1180
-cursor-size=0
-cursor-theme='default'
-document-font-name='DejaVu Sans Ultra-Light 13'
-enable-hot-corners=false
-font-antialiasing='grayscale'
-font-hinting='slight'
-font-name='Sans 10'
-gtk-key-theme=''
-gtk-theme='Adwaita-dark'
-icon-theme='Tango'
-monospace-font-name='DejaVu Sans Mono 13'
-show-battery-percentage=false
-text-scaling-factor=1.0
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
-application-children=['libreoffice-writer', 'gnome-power-panel', 'org-gnome-evolution', 'firefox-esr', 'org-gnome-software', 'org-gnome-terminal', 'org-gnome-terminal-preferences', 'org-gnome-settings', 'org-gnome-characters', 'org-gnome-nautilus', 'org-gnome-baobab', 'gnome-network-panel', 'zoom', 'gnome-printers-panel', 'org-gnome-shell-extensions', 'debian-xterm']
+application-children=['gnome-power-panel', 'codium', 'org-gnome-software', 'kitty', 'firefox-esr']
 
-[org/gnome/desktop/notifications/application/debian-xterm]
-application-id='debian-xterm.desktop'
+[org/gnome/desktop/notifications/application/codium]
+application-id='codium.desktop'
 
 [org/gnome/desktop/notifications/application/firefox-esr]
 application-id='firefox-esr.desktop'
 
-[org/gnome/desktop/notifications/application/gnome-network-panel]
-application-id='gnome-network-panel.desktop'
-
 [org/gnome/desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
 
-[org/gnome/desktop/notifications/application/gnome-printers-panel]
-application-id='gnome-printers-panel.desktop'
-
-[org/gnome/desktop/notifications/application/libreoffice-writer]
-application-id='libreoffice-writer.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-baobab]
-application-id='org.gnome.baobab.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-characters]
-application-id='org.gnome.Characters.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-evolution]
-application-id='org.gnome.Evolution.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-nautilus]
-application-id='org.gnome.Nautilus.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-settings]
-application-id='org.gnome.Settings.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-shell-extensions]
-application-id='org.gnome.Shell.Extensions.desktop'
+[org/gnome/desktop/notifications/application/kitty]
+application-id='kitty.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
 
-[org/gnome/desktop/notifications/application/org-gnome-terminal-preferences]
-application-id='org.gnome.Terminal.Preferences.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-terminal]
-application-id='org.gnome.Terminal.desktop'
-
-[org/gnome/desktop/notifications/application/org-pwmt-zathura]
-application-id='org.pwmt.zathura.desktop'
-
-[org/gnome/desktop/notifications/application/zoom]
-application-id='Zoom.desktop'
-
 [org/gnome/desktop/peripherals/keyboard]
-delay=uint32 196
-repeat-interval=uint32 21
+delay=uint32 300
+repeat-interval=uint32 18
 
 [org/gnome/desktop/peripherals/mouse]
-accel-profile='flat'
-double-click=400
-drag-threshold=8
-speed=0.25764192139737996
+speed=0.0
 
 [org/gnome/desktop/peripherals/touchpad]
-send-events='enabled'
-speed=0.8340611353711791
-tap-to-click=false
+speed=0.50638297872340421
 two-finger-scrolling-enabled=true
-
-[org/gnome/desktop/privacy]
-report-technical-problems=true
 
 [org/gnome/desktop/screensaver]
 picture-options='zoom'
@@ -400,474 +135,35 @@ picture-uri='file:///usr/share/desktop-base/emerald-theme/wallpaper/gnome-backgr
 primary-color='#ffffff'
 secondary-color='#000000'
 
-[org/gnome/desktop/session]
-idle-delay=uint32 300
-
-[org/gnome/desktop/sound]
-allow-volume-above-100-percent=true
-event-sounds=false
-input-feedback-sounds=false
-theme-name='default'
-
-[org/gnome/desktop/wm/keybindings]
-begin-move=['<Shift><Alt>l']
-begin-resize=['<Shift><Alt>semicolon']
-close=['<Shift><Alt>q']
-lower=['<Shift><Alt>j']
-minimize=['<Shift><Alt>h']
-move-to-center=['<Shift><Alt>m']
-raise=['<Shift><Alt>k']
-switch-to-workspace-1=['<Shift><Alt>7']
-switch-to-workspace-2=['<Shift><Alt>8']
-switch-to-workspace-3=['<Shift><Alt>9']
-switch-to-workspace-4=['<Shift><Alt>0']
-switch-windows=['<Alt>grave']
-switch-windows-backward=['<Shift><Alt>grave']
-
 [org/gnome/desktop/wm/preferences]
-action-middle-click-titlebar='lower'
-button-layout='icon,menu:minimize,maximize,close'
-theme='Adwaita'
-titlebar-font='Cantarell Bold 8'
-titlebar-uses-system-font=false
-
-[org/gnome/evince/default]
-continuous=true
-dual-page=false
-dual-page-odd-left=false
-enable-spellchecking=true
-fullscreen=false
-inverted-colors=false
-show-sidebar=true
-sidebar-page='thumbnails'
-sidebar-size=132
-sizing-mode='automatic'
-window-ratio=(1.2648148148148148, 1.1358024691358024)
+mouse-button-modifier='<Alt>'
+resize-with-right-button=true
 
 [org/gnome/evolution-data-server]
 migrated=true
 
-[org/gnome/evolution]
-version='3.46.4'
-
-[org/gnome/evolution/addressbook]
-completion-minimum-query-length=3
-completion-show-address=false
-
-[org/gnome/evolution/calendar]
-allow-direct-summary-edit=false
-confirm-purge=true
-date-navigator-pane-position=191
-editor-show-timezone=false
-primary-memos='system-memo-list'
-primary-tasks='system-task-list'
-tag-vpane-position=0.001097694840834218
-time-divisions=30
-week-start-day-name='monday'
-work-day-friday=true
-work-day-monday=true
-work-day-saturday=false
-work-day-sunday=false
-work-day-thursday=true
-work-day-tuesday=true
-work-day-wednesday=true
-
-[org/gnome/evolution/mail]
-browser-close-on-reply-policy='ask'
-composer-visually-wrap-long-lines=false
-forward-style-name='attached'
-image-loading-policy='never'
-junk-check-custom-header=true
-junk-empty-on-exit-days=0
-junk-lookup-addressbook=false
-paned-size=1145962
-reply-style-name='quoted'
-to-do-bar-width=1150000
-trash-empty-on-exit-days=0
-
-[org/gnome/evolution/mail/composer-window]
-height=500
-maximized=false
-width=664
-
-[org/gnome/evolution/shell]
-default-component-id='mail'
-folder-bar-width=315
-
-[org/gnome/evolution/shell/window]
-height=480
-maximized=true
-width=640
-x=0
-y=32
-
-[org/gnome/file-roller/listing]
-list-mode='as-folder'
-show-path=false
-sort-method='name'
-sort-type='ascending'
-
-[org/gnome/file-roller/ui]
-sidebar-width=200
-window-height=480
-window-width=600
-
-[org/gnome/gnome-system-monitor]
-maximized=false
-show-dependencies=false
-show-whose-processes='user'
-window-height=720
-window-width=800
-
-[org/gnome/gnome-system-monitor/proctree]
-col-26-visible=false
-col-26-width=0
-
-[org/gnome/nautilus/icon-view]
-default-zoom-level='small'
-
-[org/gnome/nautilus/list-view]
-default-zoom-level='small'
-
 [org/gnome/nautilus/preferences]
-default-folder-viewer='list-view'
+default-folder-viewer='icon-view'
 migrated-gtk-settings=true
 search-filter-time-type='last_modified'
-search-view='icon-view'
-show-image-thumbnails='never'
 
 [org/gnome/nautilus/window-state]
-initial-size=(984, 633)
+initial-size=(890, 550)
 initial-size-file-chooser=(890, 550)
-maximized=false
-
-[org/gnome/nm-applet/eap/09ef7856-2772-4962-9460-8c9c7aeb58a8]
-ignore-ca-cert=false
-ignore-phase2-ca-cert=false
-
-[org/gnome/nm-applet/eap/5a814732-f876-4ba2-aa6c-16e859018ed2]
-ignore-ca-cert=false
-ignore-phase2-ca-cert=false
-
-[org/gnome/portal/filechooser/org.gnome.Nautilus]
-last-folder-path='/home/isaias/Videos/The Godfather Part III 1990 Coda Cut REMASTERED 1080p BluRay H264 AAC 5.1'
-
-[org/gnome/settings-daemon/plugins/color]
-night-light-schedule-automatic=false
-
-[org/gnome/settings-daemon/plugins/media-keys]
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
-logout=@as []
-
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
-binding='<Alt>Return'
-command='gnome-terminal'
-name='Terminal'
-
-[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1]
-binding='<Control><Alt>Delete'
-command='systemctl hibernate'
-name='Shutdown'
-
-[org/gnome/settings-daemon/plugins/power]
-power-button-action='hibernate'
-sleep-inactive-ac-type='nothing'
 
 [org/gnome/shell]
-app-picker-layout=[{'org.gnome.Calendar.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'org.gnome.Music.desktop': <{'position': <5>}>, 'simple-scan.desktop': <{'position': <6>}>, 'org.gnome.Settings.desktop': <{'position': <7>}>, 'libreoffice-startcenter.desktop': <{'position': <8>}>, 'org.gnome.Totem.desktop': <{'position': <9>}>, 'org.gnome.Snapshot.desktop': <{'position': <10>}>, 'org.gnome.Characters.desktop': <{'position': <11>}>, 'Utilities': <{'position': <12>}>, 'libreoffice-calc.desktop': <{'position': <13>}>, 'libreoffice-draw.desktop': <{'position': <14>}>, 'org.gnome.Tour.desktop': <{'position': <15>}>, 'libreoffice-impress.desktop': <{'position': <16>}>, 'org.gnome.Shotwell.desktop': <{'position': <17>}>, 'org.gnome.SoundRecorder.desktop': <{'position': <18>}>, 'htop.desktop': <{'position': <19>}>, 'gvim.desktop': <{'position': <20>}>, 'org.gnome.Calculator.desktop': <{'position': <21>}>, 'org.gnome.font-viewer.desktop': <{'position': <22>}>, 'org.gnome.Loupe.desktop': <{'position': <23>}>}, {'im-config.desktop': <{'position': <0>}>, 'org.freedesktop.MalcontentControl.desktop': <{'position': <1>}>, 'org.gnome.SystemMonitor.desktop': <{'position': <2>}>, 'org.gnome.TextEditor.desktop': <{'position': <3>}>}]
-command-history=['gnome-terminal', 'source /home/isaias/.profile', 'r', 'gnome-terminal --tab', "'gnome-terminal --tab'", 'sudo systemctl hibernate', 'systemctl hibernate']
-enabled-extensions=['native-window-placement@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'forge@jmmaranan.com']
-favorite-apps=['firefox-esr.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Evolution.desktop', 'libreoffice-writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
 last-selected-power-profile='power-saver'
-welcome-dialog-last-shown-version='43.9'
-
-[org/gnome/shell/extensions/forge]
-auto-split-enabled=false
-css-last-update=uint32 37
-float-always-on-top-enabled=false
-focus-border-toggle=false
-focus-on-hover-enabled=false
-stacked-tiling-mode-enabled=false
-tabbed-tiling-mode-enabled=false
-tiling-mode-enabled=true
-
-[org/gnome/shell/extensions/forge/keybindings]
-con-split-horizontal=['<Super>z']
-con-split-layout-toggle=['<Super>g']
-con-split-vertical=['<Super>v']
-con-stacked-layout-toggle=['<Shift><Super>s']
-con-tabbed-layout-toggle=['<Shift><Super>t']
-con-tabbed-showtab-decoration-toggle=['<Control><Alt>y']
-focus-border-toggle=['<Super>x']
-mod-mask-mouse-tile='None'
-prefs-tiling-toggle=['<Super>w']
-window-focus-down=['<Super>j']
-window-focus-left=['<Super>h']
-window-focus-right=['<Super>l']
-window-focus-up=['<Super>k']
-window-gap-size-decrease=['<Control><Super>minus']
-window-gap-size-increase=['<Control><Super>plus']
-window-move-down=['<Shift><Super>j']
-window-move-left=['<Shift><Super>h']
-window-move-right=['<Shift><Super>l']
-window-move-up=['<Shift><Super>k']
-window-resize-bottom-decrease=['<Shift><Control><Super>i']
-window-resize-bottom-increase=['<Control><Super>u']
-window-resize-left-decrease=['<Shift><Control><Super>o']
-window-resize-left-increase=['<Control><Super>y']
-window-resize-right-decrease=['<Shift><Control><Super>y']
-window-resize-right-increase=['<Control><Super>o']
-window-resize-top-decrease=['<Shift><Control><Super>u']
-window-resize-top-increase=['<Control><Super>i']
-window-snap-center=['<Control><Alt>c']
-window-snap-one-third-left=['<Control><Alt>d']
-window-snap-one-third-right=['<Control><Alt>g']
-window-snap-two-third-left=['<Control><Alt>e']
-window-snap-two-third-right=['<Control><Alt>t']
-window-swap-down=['<Control><Super>j']
-window-swap-last-active=['<Super>Return']
-window-swap-left=['<Control><Super>h']
-window-swap-right=['<Control><Super>l']
-window-swap-up=['<Control><Super>k']
-window-toggle-always-float=['<Shift><Super>c']
-window-toggle-float=['<Super>c']
-workspace-active-tile-toggle=['<Shift><Super>w']
-
-[org/gnome/shell/extensions/user-theme]
-name=''
+welcome-dialog-last-shown-version='48.7'
 
 [org/gnome/shell/world-clocks]
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1787827665
+check-timestamp=int64 1788255973
 first-run=false
 install-timestamp=int64 1771501371
 packagekit-historical-updates-timestamp=uint64 1771501371
-update-notification-timestamp=int64 1774174826
-
-[org/gnome/system/location]
-enabled=false
-
-[org/gnome/terminal/legacy]
-default-show-menubar=false
-headerbar=@mb false
-theme-variant='system'
-
-[org/gnome/terminal/legacy/keybindings]
-new-tab='<Primary><Shift>t'
-preferences='<Primary>comma'
-
-[org/gnome/terminal/legacy/profiles:]
-default='bd4e5382-50e9-4f83-8b57-cde5dbf47d03'
-list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', 'bd4e5382-50e9-4f83-8b57-cde5dbf47d03', 'd46ea5cd-4d02-4e0b-9486-ca8de088e325', '7c4bd8a3-3194-4434-9db1-d23da0488b42', '3bae07cf-7976-4305-9657-8a806caaa62d', '3b4da913-8b99-40df-9115-adaccaadbd2e', '9bee0182-f583-4b89-898c-90ab831cbc03']
-
-[org/gnome/terminal/legacy/profiles:/:3b4da913-8b99-40df-9115-adaccaadbd2e]
-allow-bold=true
-audible-bell=false
-background-color='#1E1E28282C2C'
-bold-color='#C3C3C7C7D1D1'
-bold-color-same-as-fg=true
-cursor-background-color='#65657B7B8383'
-cursor-blink-mode='on'
-cursor-colors-set=true
-cursor-foreground-color='#1E1E28282C2C'
-custom-command='zellij -l welcome'
-default-size-columns=80
-default-size-rows=36
-font='DejaVu Sans Mono 10'
-foreground-color='#C3C3C7C7D1D1'
-highlight-colors-set=false
-login-shell=true
-palette=['#070736364141', '#EBEB60606B6B', '#C3C3E8E88D8D', '#F7F7EBEB9595', '#8080CBCBC3C3', '#FFFF24249090', '#AEAEDDDDFFFF', '#FFFFFFFFFFFF', '#00002B2B3636', '#EBEB60606B6B', '#C3C3E8E88D8D', '#F7F7EBEB9595', '#7D7DC6C6BFBF', '#6C6C7171C3C3', '#343443434D4D', '#FFFFFFFFFFFF']
-scrollbar-policy='never'
-use-custom-command=true
-use-system-font=false
-use-theme-background=false
-use-theme-colors=false
-use-theme-transparency=false
-visible-name='Material'
-
-[org/gnome/terminal/legacy/profiles:/:3bae07cf-7976-4305-9657-8a806caaa62d]
-allow-bold=true
-audible-bell=false
-background-color='#000000000000'
-bold-color='#EAEAEAEAEAEA'
-bold-color-same-as-fg=true
-cursor-background-color='#EAEAEAEAEAEA'
-cursor-blink-mode='on'
-cursor-colors-set=true
-cursor-foreground-color='#000000000000'
-default-size-columns=80
-default-size-rows=36
-font='DejaVu Sans Mono 12'
-foreground-color='#EAEAEAEAEAEA'
-highlight-colors-set=false
-login-shell=true
-palette=['#2A2A2A2A2A2A', '#D5D54E4E5353', '#B9B9CACA4A4A', '#E7E7C5C54747', '#7A7AA6A6DADA', '#C3C39797D8D8', '#7070C0C0B1B1', '#EAEAEAEAEAEA', '#969698989696', '#D5D54E4E5353', '#B9B9CACA4A4A', '#E7E7C5C54747', '#7A7AA6A6DADA', '#C3C39797D8D8', '#7070C0C0B1B1', '#FFFFFFFFFFFF']
-scrollbar-policy='never'
-use-system-font=false
-use-theme-background=false
-use-theme-colors=true
-use-theme-transparency=false
-visible-name='Tomorrow Night Bright'
-
-[org/gnome/terminal/legacy/profiles:/:7c4bd8a3-3194-4434-9db1-d23da0488b42]
-allow-bold=true
-audible-bell=false
-background-color='#2E2E34344040'
-bold-color='#D8D8DEDEE9E9'
-bold-color-same-as-fg=true
-cursor-background-color='#D8D8DEDEE9E9'
-cursor-blink-mode='on'
-cursor-colors-set=true
-cursor-foreground-color='#2E2E34344040'
-default-size-columns=80
-default-size-rows=36
-font='DejaVuSansM Nerd Font Mono 12'
-foreground-color='#D8D8DEDEE9E9'
-highlight-colors-set=false
-login-shell=true
-palette=['#3B3B42425252', '#BFBF61616A6A', '#A3A3BEBE8C8C', '#EBEBCBCB8B8B', '#8181A1A1C1C1', '#B4B48E8EADAD', '#8888C0C0D0D0', '#E5E5E9E9F0F0', '#4C4C56566A6A', '#BFBF61616A6A', '#A3A3BEBE8C8C', '#EBEBCBCB8B8B', '#8181A1A1C1C1', '#B4B48E8EADAD', '#8F8FBCBCBBBB', '#ECECEFEFF4F4']
-scrollbar-policy='never'
-use-system-font=false
-use-theme-background=false
-use-theme-colors=false
-use-theme-transparency=false
-visible-name='Nord'
-
-[org/gnome/terminal/legacy/profiles:/:9bee0182-f583-4b89-898c-90ab831cbc03]
-allow-bold=true
-audible-bell=false
-background-color='#282828282828'
-bold-color='#D4D4BEBE9898'
-bold-color-same-as-fg=true
-cursor-background-color='#D4D4BEBE9898'
-cursor-blink-mode='on'
-cursor-colors-set=true
-cursor-foreground-color='#282828282828'
-custom-command='zellij -l welcome'
-default-size-columns=80
-default-size-rows=36
-font='DejaVuSansM Nerd Font Mono 10'
-foreground-color='#D4D4BEBE9898'
-highlight-colors-set=false
-login-shell=true
-palette=['#3C3C38383636', '#EAEA69696262', '#A9A9B6B66565', '#D8D8A6A65757', '#7D7DAEAEA3A3', '#D3D386869B9B', '#8989B4B48282', '#D4D4BEBE9898', '#3C3C38383636', '#EAEA69696262', '#A9A9B6B66565', '#D8D8A6A65757', '#7D7DAEAEA3A3', '#D3D386869B9B', '#8989B4B48282', '#D4D4BEBE9898']
-scrollbar-policy='never'
-use-custom-command=true
-use-system-font=false
-use-theme-background=false
-use-theme-colors=false
-use-theme-transparency=false
-visible-name='Gruvbox Material Dark'
-
-[org/gnome/terminal/legacy/profiles:/:Gruvbox-material-light]
-allow-bold=true
-audible-bell=false
-background-color='#FBFBF1F1C7C7'
-bold-color='#656547473535'
-bold-color-same-as-fg=true
-cursor-background-color='#656547473535'
-cursor-blink-mode='on'
-cursor-colors-set=true
-cursor-foreground-color='#FBFBF1F1C7C7'
-default-size-columns=80
-default-size-rows=36
-font='DejaVuSansM Nerd Font Mono 12'
-foreground-color='#656547473535'
-highlight-colors-set=false
-login-shell=true
-palette=['#F2F2E5E5BCBC', '#C1C14A4A4A4A', '#6C6C78782E2E', '#B4B471710909', '#454570707A7A', '#94945E5E8080', '#4C4C7A7A5D5D', '#656547473535', '#F2F2E5E5BCBC', '#C1C14A4A4A4A', '#6C6C78782E2E', '#B4B471710909', '#454570707A7A', '#94945E5E8080', '#4C4C7A7A5D5D', '#656547473535']
-scrollbar-policy='never'
-use-system-font=false
-use-theme-background=false
-use-theme-colors=false
-use-theme-transparency=false
-visible-name='Gruvbox Material Light'
-
-[org/gnome/terminal/legacy/profiles:/:Nord]
-allow-bold=true
-audible-bell=false
-background-color='#2E2E34344040'
-bold-color='#D8D8DEDEE9E9'
-bold-color-same-as-fg=true
-cursor-background-color='#D8D8DEDEE9E9'
-cursor-blink-mode='on'
-cursor-colors-set=true
-cursor-foreground-color='#2E2E34344040'
-default-size-columns=80
-default-size-rows=36
-font='DejaVu Sans Mono 16'
-foreground-color='#D8D8DEDEE9E9'
-highlight-colors-set=false
-login-shell=true
-palette=['#3B3B42425252', '#BFBF61616A6A', '#A3A3BEBE8C8C', '#EBEBCBCB8B8B', '#8181A1A1C1C1', '#B4B48E8EADAD', '#8888C0C0D0D0', '#E5E5E9E9F0F0', '#4C4C56566A6A', '#BFBF61616A6A', '#A3A3BEBE8C8C', '#EBEBCBCB8B8B', '#8181A1A1C1C1', '#B4B48E8EADAD', '#8F8FBCBCBBBB', '#ECECEFEFF4F4']
-scrollbar-policy='never'
-use-system-font=false
-use-theme-background=false
-use-theme-colors=false
-use-theme-transparency=false
-visible-name='Nord'
-
-[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-audible-bell=false
-background-color='rgb(0,0,0)'
-bold-is-bright=true
-cursor-blink-mode='on'
-custom-command='zellij -l welcome'
-default-size-columns=80
-default-size-rows=36
-font='DejaVu Sans Mono 16'
-foreground-color='rgb(255,255,255)'
-login-shell=true
-palette=['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']
-scrollbar-policy='never'
-use-custom-command=true
-use-system-font=false
-use-theme-colors=true
-visible-name='Solarized'
-
-[org/gnome/terminal/legacy/profiles:/:bd4e5382-50e9-4f83-8b57-cde5dbf47d03]
-audible-bell=false
-background-color='rgb(39,51,139)'
-bold-is-bright=false
-cursor-blink-mode='off'
-custom-command='tmux'
-font='DejaVuSansM Nerd Font Mono 12'
-foreground-color='rgb(255,255,255)'
-login-shell=true
-palette=['rgb(0,0,0)', 'rgb(205,0,0)', 'rgb(0,205,0)', 'rgb(205,205,0)', 'rgb(0,0,238)', 'rgb(205,0,205)', 'rgb(0,205,205)', 'rgb(229,229,229)', 'rgb(127,127,127)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(255,255,0)', 'rgb(92,92,255)', 'rgb(255,0,255)', 'rgb(0,255,255)', 'rgb(255,255,255)']
-scroll-on-output=true
-scrollbar-policy='never'
-use-custom-command=false
-use-system-font=false
-use-theme-colors=false
-visible-name='new'
-
-[org/gnome/terminal/legacy/profiles:/:d46ea5cd-4d02-4e0b-9486-ca8de088e325]
-allow-bold=true
-audible-bell=false
-background-color='#28282A2A3636'
-bold-color='#F8F8F8F8F2F2'
-bold-color-same-as-fg=true
-cursor-background-color='#F8F8F8F8F2F2'
-cursor-blink-mode='on'
-cursor-colors-set=true
-cursor-foreground-color='#28282A2A3636'
-default-size-columns=80
-default-size-rows=36
-font='DejaVu Sans Mono 16'
-foreground-color='#F8F8F8F8F2F2'
-highlight-colors-set=false
-login-shell=true
-palette=['#262626262626', '#E6E647474747', '#4242E6E66C6C', '#E4E4F3F34A4A', '#9B9B6B6BDFDF', '#E3E35656A7A7', '#7575D7D7ECEC', '#F8F8F8F8F2F2', '#7A7A7A7A7A7A', '#FFFF55555555', '#5050FAFA7B7B', '#F1F1FAFA8C8C', '#BDBD9393F9F9', '#FFFF7979C6C6', '#8B8BE9E9FDFD', '#F9F9F9F9FBFB']
-scrollbar-policy='never'
-use-system-font=false
-use-theme-background=false
-use-theme-colors=false
-use-theme-transparency=false
-visible-name='Dracula'
+update-notification-timestamp=int64 1787840663
 
 [org/gtk/gtk4/settings/file-chooser]
 date-format='regular'
@@ -898,7 +194,7 @@ sort-column='name'
 sort-directories-first=false
 sort-order='descending'
 type-format='category'
-window-position=(272, 165)
+window-position=(26, 23)
 window-size=(1366, 691)
 
 [system/proxy]

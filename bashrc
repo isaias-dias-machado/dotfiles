@@ -294,6 +294,10 @@ cafe() {
 
 #====================================================================
 
+
+export PATH="/home/isaias/.npm-global/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
@@ -379,6 +383,13 @@ cman() {
     xargs -r man
 }
 
+goman() {
+ go list std |
+  fzf --preview 'go doc {} 2>/dev/null' \
+      --preview-window=right:70% |
+  xargs -r godoc-cli -pager
+}
+
 perfon() {
   echo "-1" | sudo tee /proc/sys/kernel/perf_event_paranoid
   echo 0 | sudo tee /proc/sys/kernel/nmi_watchdog
@@ -439,8 +450,8 @@ _opencode_yargs_completions() {
 complete -o bashdefault -o default -F _opencode_yargs_completions opencode
 ###-end-opencode-completions-###
 
-setxkbmap -option caps:escape
 . "$HOME/.cargo/env"
 
-# Pi
-export PATH="/home/isaias/.npm-global/bin:$PATH"
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
