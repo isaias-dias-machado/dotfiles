@@ -123,7 +123,7 @@ delay=uint32 300
 repeat-interval=uint32 18
 
 [org/gnome/desktop/peripherals/mouse]
-speed=0.0
+speed=-0.13191489361702124
 
 [org/gnome/desktop/peripherals/touchpad]
 speed=0.50638297872340421
@@ -134,6 +134,9 @@ picture-options='zoom'
 picture-uri='file:///usr/share/desktop-base/emerald-theme/wallpaper/gnome-background.xml'
 primary-color='#ffffff'
 secondary-color='#000000'
+
+[org/gnome/desktop/search-providers]
+sort-order=['org.gnome.Settings.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop']
 
 [org/gnome/desktop/wm/preferences]
 mouse-button-modifier='<Alt>'
@@ -159,11 +162,11 @@ welcome-dialog-last-shown-version='48.7'
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1788255973
+check-timestamp=int64 1788710421
 first-run=false
 install-timestamp=int64 1771501371
 packagekit-historical-updates-timestamp=uint64 1771501371
-update-notification-timestamp=int64 1787840663
+update-notification-timestamp=int64 1788605655
 
 [org/gtk/gtk4/settings/file-chooser]
 date-format='regular'

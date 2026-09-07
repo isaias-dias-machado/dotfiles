@@ -335,6 +335,8 @@ alias droptestdb="MIX_ENV=test mix ecto.drop"
 alias emacs='emacs -nw'
 alias confignvim='cd ~/.config/nvim/'
 
+alias netshoot='kubectl run netshoot --rm -i --tty --image=nicolaka/netshoot -- /bin/bash'
+
 export ASAN_OPTIONS=abort_on_error=1
 
 alias vimplugs="cd ~/.local/share/nvim/site/pack/plugins/start/"
