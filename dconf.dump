@@ -65,6 +65,16 @@ window-size=(-1, -1)
 [org/gnome/builder/editor]
 style-scheme-name='Adwaita-dark'
 
+[org/gnome/calculator]
+base=10
+button-mode='basic'
+source-currency=''
+source-units='degree'
+target-currency=''
+target-units='radian'
+window-maximized=false
+window-size=(360, 616)
+
 [org/gnome/control-center]
 last-panel='mouse'
 window-state=(980, 640, false)
@@ -104,7 +114,7 @@ sources=[('xkb', 'us')]
 xkb-options=['caps:swapescape', 'compose:ralt']
 
 [org/gnome/desktop/interface]
-color-scheme='prefer-dark'
+color-scheme='prefer-light'
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
@@ -183,7 +193,7 @@ welcome-dialog-last-shown-version='48.7'
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1788950867
+check-timestamp=int64 1789031620
 first-run=false
 install-timestamp=int64 1771501371
 packagekit-historical-updates-timestamp=uint64 1771501371
