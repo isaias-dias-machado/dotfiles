@@ -202,11 +202,11 @@ welcome-dialog-last-shown-version='48.7'
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1789031620
+check-timestamp=int64 1789321351
 first-run=false
 install-timestamp=int64 1771501371
 packagekit-historical-updates-timestamp=uint64 1771501371
-update-notification-timestamp=int64 1788865891
+update-notification-timestamp=int64 1789321402
 
 [org/gtk/gtk4/settings/file-chooser]
 date-format='regular'
