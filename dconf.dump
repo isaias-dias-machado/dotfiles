@@ -76,7 +76,7 @@ window-maximized=false
 window-size=(360, 616)
 
 [org/gnome/control-center]
-last-panel='keyboard'
+last-panel='power'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
@@ -114,7 +114,8 @@ sources=[('xkb', 'us')]
 xkb-options=['caps:swapescape', 'compose:ralt']
 
 [org/gnome/desktop/interface]
-color-scheme='prefer-dark'
+color-scheme='prefer-light'
+text-scaling-factor=1.25
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
@@ -167,11 +168,11 @@ enable-spellchecking=true
 fullscreen=false
 inverted-colors=false
 show-sidebar=true
-sidebar-page='links'
+sidebar-page='thumbnails'
 sidebar-size=148
 sizing-mode='free'
-window-ratio=(0.33895049628001833, 0.23604669003528894)
-zoom=0.57870370370370372
+window-ratio=(0.66389548693586697, 0.31208053691275167)
+zoom=2.3751469430021119
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -184,6 +185,9 @@ search-filter-time-type='last_modified'
 [org/gnome/nautilus/window-state]
 initial-size=(890, 550)
 initial-size-file-chooser=(890, 550)
+
+[org/gnome/settings-daemon/plugins/color]
+night-light-schedule-automatic=false
 
 [org/gnome/settings-daemon/plugins/media-keys]
 custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
@@ -202,7 +206,7 @@ welcome-dialog-last-shown-version='48.7'
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1789422179
+check-timestamp=int64 1789911734
 first-run=false
 install-timestamp=int64 1789330888
 packagekit-historical-updates-timestamp=uint64 1789330888
