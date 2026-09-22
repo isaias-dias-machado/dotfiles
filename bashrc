@@ -1,6 +1,7 @@
 source $HOME/.env
 
 export EDITOR="nvim"
+export J2D_UISCALE=2.0
 
 get_kube_context() {
   local var=$(kubectl config current-context 2>/dev/null)

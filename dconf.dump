@@ -75,8 +75,13 @@ target-units='radian'
 window-maximized=false
 window-size=(360, 616)
 
+[org/gnome/calendar]
+active-view='month'
+window-maximized=true
+window-size=(768, 600)
+
 [org/gnome/control-center]
-last-panel='power'
+last-panel='wifi'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
@@ -114,12 +119,12 @@ sources=[('xkb', 'us')]
 xkb-options=['caps:swapescape', 'compose:ralt']
 
 [org/gnome/desktop/interface]
-color-scheme='prefer-light'
+color-scheme='prefer-dark'
 text-scaling-factor=1.25
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
-application-children=['gnome-power-panel', 'codium', 'org-gnome-software', 'kitty', 'firefox-esr']
+application-children=['gnome-power-panel', 'codium', 'org-gnome-software', 'kitty', 'firefox-esr', 'org-gnome-settings']
 
 [org/gnome/desktop/notifications/application/codium]
 application-id='codium.desktop'
@@ -132,6 +137,9 @@ application-id='gnome-power-panel.desktop'
 
 [org/gnome/desktop/notifications/application/kitty]
 application-id='kitty.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-settings]
+application-id='org.gnome.Settings.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
@@ -186,6 +194,10 @@ search-filter-time-type='last_modified'
 initial-size=(890, 550)
 initial-size-file-chooser=(890, 550)
 
+[org/gnome/nm-applet/eap/cd884e87-3f09-466e-b614-b338aa297f37]
+ignore-ca-cert=true
+ignore-phase2-ca-cert=false
+
 [org/gnome/settings-daemon/plugins/color]
 night-light-schedule-automatic=false
 
@@ -206,7 +218,7 @@ welcome-dialog-last-shown-version='48.7'
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1789911734
+check-timestamp=int64 1790076393
 first-run=false
 install-timestamp=int64 1789330888
 packagekit-historical-updates-timestamp=uint64 1789330888
