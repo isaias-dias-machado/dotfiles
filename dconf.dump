@@ -119,7 +119,7 @@ sources=[('xkb', 'us')]
 xkb-options=['caps:swapescape', 'compose:ralt']
 
 [org/gnome/desktop/interface]
-color-scheme='prefer-dark'
+color-scheme='prefer-light'
 text-scaling-factor=1.25
 toolkit-accessibility=false
 
@@ -218,7 +218,7 @@ welcome-dialog-last-shown-version='48.7'
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1790076393
+check-timestamp=int64 1790151043
 first-run=false
 install-timestamp=int64 1789330888
 packagekit-historical-updates-timestamp=uint64 1789330888
