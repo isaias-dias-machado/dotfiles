@@ -179,8 +179,8 @@ show-sidebar=true
 sidebar-page='thumbnails'
 sidebar-size=148
 sizing-mode='free'
-window-ratio=(0.66389548693586697, 0.31208053691275167)
-zoom=2.3751469430021119
+window-ratio=(0.66444444444444439, 0.31166666666666665)
+zoom=1.2683215304858813
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -218,7 +218,7 @@ welcome-dialog-last-shown-version='48.7'
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1790151043
+check-timestamp=int64 1790230872
 first-run=false
 install-timestamp=int64 1789330888
 packagekit-historical-updates-timestamp=uint64 1789330888
