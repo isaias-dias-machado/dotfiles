@@ -9,6 +9,7 @@ lock-on-suspend=true
 server-auto-retrieve=false
 
 [apps/seahorse/listing]
+item-filter='any'
 keyrings-selected=['secret-service:///org/freedesktop/secrets/collection/login']
 
 [apps/seahorse/windows/key-manager]
@@ -81,7 +82,7 @@ window-maximized=true
 window-size=(768, 600)
 
 [org/gnome/control-center]
-last-panel='wifi'
+last-panel='power'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
@@ -119,7 +120,7 @@ sources=[('xkb', 'us')]
 xkb-options=['caps:swapescape', 'compose:ralt']
 
 [org/gnome/desktop/interface]
-color-scheme='prefer-light'
+color-scheme='prefer-dark'
 text-scaling-factor=1.25
 toolkit-accessibility=false
 
@@ -185,6 +186,35 @@ zoom=1.2683215304858813
 [org/gnome/evolution-data-server]
 migrated=true
 
+[org/gnome/evolution]
+version='3.56.2'
+
+[org/gnome/evolution/calendar]
+week-start-day-name='monday'
+work-day-friday=true
+work-day-monday=true
+work-day-saturday=false
+work-day-sunday=false
+work-day-thursday=true
+work-day-tuesday=true
+work-day-wednesday=true
+
+[org/gnome/evolution/mail]
+browser-close-on-reply-policy='ask'
+forward-style-name='attached'
+image-loading-policy='never'
+paned-size=1188796
+reply-style-name='quoted'
+to-do-bar-width=1150000
+
+[org/gnome/evolution/shell]
+default-component-id='mail'
+
+[org/gnome/evolution/shell/window]
+maximized=true
+x=0
+y=0
+
 [org/gnome/nautilus/preferences]
 default-folder-viewer='icon-view'
 migrated-gtk-settings=true
@@ -218,11 +248,11 @@ welcome-dialog-last-shown-version='48.7'
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1790230872
+check-timestamp=int64 1790664214
 first-run=false
 install-timestamp=int64 1789330888
 packagekit-historical-updates-timestamp=uint64 1789330888
-update-notification-timestamp=int64 1789422120
+update-notification-timestamp=int64 1790589862
 
 [org/gtk/gtk4/settings/file-chooser]
 date-format='regular'

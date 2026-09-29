@@ -298,6 +298,7 @@ cafe() {
 
 export PATH="/home/isaias/.npm-global/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
+export PATH="/home/isaias/mestrado/cp/scripts:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
