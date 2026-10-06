@@ -51,7 +51,7 @@ preload-engines=['xkb:us::eng']
 version='1.5.32'
 
 [org/blueman/general]
-window-properties=[541, 352, 1243, 249]
+window-properties=[627, 441, 0, 0]
 
 [org/blueman/plugins/autoconnect]
 services=[('C3:0F:E7:B3:54:A1', '00000000-0000-0000-0000-000000000000')]
@@ -88,7 +88,7 @@ window-maximized=true
 window-size=(768, 600)
 
 [org/gnome/control-center]
-last-panel='wifi'
+last-panel='sound'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
@@ -261,7 +261,7 @@ locations=[<(uint32 2, <('Lisbon', 'LPPT', true, [(0.6766059791742326, -0.159406
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1791178822
+check-timestamp=int64 1791281290
 first-run=false
 install-timestamp=int64 1790716297
 packagekit-historical-updates-timestamp=uint64 1790716297
