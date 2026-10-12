@@ -88,7 +88,7 @@ window-maximized=true
 window-size=(768, 600)
 
 [org/gnome/control-center]
-last-panel='sound'
+last-panel='power'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
@@ -131,10 +131,13 @@ text-scaling-factor=1.25
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
-application-children=['gnome-power-panel', 'codium', 'org-gnome-software', 'kitty', 'firefox-esr', 'org-gnome-settings', 'thunderbird']
+application-children=['gnome-power-panel', 'codium', 'org-gnome-software', 'kitty', 'firefox-esr', 'org-gnome-settings', 'thunderbird', 'org-wireshark-wireshark', 'discord', 'libreoffice-writer']
 
 [org/gnome/desktop/notifications/application/codium]
 application-id='codium.desktop'
+
+[org/gnome/desktop/notifications/application/discord]
+application-id='discord.desktop'
 
 [org/gnome/desktop/notifications/application/firefox-esr]
 application-id='firefox-esr.desktop'
@@ -145,11 +148,17 @@ application-id='gnome-power-panel.desktop'
 [org/gnome/desktop/notifications/application/kitty]
 application-id='kitty.desktop'
 
+[org/gnome/desktop/notifications/application/libreoffice-writer]
+application-id='libreoffice-writer.desktop'
+
 [org/gnome/desktop/notifications/application/org-gnome-settings]
 application-id='org.gnome.Settings.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
+
+[org/gnome/desktop/notifications/application/org-wireshark-wireshark]
+application-id='org.wireshark.Wireshark.desktop'
 
 [org/gnome/desktop/notifications/application/thunderbird]
 application-id='thunderbird.desktop'
@@ -189,8 +198,8 @@ show-sidebar=true
 sidebar-page='thumbnails'
 sidebar-size=148
 sizing-mode='free'
-window-ratio=(0.66444444444444439, 0.31166666666666665)
-zoom=1.2683215304858813
+window-ratio=(0.939060831655119, 0.31120462559351592)
+zoom=0.61165197264944138
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -237,6 +246,9 @@ initial-size-file-chooser=(890, 550)
 ignore-ca-cert=true
 ignore-phase2-ca-cert=false
 
+[org/gnome/portal/filechooser/org.chromium.Chromium]
+last-folder-path='/home/isaias/mestrado/esr/xubuncore/Dockerized-Coreemu-Template/report'
+
 [org/gnome/settings-daemon/plugins/color]
 night-light-schedule-automatic=false
 
@@ -261,7 +273,7 @@ locations=[<(uint32 2, <('Lisbon', 'LPPT', true, [(0.6766059791742326, -0.159406
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1791546735
+check-timestamp=int64 1791789592
 first-run=false
 install-timestamp=int64 1790716297
 packagekit-historical-updates-timestamp=uint64 1790716297
