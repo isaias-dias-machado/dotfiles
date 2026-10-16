@@ -356,6 +356,8 @@ alias codex="codex --dangerously-bypass-approvals-and-sandbox"
 alias oc="opencode"
 alias clock="timedatectl | rg Local"
 alias claude="claude --dangerously-skip-permissions"
+alias activate="source bin/activate"
+alias cd="pushd > /dev/null"
 
 out() {
   cc $1
