@@ -126,7 +126,7 @@ sources=[('xkb', 'us')]
 xkb-options=['caps:swapescape', 'compose:ralt']
 
 [org/gnome/desktop/interface]
-color-scheme='prefer-light'
+color-scheme='prefer-dark'
 text-scaling-factor=1.25
 toolkit-accessibility=false
 
