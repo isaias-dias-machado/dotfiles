@@ -126,7 +126,7 @@ sources=[('xkb', 'us')]
 xkb-options=['caps:swapescape', 'compose:ralt']
 
 [org/gnome/desktop/interface]
-color-scheme='prefer-light'
+color-scheme='prefer-dark'
 text-scaling-factor=1.25
 toolkit-accessibility=false
 
@@ -249,6 +249,9 @@ initial-size-file-chooser=(890, 550)
 ignore-ca-cert=true
 ignore-phase2-ca-cert=false
 
+[org/gnome/portal/filechooser/firefox-esr]
+last-folder-path='/home/isaias/Downloads'
+
 [org/gnome/portal/filechooser/org.chromium.Chromium]
 last-folder-path='/home/isaias/mestrado/esr/xubuncore/Dockerized-Coreemu-Template/report'
 
@@ -276,11 +279,11 @@ locations=[<(uint32 2, <('Lisbon', 'LPPT', true, [(0.6766059791742326, -0.159406
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1792398841
+check-timestamp=int64 1792739704
 first-run=false
 install-timestamp=int64 1792044966
 packagekit-historical-updates-timestamp=uint64 1792044966
-update-notification-timestamp=int64 1792045082
+update-notification-timestamp=int64 1792577113
 
 [org/gtk/gtk4/settings/file-chooser]
 date-format='regular'
