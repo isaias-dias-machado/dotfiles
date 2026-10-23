@@ -2,6 +2,7 @@ source $HOME/.env
 
 export EDITOR="nvim"
 export J2D_UISCALE=2.0
+export OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX=262144
 
 get_kube_context() {
   local var=$(kubectl config current-context 2>/dev/null)
@@ -356,7 +357,9 @@ alias codex="codex --dangerously-bypass-approvals-and-sandbox"
 alias oc="opencode"
 alias clock="timedatectl | rg Local"
 alias claude="claude --dangerously-skip-permissions"
-alias activate="source bin/activate"
+activate() {
+  source bin/activate 2>&1 || source .venv/bin/activate
+}
 alias cd="pushd > /dev/null"
 
 out() {
