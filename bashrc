@@ -1,3 +1,12 @@
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+if [ -d '/home/isaias/.local/share/bash-completion/completions' ]; then
+  for f in '/home/isaias/.local/share/bash-completion/completions'/*; do
+    [ -f "$f" ] && . "$f"
+  done
+fi
+# OPENSPEC:END
+
 source $HOME/.env
 
 export EDITOR="nvim"
