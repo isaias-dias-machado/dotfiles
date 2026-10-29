@@ -126,12 +126,12 @@ sources=[('xkb', 'us')]
 xkb-options=['caps:swapescape', 'compose:ralt']
 
 [org/gnome/desktop/interface]
-color-scheme='prefer-light'
+color-scheme='prefer-dark'
 text-scaling-factor=1.25
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
-application-children=['gnome-power-panel', 'codium', 'org-gnome-software', 'kitty', 'firefox-esr', 'org-gnome-settings', 'thunderbird', 'org-wireshark-wireshark', 'discord', 'libreoffice-writer', 'org-gnome-nautilus']
+application-children=['gnome-power-panel', 'codium', 'org-gnome-software', 'kitty', 'firefox-esr', 'org-gnome-settings', 'thunderbird', 'org-wireshark-wireshark', 'discord', 'libreoffice-writer', 'org-gnome-nautilus', 'org-gnome-baobab']
 
 [org/gnome/desktop/notifications/application/codium]
 application-id='codium.desktop'
@@ -150,6 +150,9 @@ application-id='kitty.desktop'
 
 [org/gnome/desktop/notifications/application/libreoffice-writer]
 application-id='libreoffice-writer.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-baobab]
+application-id='org.gnome.baobab.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-nautilus]
 application-id='org.gnome.Nautilus.desktop'
@@ -279,11 +282,11 @@ locations=[<(uint32 2, <('Lisbon', 'LPPT', true, [(0.6766059791742326, -0.159406
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1793182183
+check-timestamp=int64 1793264549
 first-run=false
 install-timestamp=int64 1792044966
 packagekit-historical-updates-timestamp=uint64 1792044966
-update-notification-timestamp=int64 1792959331
+update-notification-timestamp=int64 1793264601
 
 [org/gtk/gtk4/settings/file-chooser]
 date-format='regular'
