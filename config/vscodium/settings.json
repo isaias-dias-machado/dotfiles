@@ -1,0 +1,142 @@
+{
+  "editor.formatOnSave": true,
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+  },
+  "cSpell.enabledFileTypes": {
+    "*": false,
+    "markdown": true,
+    "tlaplus": true,
+    "mdx": true
+  },
+  "elixirLS.dialyzerFormat": "dialyxir_long",
+  "elixirLS.dialyzerWarnOpts": [
+    "error_handling",
+    "underspecs",
+    "unmatched_returns"
+  ],
+  "terminal.integrated.commandsToSkipShell": [
+    "-workbench.action.quickOpen", // Ctrl+P / Ctrl+E
+    "-workbench.action.files.newUntitledFile", // Ctrl+N
+    "-workbench.action.toggleSidebarVisibility", // Ctrl+B
+    "-workbench.action.terminal.focusFind" // Ctrl+F
+  ],
+  "[tlaplus]": {
+    "editor.codeActionsOnSave": {
+      "source": "explicit"
+    }
+  },
+  "vim.handleKeys": {
+    "<C-d>": true, // Vim gets half-page down
+    "<C-f>": false, // VS Code keeps find
+    "<C-b>": false, // VS Code keeps sidebar toggle
+    "<C-w>": true, // Vim gets window commands
+    "<C-j>": false,
+    "<C-t>": false,
+    "<C-k>": false,
+    "<C-p>": false,
+    "<C-up>": false,
+    "<C-down>": false,
+    "<C-c>": false
+  },
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "j"
+      ],
+      "after": [
+        "g",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "k"
+      ],
+      "after": [
+        "g",
+        "k"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "j"
+      ],
+      "after": [
+        "g",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "k"
+      ],
+      "after": [
+        "g",
+        "k"
+      ]
+    }
+  ],
+  "workbench.editor.openSideBySideDirection": "down",
+  "runOnSave.commands": [
+    {
+      "match": "\\.(erl|hrl)$",
+      "command": "cd ${workspaceFolder} && erlfmt --write ${file}",
+      "runIn": "backend"
+    }
+  ],
+  "workbench.editor.enablePreview": true,
+  "workbench.editor.enablePreviewFromQuickOpen": true,
+  // "editor.autoClosingBrackets": "never",
+  "keyboard.dispatch": "keyCode",
+  "editor.tabSize": 2,
+  "emmet.includeLanguages": {
+    "elixir": "html",
+    "phoenix-heex": "html",
+    "html-eex": "html"
+  },
+  "files.associations": {
+    "*.heex": "phoenix-heex"
+  },
+  "elixirLS.suggestSpecs": false,
+  "elixirLS.mixEnv": "dev",
+  "elixirLS.fetchDeps": false,
+  "elixirLS.dialyzerEnabled": true,
+  "elixir.credo.configurationFile": ".credo.exs",
+  "elixir.credo.credoConfiguration": "default",
+  "elixir.credo.strictMode": true,
+  "elixir.credo.lintEverything": true,
+  "elixir.credo.enableDebug": true,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "window.customTitleBarVisibility": "windowed",
+  "editor.minimap.enabled": false,
+  "editor.renderControlCharacters": false,
+  "workbench.editor.showTabs": "none",
+  "workbench.activityBar.location": "hidden",
+  "editor.overtypeCursorStyle": "line",
+  "editor.lineNumbers": "off",
+  "editor.cursorBlinking": "solid",
+  "workbench.colorTheme": "Light 2026",
+  "window.autoDetectColorScheme": true,
+  "explorer.confirmDelete": false,
+  "markdown-preview-enhanced.scrollSync": false,
+  "cSpell.userWords": [
+    "chal",
+    "irreflexive",
+    "Lamport",
+    "notin",
+    "println",
+    "subseteq"
+  ],
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "markdown-preview-enhanced.enablePreviewZenMode": true,
+  "markdown-preview-enhanced.previewTheme": "vscode.css",
+  "tlaplus.java.options": "-Xmx10g",
+  "workbench.preferredDarkColorTheme": "Visual Studio Dark",
+  "python.languageServer": "Default",
+  "editor.wordWrap": "off"
+}

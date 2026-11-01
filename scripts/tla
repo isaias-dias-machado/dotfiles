@@ -1,0 +1,37 @@
+#!/bin/bash
+set -x
+
+root_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+
+tla_usage() {
+  cat <<'EOF'
+Usage:
+  tla <Command> <Filename>
+
+Commands:
+  parse         Parse with SANY
+  check         Check model with TLC
+  translate     Translate embedded PlusCal
+EOF
+}
+
+command="$1"
+shift 
+  
+export CLASSPATH="$root_dir/tla2tools.jar"
+
+case $command in
+  parse)
+  java tla2sany.SANY "$@"
+    ;;
+  check)
+  java tlc2.TLC "$@"
+    ;;
+  translate)
+  java pcal.trans "$@"
+    ;;
+  *)
+    tla_usage 
+    ;;
+esac
+

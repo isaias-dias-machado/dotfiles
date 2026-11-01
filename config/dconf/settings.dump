@@ -88,7 +88,7 @@ window-maximized=true
 window-size=(768, 600)
 
 [org/gnome/control-center]
-last-panel='sound'
+last-panel='wifi'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
@@ -126,7 +126,7 @@ sources=[('xkb', 'us')]
 xkb-options=['caps:swapescape', 'compose:ralt']
 
 [org/gnome/desktop/interface]
-color-scheme='prefer-dark'
+color-scheme='prefer-light'
 text-scaling-factor=1.25
 toolkit-accessibility=false
 
@@ -282,11 +282,11 @@ locations=[<(uint32 2, <('Lisbon', 'LPPT', true, [(0.6766059791742326, -0.159406
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1793264549
+check-timestamp=int64 1793525448
 first-run=false
 install-timestamp=int64 1792044966
 packagekit-historical-updates-timestamp=uint64 1792044966
-update-notification-timestamp=int64 1793264601
+update-notification-timestamp=int64 1793525457
 
 [org/gtk/gtk4/settings/file-chooser]
 date-format='regular'

@@ -1,7 +1,7 @@
 # OPENSPEC:START
 # OpenSpec shell completions configuration
-if [ -d '/home/isaias/.local/share/bash-completion/completions' ]; then
-  for f in '/home/isaias/.local/share/bash-completion/completions'/*; do
+if [ -d "$HOME/.local/share/bash-completion/completions" ]; then
+  for f in "$HOME/.local/share/bash-completion/completions"/*; do
     [ -f "$f" ] && . "$f"
   done
 fi
@@ -306,9 +306,11 @@ cafe() {
 #====================================================================
 
 
-export PATH="/home/isaias/.npm-global/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
-export PATH="/home/isaias/mestrado/cp/scripts:$PATH"
+if [ -d "$HOME/mestrado/cp/scripts" ]; then
+  export PATH="$HOME/mestrado/cp/scripts:$PATH"
+fi
 export PATH="/usr/local/go/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
@@ -438,7 +440,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export ERL_AFLAGS='-kernel shell_history enabled  -kernel shell_history_path \".erl.history\"'
 
 # opencode
-export PATH=/home/isaias/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
 ###-begin-opencode-completions-###
 #
 # yargs command completion script
