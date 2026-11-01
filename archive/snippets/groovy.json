@@ -1,0 +1,328 @@
+{
+    "For loop standard": {
+        "prefix": "for",
+        "body": [
+            "for(int i = 0; i < ${1:10}; i++) { \n\n }"
+        ],
+        "description": "Standard for loop"
+    },
+    "Shell": {
+        "prefix": "shell",
+        "body": [
+            "shell(\"${1:touch /tmp/test}\")"
+        ],
+        "description": "Run a shell command"
+    },
+    "Shell complex": {
+        "prefix": "shellcomplex",
+        "body": [
+            "def commandArguments = []\r\ncommandArguments.push(\"echo\")\r\ncommandArguments.push(\"hello\")\r\ncommandArguments.push(\"world\")\r\ndef execCommand = commandArguments.join(\" \")\r\nsh execCommand"
+        ],
+        "description": "Run a shell command from a joined list of params"
+    },
+    "Sleep": {
+        "prefix": "sleep",
+        "body": [
+            "sleep(${1:10})"
+        ],
+        "description": "Sleep for a certain amount of seconds"
+    },
+    "Print": {
+        "prefix": "println",
+        "body": [
+            "println(\"${1:Sample text}\")"
+        ],
+        "description": "Standard for loop"
+    },
+    "Try catch": {
+        "prefix": "try",
+        "body": [
+            "try { \n\t$1\n } catch(e){ \n\n }"
+        ],
+        "description": "Do a try catch"
+    },
+    "If block": {
+        "prefix": "if",
+        "body": [
+            "if (condition) { \n\t$1\n } catch(e){ \n\t$2\n }"
+        ],
+        "description": "Standard if condition"
+    },
+    "If else block": {
+        "prefix": "ifelse",
+        "body": [
+            "if (condition) { \n\t$1\n } else{ \n\t$2\n }"
+        ],
+        "description": "Standard if else condition"
+    },
+    "If file exists block": {
+        "prefix": "ifFile",
+        "body": [
+            "fileBool = fileExists \"${1:\/tmp\/ci\/testReport.json}\"\r\nif(fileBool){\r\n\t${2:sh(\"cp -r \/tmp\/ci .\")}\r\n}"
+        ],
+        "description": "Standard if else dependent on file existing condition"
+    },
+    "Standard function": {
+        "prefix": "deffunc",
+        "body": [
+            "def ${1:method}(String ${2:input}){ \n\n return ${2:input} \n}"
+        ],
+        "description": "Standard function"
+    },
+    "Call function": {
+        "prefix": "voidcall",
+        "body": [
+            "void call(body) {\r\n\t\/\/ Extract the variables passed into the method\r\n\tdef config = [: ]\r\n\tbody.resolveStrategy = Closure.DELEGATE_FIRST\r\n\tbody.delegate = config\r\n\tbody()\r\n\r\n}"
+        ],
+        "description": "Call function which takes config.params as a map"
+    },
+    "Write to a file using JenkinsGroovy": {
+        "prefix": "writeFile",
+        "body": [
+            "writeFile file: ${1:filename}, text: ${2:output}"
+        ],
+        "description": "Standard if else condition"
+    },
+    "Read the contents of a file using JenkinsGroovy": {
+        "prefix": "readFile",
+        "body": [
+            "def output = readFile(file: ${1:\"/tmp/filePath\"})"
+        ],
+        "description": "Standard if else condition"
+    },
+    "Find files locally": {
+        "prefix": "findFiles",
+        "body": [
+            "def files = findFiles(glob: '${1:**\/TEST-*.xml}')\r\necho \"\"\"\r\n${files[0].name} \r\n${files[0].path} \r\n${files[0].directory} \r\n${files[0].length} \r\n${files[0].lastModified}\r\n\"\"\""
+        ],
+        "description": "Find files"
+    },
+    "Jenkins dirstep": {
+        "prefix": "dir",
+        "body": [
+            "dir(\"myDirectory\") { \n\t$1\n }"
+        ],
+        "description": "Go inside the directory, create if required, and perform steps"
+    },
+    "Node Block": {
+        "prefix": "node",
+        "body": [
+            "node(\"slaveLabel\"){ \n\t$1\n }"
+        ],
+        "description": "Run steps inside a node with a label"
+    },
+    "Stage Block": {
+        "prefix": "stage",
+        "body": [
+            "stage (\"${1:Example stage}\") {\n\t$0\n}"
+        ],
+        "description": "Run steps inside a stage"
+    },
+    "Stash from slave to master": {
+        "prefix": "stash",
+        "body": [
+            "stash includes : '**', name: \"${1:examplestash}\""
+        ],
+        "description": "Store files from slave to master, to be used elsewhere"
+    },
+    "Unstash from master to slave": {
+        "prefix": "unstash",
+        "body": [
+            "unstash \"${1:examplestash}\""
+        ],
+        "description": "Retrieve previously stashed files"
+    },
+    "Checkout scm": {
+        "prefix": "checkoutscm",
+        "body": [
+            "checkout scm: [$class: 'GitSCM', branches: [[name: \"refs/tags/$gitConfig.tag\"]], userRemoteConfigs: [[url: gitConfig.url]]]"
+        ],
+        "description": "Checkout SCM (source code management)"
+    },
+    "Lock param": {
+        "prefix": "lock",
+        "body": [
+            "lock(\"lockName\"){ \n\t$1\n }"
+        ],
+        "description": "Create a lock around these steps"
+    },
+    "Standard Parallel ": {
+        "prefix": "parallelsimple",
+        "body": [
+            "parallel (\r\n     phase1: { sh \"echo $1\" },\r\n     phase2: { sh \"echo $2\" }\r\n)"
+        ],
+        "description": "Do a simple couple of parallel steps"
+    },
+    "Standard Parallel with seperate nodes": {
+        "prefix": "parallelsimplenodes",
+        "body": [
+            "parallel (\r\n  \"stream 1\": {\r\n\tnode(\"example_node_label\") {\r\n\t\tsh \"echo hello1\" \r\n\t}\r\n\t},\r\n  \"stream 2\": {\r\n\tnode(\"example_node_label\") {\r\n\t\tsh \"echo hello2\"\r\n\t}\r\n}\r\n)"
+        ],
+        "description": "Do a simple set of parallel steps inside different nodes"
+    },
+    "Advanced Parallel Forloop Map": {
+        "prefix": "parallelcomplex",
+        "body": [
+            "\tdef parallelBlocks = [:]\r\n\r\n\tfor (int i = 0; i < exampleArray.size() ; i++) {\r\n\t\tdef index = i\r\n\r\n\t\tparallelBlocks[\"parallelBlock_${index}\"] = {\r\n\r\n\t\t\tnode(\"docker_slave_cw\") {\r\n\r\n\t\t\t\tcheckout scm\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\tparallel parallelBlocks"
+        ],
+        "description": "Create a map of steps, storing each set of steps under a value - the keys to be run in parallel"
+    },
+    "Upload files to s3": {
+        "prefix": "s3upload",
+        "body": [
+            "s3Upload(file: \"${1:s3folderOutput}\", bucket: \"${2:S3BUCKET}\", path: \"${3:s3UploadPath}\")"
+        ],
+        "description": "Upload files to S3"
+    },
+    "Download files from s3": {
+        "prefix": "s3download",
+        "body": [
+            "s3Download(file: \"${1:s3folderName}\", bucket: \"${2:S3BUCKET}\", path: \"${3:sourceS3Folder}\")"
+        ],
+        "description": "Download files from S3"
+    },
+    "Delete files from s3": {
+        "prefix": "s3delete",
+        "body": [
+            "s3Delete(bucket: \"${1:S3BUCKET}\", path: \"${2:sourceS3Folder}\")"
+        ],
+        "description": "Delete files from S3"
+    },
+    "With AWS": {
+        "prefix": "withAWS",
+        "body": [
+            "${1:withAWS(region: 'eu-west-1'){\r\n\ts3Upload(file: pathToUpload, bucket: s3Bucket, path: s3Path)\r\n}}"
+        ],
+        "description": "Specify region"
+    },
+    "Read from Yaml": {
+        "prefix": "readYaml",
+        "body": [
+            "def datas = readYaml file: 'dir\/my.yml', text: \"something: 'Override, erase 'text' key-value if not needed'\""
+        ],
+        "description": "Read YAML files from workspace"
+    },
+    "Write to Yaml": {
+        "prefix": "writeYaml",
+        "body": [
+            "def amap = ['something': 'my datas',\r\n                    'size': 3,\r\n                    'isEmpty': false]\r\n\r\nwriteYaml file: 'datas.yaml', data: amap"
+        ],
+        "description": "Write to YAML in workspace"
+    },
+    "Read from JSON": {
+        "prefix": "readJSON",
+        "body": [
+            "def props = readJSON file: 'dir\/input.json'"
+        ],
+        "description": "Read data from JSON into map"
+    },
+    "Write to JSON": {
+        "prefix": "writeJSON",
+        "body": [
+            "writeJSON file: 'output.json', json: input, pretty: 4"
+        ],
+        "description": "Write data to JSON file with pretty indent"
+    },
+    "For loop over list with times": {
+        "prefix": "fortimes",
+        "body": [
+            "def n = 3\r\nn.times { idx  ->\r\n   println \"Test \" + idx\r\n}"
+        ],
+        "description": "Times for loop"
+    },
+    "Map loop with each": {
+        "prefix": "forMapEach",
+        "body": [
+            "def testMap = ['cat':'Meow', 'dog':'Woof']\r\ntestMap.each { animal, animalSound ->\r\n    println \"${animal} has the sound ${animalSound}\"\r\n};"
+        ],
+        "description": "Standard for loop over map with each"
+    },
+    "Map loop each with index": {
+        "prefix": "forMapeachIndex",
+        "body": [
+            "def testMap = ['cat':'Meow', 'dog':'Woof']\r\ntestMap.eachWithIndex { animalItem , i ->\r\n    println \"${i+1}. ${animalItem.key} has the sound ${animalItem.value}\"\r\n};"
+        ],
+        "description": "Standard for loop over map with each and index"
+    },
+    "Zip files from directory with glob": {
+        "prefix": "zipDir",
+        "body": [
+            "zip zipFile: myzip.zip, dir: \"/tmp/myDir\", glob: \"*\" "
+        ],
+        "description": "Zip files from a directory"
+    },
+    "Unzip files": {
+        "prefix": "unzip",
+        "body": [
+            "unzip zipFile: 'example.zip', glob: '*', dir: '/tmp/unzippedfiles/', quiet: true"
+        ],
+        "description": "Unzip files"
+    },
+    "Unzip files and read from map": {
+        "prefix": "unzipMap",
+        "body": [
+            "def v = unzip zipFile: 'example.zip', glob: '*.txt', read: true String version = v['version.txt']"
+        ],
+        "description": "Unzip files, read files matching glob pattern, and store contents in map"
+    },
+    "Jenkinsfile pipeline": {
+        "prefix": "pipeline",
+        "body": [
+            "@Library('clv-jenkins-lib${1:@master}') _",
+            "",
+            "pipeline {",
+            "\toptions {",
+            "\t\tbuildDiscarder(logRotator(numToKeepStr: '3'))",
+            "\t\tskipDefaultCheckout true ",
+            "\t}",
+            "",
+            "\tagent {",
+            "\t\tkubernetes {",
+            "\t\t\tyaml clv_agents(\"${2:jnlp}\")",
+            "\t\t}",
+            "\t}",
+            "",
+            "\tstages {",
+            "\t\tstage('Checkout') {",
+            "\t\t\t$0",
+            "\t\t}",
+            "\t}",
+            "}"
+        ]
+    },
+    "With credentials": {
+        "prefix": "withcredentials",
+        "body": [
+            "withCredentials([usernamePassword(",
+            "\t\tcredentialsId: $1,",
+            "\t\tcredentialsId: $2,",
+            "\t\tcredentialsId: $3,",
+            "$0",
+            "}"
+        ]
+    },
+    "Environment setup": {
+        "prefix": "env",
+        "body": [
+            "\tenvironment {",
+            "\t\t$0",
+            "\t}"
+        ]
+    },
+    "Steps closure": {
+        "prefix": "steps",
+        "body": [
+            "steps {",
+            "\t$0",
+            "}"
+        ]
+    },
+    "Container closure": {
+        "prefix": "container",
+        "body": [
+            "container(\"${1:buildah}\" {",
+            "\t$0",
+            "}"
+        ]
+    }
+}

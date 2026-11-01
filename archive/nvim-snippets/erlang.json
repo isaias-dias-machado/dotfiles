@@ -1,0 +1,7 @@
+{
+    "format": {
+        "prefix": "format",
+        "body": "io:format(\"$1~p~n\", [$2])$3",
+        "description": "quick and dirty debugging"
+    }
+}

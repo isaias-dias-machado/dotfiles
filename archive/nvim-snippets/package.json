@@ -1,0 +1,15 @@
+{
+  "name": "personal-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "sh",
+        "path": "./shellscript.json"
+      },
+      {
+        "language": "erl",
+        "path": "./erlang.json"
+      }
+    ]
+  }
+}

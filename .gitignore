@@ -1,4 +1,15 @@
-vim/.netrwhist
-vim/undodir
-vim/plugged
-!vim/plugged/vim-snippets
+# generated
+tags
+tags.temp
+tags.lock
+*.bak
+
+# vim / neovim
+config/vim/.netrwhist
+config/vim/undodir
+config/vim/plugged
+
+# secrets — defense in depth; these should never be inside the repo
+home/.gitconfig.local
+config/opencode/*.key
+config/opencode/service.json
