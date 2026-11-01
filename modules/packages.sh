@@ -1,0 +1,246 @@
+#!/usr/bin/env bash
+# Package provisioning: apt, docker, kubernetes, helm, argocd, asdf, postgres.
+# Requires sudo and network. Opt-in: never called by install.sh.
+set -euo pipefail
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/helpers.sh"
+
+if [[ "$EUID" -eq 0 ]]; then
+  echo "Please run this script as a regular user, not as root."
+  exit 1
+fi
+
+# Keep the sudo session alive while the script is running.
+sudo -v
+while true; do
+  sudo -n true
+  sleep 60
+  kill -0 "$$" || exit
+done 2>/dev/null &
+
+cd "$DOTFILES_HOME" || {
+  echo "ERROR: Could not find the dotfiles directory. Aborting." >&2
+  exit 1
+}
+
+. /etc/os-release
+echo "Running on OS: $ID"
+
+user=$(who | awk 'NR==1{print $1}')
+user_home=/home/$user
+
+to_install=""
+
+if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
+  sudo apt-get update >/dev/null
+elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
+  sudo dnf update >/dev/null
+fi
+
+# $1: program name $2: installation function
+check_installation() {
+  if command -v "$1" &>/dev/null; then
+    echo "INFO: $1 is already installed" >&2
+    return
+  else
+    shift
+    $@
+  fi
+}
+
+install_neovim() {
+  echo "INFO: installing neovim"
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+  chmod u+x nvim-linux-x86_64.appimage
+  sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
+
+  echo "INFO: installing dejavu nerd font"
+  curl -o /tmp/font.zip -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/DejaVuSansMono.zip
+  unzip /tmp/font.zip -d ~/.local/share/fonts/
+  rm /tmp/font.zip
+
+  fc-cache -fv
+}
+
+install_docker() {
+  echo "INFO: installing docker"
+  sudo install -m 0755 -d /etc/apt/keyrings
+  sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+  sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+  # Add the repository to Apt sources:
+  sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/debian
+Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+
+  to_install="docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin $to_install"
+}
+
+install_minikube() {
+  echo "INFO: installing minikube"
+  curl -o /tmp -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+  sudo dpkg -i /tmp/minikube_latest_amd64.deb
+}
+
+install_kubernetes() {
+  echo "INFO: installing kubectl"
+  curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.34/deb/Release.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+  sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg # allow unprivileged APT programs to read this keyring
+  # This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
+  echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.34/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+  sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list # helps tools such as command-not-found to work correctly
+  to_install="kubectl $to_install"
+}
+
+install_kustomize() {
+  curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+}
+
+install_helm() {
+  echo "INFO: installing helm"
+  curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg >/dev/null
+  echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+  to_install="helm $to_install"
+}
+
+install_argocd_cli() {
+  echo "INFO: installing argocd"
+  local VERSION=$(curl -L -s https://raw.githubusercontent.com/argoproj/argo-cd/stable/VERSION)
+  curl -sSL -o /tmp/argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/download/v$VERSION/argocd-linux-amd64
+  sudo install -m 555 /tmp/argocd-linux-amd64 /usr/local/bin/argocd
+  rm /tmp/argocd-linux-amd64
+}
+
+apply_apt_installations() {
+  echo "Applying installations: $to_install"
+  sudo apt-get update >/dev/null
+  sudo apt-get install -y $to_install >/dev/null
+}
+
+# $1 user $2 project
+install_from_github() {
+  echo "INFO: Installing $2"
+
+  local VERSION=$(curl -s "https://api.github.com/repos/$1/$2/releases/latest" | grep -oP '"tag_name": "\K(.*)(?=")')
+  eval filename=$3
+  echo "    INFO: Extracting file: $filename"
+  curl -SL -o /tmp/$2.gz https://github.com/$1/$2/releases/download/$VERSION/$filename
+  sudo tar -xf /tmp/$2.gz -C /usr/local/bin/ --overwrite
+  rm /tmp/$2.gz
+}
+
+# $1 ssh link
+git_clone() {
+  echo "INFO: Attempting to clone from $1..."
+  git clone $1 2>/dev/null
+}
+
+fetch_open_sources() {
+  mkdir -p ~/open-sources
+  cd ~/open-sources
+  git_clone git@github.com:elixir-lang/elixir.git
+  git_clone https://github.com/erlang/otp.git
+  cd - >/dev/null
+}
+
+asdf_configs() {
+  asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git
+  asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+  asdf plugin update --all
+}
+
+packages="
+inotify-tools
+fd-find
+xclip
+zathura
+fzf
+libncurses-dev
+npm
+vim-gtk3
+jq
+ripgrep
+tree
+make
+curl
+git
+powertop
+htop
+strace
+universal-ctags
+cscope
+gdb
+manpages-dev
+openvpn
+rsync
+cloc
+qemu-system-x86
+net-tools
+apt-transport-https
+ca-certificates
+curl
+postgresql
+gnupg
+uncrustify
+texinfo
+build-essential
+autoconf
+automake
+libtool
+gettext
+texinfo
+python3-dev
+libgnunet-dev
+unzip
+"
+
+if [ "$ID" = "debian" ] || [ "$ID" = "ubuntu" ]; then
+  sudo apt-get install $packages -y >/dev/null
+  check_installation "docker" install_docker
+  check_installation "minikube" install_minikube
+  check_installation "kubectl" install_kubernetes
+  check_installation "helm" install_helm
+  check_installation "argocd" install_argocd_cli
+  check_installation "nvim" install_neovim
+  apply_apt_installations
+  check_installation "asdf" install_from_github "asdf-vm" "asdf" 'asdf-$VERSION-linux-amd64.tar.gz'
+  check_installation "zellij" install_from_github "zellij-org" "zellij" "zellij-no-web-x86_64-unknown-linux-musl.tar.gz"
+  asdf_configs
+  fetch_open_sources
+
+  #configure postgres
+  CURRENT_USER=$(whoami)
+
+  # Set postgres password
+  sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'postgres';"
+
+  # Create or update current user as superuser
+  sudo -u postgres psql -c "CREATE USER $CURRENT_USER WITH SUPERUSER;" 2>/dev/null ||
+    sudo -u postgres psql -c "ALTER USER $CURRENT_USER WITH SUPERUSER;"
+elif [ "$ID" = "fedora" ] || [ "$ID" = "centos" ]; then
+  sudo dnf install -y $packages
+fi
+
+### cache glibc ctags
+
+mkdir -p ~/.cache/ctags
+mkdir -p ~/open-sources/glibc
+
+pushd ~/open-sources/glibc
+apt source glibc
+popd
+
+ctags -R -f ~/.cache/ctags/stdlib.tags /usr/include
+
+###
+
+sudo groupadd docker
+
+sudo usermod -aG docker $USER
+
+sudo apt-get autoremove -y >/dev/null
+
+echo "Package provisioning complete."
