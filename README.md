@@ -93,10 +93,10 @@ other modules individually and skip `vscodium.sh`.
 
 ## Remote server
 
-To install on a remote server where you only want portable shell features:
+### Option A: Symlink (recommended for managed machines)
 
 ```bash
-# Clone the repo and link only the shell module
+# Clone the repo and link the shell module
 git clone <this-repo> ~/dotfiles
 cd ~/dotfiles
 ./modules/shell.sh
@@ -106,6 +106,23 @@ cd ~/dotfiles
 The modular `.bashrc` loads each component only if its dependencies are present,
 so fzf/k8s/tools modules will no-op safely on a bare server. Add machine-specific
 settings to `~/.bashrc.local` (gitignored) on that host.
+
+### Option B: Append (zero-risk for unmanaged machines)
+
+```bash
+# Clone the repo and append the bashrc.d block to the existing ~/.bashrc
+# The original file is backed up to ~/.dotfiles-backup/<timestamp>/<bashrc>
+# and can be restored later.
+
+git clone <this-repo> ~/dotfiles
+cd ~/dotfiles
+./modules/shell.sh --append
+./verify.sh
+```
+
+The appended block is idempotent — running `./modules/shell.sh --append` again
+will do nothing if the block is already present. To switch back to symlink mode
+later, run `./modules/shell.sh` (it will back up the appended file before replacing it).
 
 ## Editing
 

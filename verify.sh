@@ -14,7 +14,14 @@ check() {
   printf 'ok       %s\n' "$target"
 }
 
-check "$DOTFILES_HOME/home/.bashrc"        "$HOME/.bashrc"
+# Check for either symlink OR appended block in ~/.bashrc
+if [ -L "$HOME/.bashrc" ]; then
+  check "$DOTFILES_HOME/home/.bashrc" "$HOME/.bashrc"
+elif [ -f "$HOME/.bashrc" ] && grep -q "# >>> dotfiles bashrc.d (managed by ~/dotfiles) >>>" "$HOME/.bashrc" 2>/dev/null; then
+  printf 'ok       %s (appended)\n' "$HOME/.bashrc"
+else
+  printf 'MISSING  %s (not linked, not appended)\n' "$HOME/.bashrc"; fail=1
+fi
 check "$DOTFILES_HOME/home/bashrc.d"       "$HOME/.bashrc.d"
 check "$DOTFILES_HOME/home/.vimrc"         "$HOME/.vimrc"
 check "$DOTFILES_HOME/home/.gitignore"     "$HOME/.gitignore"
