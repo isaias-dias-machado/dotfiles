@@ -36,6 +36,17 @@ dotfiles/
 │   └── dconf/settings.dump     # text dump from `dconf dump /`
 ├── home/
 │   ├── .bashrc
+│   ├── .bashrc.local           # per-machine overrides (gitignored)
+│   ├── .bashrc.d/              # modular bashrc components
+│   │   ├── 00-env.sh            # environment variables
+│   │   ├── 10-core.sh           # core shell behavior
+│   │   ├── 20-prompt.sh         # prompt and color setup
+│   │   ├── 30-aliases.sh        # pure aliases
+│   │   ├── 40-functions.sh      # dependency-free functions
+│   │   ├── 50-fzf.sh            # fzf and ripgrep helpers
+│   │   ├── 60-k8s.sh            # kubectl/helm/argocd helpers
+│   │   ├── 70-tools.sh          # tool paths and tool-specific aliases
+│   │   └── 99-local.sh          # loads ~/.bashrc.local
 │   ├── .gitconfig              # shared settings only, no [user]
 │   ├── .gitignore
 │   ├── .vimrc
@@ -79,6 +90,22 @@ other modules individually and skip `vscodium.sh`.
 - `modules/dconf.sh` — loads `config/dconf/settings.dump` into GNOME with
   `dconf load /`. Loading a dump **overwrites current GNOME settings**, so
   it is never part of `install.sh`; run it explicitly.
+
+## Remote server
+
+To install on a remote server where you only want portable shell features:
+
+```bash
+# Clone the repo and link only the shell module
+git clone <this-repo> ~/dotfiles
+cd ~/dotfiles
+./modules/shell.sh
+./verify.sh
+```
+
+The modular `.bashrc` loads each component only if its dependencies are present,
+so fzf/k8s/tools modules will no-op safely on a bare server. Add machine-specific
+settings to `~/.bashrc.local` (gitignored) on that host.
 
 ## Editing
 

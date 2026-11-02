@@ -15,6 +15,7 @@ check() {
 }
 
 check "$DOTFILES_HOME/home/.bashrc"        "$HOME/.bashrc"
+check "$DOTFILES_HOME/home/bashrc.d"       "$HOME/.bashrc.d"
 check "$DOTFILES_HOME/home/.vimrc"         "$HOME/.vimrc"
 check "$DOTFILES_HOME/home/.gitignore"     "$HOME/.gitignore"
 check "$DOTFILES_HOME/home/.tmux.conf"     "$HOME/.tmux.conf"

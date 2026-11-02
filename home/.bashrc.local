@@ -1,0 +1,13 @@
+# Per-machine bashrc overrides
+# This file is NOT tracked in git
+
+# Machine-specific PATH additions
+export PATH="$HOME/mestrado/cp/scripts:$PATH"
+
+# Database alias
+export CUR_DATABASE="your_database_name"
+alias db="psql -d $CUR_DATABASE"
+alias droptestdb="MIX_ENV=test mix ecto.drop"
+
+# Deucalion SSH shortcut
+alias deucalion="kitty +kitten ssh deucalion"
