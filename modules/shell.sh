@@ -17,6 +17,7 @@ done
 
 # Always link the bashrc.d directory (additive, safe)
 link_file "$DOTFILES_HOME/home/bashrc.d" "$HOME/.bashrc.d"
+link_file "$DOTFILES_HOME/home/.bashrc.local" "$HOME/.bashrc.local"
 
 # Link the main bashrc loader (unless in append mode)
 if [ "$APPEND" -eq 0 ]; then
