@@ -1,0 +1,243 @@
+-- Machine-specific Neovim configuration.
+-- Copy this file to lua/local.lua (gitignored) and adjust it per machine.
+--
+-- The file returns:
+--   { plugins = { ... }, setup = function() ... end }
+-- Top-level code runs before lazy.setup; setup() runs after it.
+
+-- The custom Alloy parser must be registered before nvim-treesitter installs
+-- parsers. The callback runs when nvim-treesitter reloads its parser table.
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'TSUpdate',
+  callback = function()
+    require('nvim-treesitter.parsers').alloy = {
+      tier = 3,
+      install_info = {
+        url = 'https://github.com/vincentlu/tree-sitter-alloy',
+        revision = '7bcc865b0d12ff4f20876efd072fd1bc11faff48',
+        -- If the repository has no src/parser.c:
+        generate = true,
+      },
+    }
+  end,
+})
+
+return {
+  plugins = {
+    { 'vincentlu/alloy.nvim' },
+    {
+      'rmagatti/goto-preview',
+      dependencies = { 'rmagatti/logger.nvim' },
+      event = 'BufEnter',
+      config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
+      opts = {
+        default_mappings = true,
+      },
+    },
+    {
+      'iamcco/markdown-preview.nvim',
+      cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+      build = 'cd app && yarn install',
+      init = function()
+        vim.g.mkdp_filetypes = { 'markdown' }
+      end,
+      ft = { 'markdown' },
+    },
+    {
+      'jmbuhr/otter.nvim',
+      lazy = false,
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+        'neovim/nvim-lspconfig',
+      },
+      opts = {
+        buffers = {
+          -- LSP setup is triggered by the filetype of Otter's hidden buffers.
+          set_filetype = true,
+          write_to_disk = false,
+        },
+      },
+      config = function(_, opts)
+        local otter = require('otter')
+        otter.setup(opts)
+
+        local function activate_markdown_languages()
+          otter.activate({ 'python', 'latex' }, true, true)
+        end
+
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = 'markdown',
+          callback = activate_markdown_languages,
+          desc = 'Enable Python and LaTeX tooling in Markdown code fences',
+        })
+      end,
+    },
+    {
+      'MeanderingProgrammer/render-markdown.nvim',
+      dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },
+      opts = {
+        anti_conceal = {
+          enabled = false,
+        },
+        win_options = {
+          conceallevel = {
+            default = 0,
+            rendered = 3,
+          },
+          concealcursor = {
+            default = '',
+            rendered = 'n',
+          },
+        },
+      },
+    },
+    {
+      'mason-org/mason.nvim',
+      opts = function(_, opts)
+        -- shellcheck is not an LSP server, so it's not in mason-lspconfig's
+        -- list. bashls shells out to it when it is on PATH, and mason's bin
+        -- dir is on Neovim's PATH.
+        opts.ensure_installed = { 'shellcheck' }
+      end,
+    },
+    {
+      'mason-org/mason-lspconfig.nvim',
+      opts = function(_, opts)
+        -- lspconfig names; mason maps them to its package names.
+        opts.ensure_installed = {
+          'elp',           -- Erlang (erlang-language-platform)
+          'elixirls',      -- Elixir (elixir-ls)
+          'bashls',        -- Bash (bash-language-server)
+          'clangd',        -- C
+          'rust_analyzer', -- Rust
+          'pyright',       -- Python, including Markdown code fences via Otter
+          'texlab',        -- LaTeX, including Markdown code fences via Otter
+          'yamlls',        -- YAML
+          'lua_ls',        -- Lua
+        }
+        -- automatic_enable = true (default): installed servers are started
+        -- via vim.lsp.enable(), no per-server boilerplate needed.
+      end,
+    },
+    {
+      'nvim-treesitter/nvim-treesitter',
+      opts = function(_, opts)
+        vim.list_extend(opts.parsers, {
+          'erlang', 'elixir', 'heex', 'gleam',
+          'c', 'rust', 'python', 'latex',
+          'tlaplus', 'alloy',
+        })
+      end,
+    },
+    {
+      'stevearc/conform.nvim',
+      opts = function(_, opts)
+        opts.formatters_by_ft.erlang = { 'erlfmt' }
+        opts.formatters = {
+          erlfmt = {
+            command = 'erlfmt',
+            args = { '-' },
+            stdin = true,
+          },
+        }
+      end,
+    },
+    -- Optional: use blink.cmp's prebuilt Rust fuzzy matcher when available.
+    -- {
+    --   'saghen/blink.cmp',
+    --   opts = function(_, opts)
+    --     opts.fuzzy = { implementation = 'prefer_rust_with_warning' }
+    --   end,
+    -- },
+  },
+
+  setup = function()
+    -- LaTeX: "latex" is the filetype used by Otter's hidden LaTeX buffer.
+    vim.lsp.config('texlab', {
+      filetypes = { 'tex', 'plaintex', 'bib', 'latex' },
+      settings = {
+        texlab = {
+          build = { onSave = false },
+          chktex = {
+            onOpenAndSave = false,
+            onEdit = false,
+          },
+        },
+      },
+    })
+
+    -- YAML
+    vim.lsp.config('yamlls', {
+      settings = {
+        yaml = {
+          validate = true,
+          hover = true,
+          completion = true,
+          format = { enable = true },
+
+          -- Built-in catalog support; no extra plugin required.
+          schemaStore = {
+            enable = true,
+            url = 'https://www.schemastore.org/api/json/catalog.json',
+          },
+
+          schemas = {
+            kubernetes = {
+              '**/*.k8s.yaml',
+              '**/*.k8s.yml',
+            },
+
+            ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = {
+              '**/compose.yaml',
+              '**/compose.yml',
+              '**/compose.*.yaml',
+              '**/compose.*.yml',
+              '**/docker-compose*.yaml',
+              '**/docker-compose*.yml',
+            },
+          },
+        },
+      },
+    })
+    vim.lsp.enable('yamlls')
+
+    -- Gleam's LSP ships inside the `gleam` binary itself (not via mason).
+    -- Install gleam yourself; this just tells Neovim to attach it.
+    if vim.fn.executable('gleam') == 1 then
+      vim.lsp.enable('gleam')
+    end
+
+    -- Alloy LSP: prefer the local wrapper, fall back to the upstream binary.
+    local alloy_cmd = vim.fn.executable('myalloy') == 1 and 'myalloy'
+      or vim.fn.executable('alloy') == 1 and 'alloy'
+    if alloy_cmd then
+      vim.lsp.config('alloy_ls', { cmd = { alloy_cmd, 'lsp' } })
+      vim.lsp.enable('alloy_ls')
+    end
+
+    -- Erlang indentation (replaces the old ftplugin/erlang.lua).
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'erlang',
+      callback = function()
+        vim.bo.expandtab = true
+        vim.bo.shiftwidth = 4
+        vim.bo.tabstop = 4
+        vim.bo.softtabstop = 4
+      end,
+    })
+
+    -- TLA+
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'tla',
+      callback = function()
+        pcall(vim.treesitter.start)
+      end,
+    })
+    vim.g.tlaplus_mappings_enable = true
+
+    -- Optional machine-specific overrides:
+    -- vim.g.clipboard = 'osc52' -- clipboard over SSH/tmux
+    -- vim.opt.hidden = true     -- keep modified buffers when switching
+    -- vim.opt.swapfile = true   -- swap-file safety net on remote machines
+  end,
+}
