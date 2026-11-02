@@ -8,6 +8,7 @@ tags.lock
 config/vim/.netrwhist
 config/vim/undodir
 config/vim/plugged
+home/.bashrc.local
 
 # secrets — defense in depth; these should never be inside the repo
 home/.gitconfig.local
